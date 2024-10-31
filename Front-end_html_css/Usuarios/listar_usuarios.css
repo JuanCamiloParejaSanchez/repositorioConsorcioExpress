@@ -1,0 +1,13 @@
+table {
+    width: 100%;
+    border: none; 
+}
+
+tr{
+    cursor: pointer;
+}
+
+.table-hover {
+    --bs-table-hover-bg: rgb(210, 207, 207);
+    --bs-table-accent-bg: white;
+}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+
+    <!-- Metadatos -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Camilo Pareja">
+    <meta name="description" content="Software Consorcio Express">
+
+    <!-- Titulo -->
+    <title>Registro Proveedor | Consorcio Express</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="imagenes\DOR.jpg">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+    crossorigin="anonymous">
+            
+    <!-- Iconos de Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="registrar_proveedor.css">
+  </head>
+  <body>
+
+      <!--<img src="imagenes/Icono_inicio_sesion.jpg" alt="Imagen Consorcio Express" class="left-image">-->
+      <section class="container">
+          <div class="left-form">
+            <img src="../Imagenes/Icono_inicio_sesion.jpg" alt="Imagen Consorcio Express" class="left-image">
+          </div>
+        
+          <div class="right-form mb-0">
+            <div class="form-container">
+        
+              <h2>Registro Proveedor</h2>
+        
+              <form method="post" id="registroForm">
+              
+                <div class="mb-0">
+                  <!-- <label for="idCodigoUsuario" class="form-label">IdCodigoUsuario</label> -->
+                  <input type="text" class="form-control" id="idProveedor" placeholder="Código del Proveedor" required>
+                </div>
+
+                <div class="mb-0">
+                  <!-- <label for="documento" class="form-label">Documento</label> -->
+                  <input type="text" class="form-control" id="nitProveedor" placeholder="Nit del Proveedor" required>
+                </div>
+                
+                <div class="mb-0">
+                  <!-- <label for="nombres" class="form-label">Nombres</label> -->
+                  <input type="text" class="form-control" id="nombreProveedor" placeholder="Nombre del Proveedor" required>
+                </div>
+
+                <div class="mb-0">
+                  <!-- <label for="apellidos" class="form-label">Apellidos</label> -->
+                  <input type="text" class="form-control" id="direccion" placeholder="Direccion del Proveedor" required>
+                </div>
+
+                <div class="mb-0">
+                  <!-- <label for="telefono" class="form-label">Teléfono</label> -->
+                  <input type="text" class="form-control" id="telefono" placeholder="Teléfono del Proveedor" required>
+                </div>
+
+                <div class="mb-0">
+                  <!-- <label for="correo" class="form-label">Correo</label> -->
+                  <input type="email" class="form-control" id="correo" placeholder="Correo del Proveedor" required>
+                </div>
+                                     
+                <button type="button" class="btn btn-primary mt-2" id="registrar">Registrar Proveedor</button>
+                
+              </form>
+            </div>
+          </div>
+        </section>
+
+      <script src="registrar_proveedor.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  </body>
+</html>

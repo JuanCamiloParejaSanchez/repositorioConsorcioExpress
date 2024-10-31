@@ -1,0 +1,208 @@
+/* Barra de navegacion*/
+
+.navbar {
+    padding: 1rem;
+    color: white;
+    background-color: rgb(78, 81, 243);
+}
+
+.nav-link {
+    color: white;
+}
+.nav-item {
+    padding: 20px;
+    font-size: 20px;
+}
+
+.navbar-collapse {
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar-imagen-usuario {
+    width: 50px;
+    height: 50px;
+}
+
+.btn-navbar {
+    margin: 10px;
+    width: 10rem;
+    height: 50px;
+    font-size: 10px;
+    font-weight: bold;
+    background-color: green;
+    border: 0;
+}
+
+/* Estilos generales*/
+
+.seccion-titulo {
+    text-align: center;
+    font-size: 2rem;
+    padding: 15px;
+    font-family: sans-serif;
+    font-weight: bold;
+    color: black;
+}
+
+.seccion-texto {
+    font-size: 1.2rem;
+}
+
+/* Seccion hero*/
+
+section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero {
+    background-color: green;     
+    min-height: 200px;
+    text-align: center;
+    padding: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: flex;
+}
+
+.hero-imagen-desarrollador {
+    height: 100%;
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    text-align: center;
+}
+
+/* Sección Opciones */
+
+section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.opciones .columna {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    transition: all 0.2s ease-in;
+}
+
+.opciones .columna:hover {
+    color: white;
+    background-color: rgb(78, 81, 243);
+}
+
+.opciones-contenedor {
+    padding-top: 60px;
+    margin-bottom: 60px;
+}
+
+.seccion-clara {
+    color: black;
+    background-color: white
+}
+
+.btn-opciones {
+    background-color: hsl(43, 100%, 50%);
+    margin: 50px;
+    width: 20rem;
+    height: 150px;
+    font-size: 35px;
+    font-weight: bold;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.overlay {
+    transition: all 0.2s ease;
+    opacity: 1;
+    top: 50%;
+    left: 50%;
+    text-align: center;
+}
+
+.proyecto {
+    position: relative;
+}
+
+.proyecto:hover {
+    opacity: 0.4;
+}
+
+.proyecto:hover .overlay {
+    opacity: 1;
+}
+
+/* Pie de página (footer) */
+
+footer {
+    min-height: 500px;
+    color: white;
+    background-color: rgb(78, 81, 243);
+}
+
+.footer-logo {
+    height: 80px;
+    width: 80px;
+    margin: 10px;
+}
+
+.footer-texto {
+    font-size: 1.5rem;
+    padding: 20px;
+    margin-bottom: 30px;
+    font-family: 'Quicksand', sans-serif;
+    max-width: 600px;
+}
+
+.iconos-redes-sociales a{
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px;
+    margin: 10px;
+    border: 2px solid white;
+    border-radius: 50%;
+    transition: all 0.2s ease-in;
+}
+
+.iconos-redes-sociales i {
+    color: white;
+    font-size: 1.5rem;
+    transition: all 0.2s ease-in;
+}
+
+.iconos-redes-sociales a:hover {
+    background-color: white;
+    border: 2px solid rgb(13, 110, 253);
+}
+
+.iconos-redes-sociales a:hover i {
+    color: black;
+}
+
+.derechos-de-autor {
+    font-size: 15px;
+    color: #aeaeae;
+    padding: 20px;
+}
+
+/*adaptable (responsivo)*/
+
+@media screen and (max-width: 767px) {
+    .navbar-brand {
+        display: none;
+    }
+}
