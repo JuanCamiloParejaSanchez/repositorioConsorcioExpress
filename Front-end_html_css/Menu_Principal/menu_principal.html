@@ -38,8 +38,6 @@
           </a>
 
           <div class="dropdown d-flex align-items-center">
-            <!-- Imagen de usuario -->
-            <img class="imagen rounded-circle me-2" src="../Imagenes/Foto_usuario.jpg" alt="Imagen de usuario">
             
             <!-- Botón desplegable -->
             <button class="btn btn-navbar dropdown-toggle" type="button" data-bs-toggle="dropdown">
@@ -62,18 +60,26 @@
     
     <div class="container">
       <div class="botones-container">
-        <button type="button" class="btn-custom" id="botonAdministrador">Administrador</button>
-        <button type="button" class="btn-custom" id="botonInventario">Inventario</button>
-        <button type="button" class="btn-custom" id="botonCompras">Compras</button>
-        <button type="button" class="btn-custom" id="botonConductores">Conductores</button>
-        <button type="button" class="btn-custom" id="botonMantenimiento">Mantenimiento</button>
+        <button type="button" class="btn-custom" id="botonUsuarios" onclick="mostrarIframe('iframe1')">Usuarios</button>        
+        <button type="button" class="btn-custom" id="botonProveedores" onclick="mostrarIframe('iframe2')">Proveedores</button>
+        <button type="button" class="btn-custom" id="botonInventario" onclick="mostrarIframe('iframe3')">Inventario</button>
+        <button type="button" class="btn-custom" id="botonCompras" onclick="mostrarIframe('iframe4')">Compras</button>
+        <button type="button" class="btn-custom" id="botonConductores" onclick="mostrarIframe('iframe5')">Conductores</button>
+        <button type="button" class="btn-custom" id="botonMantenimiento" onclick="mostrarIframe('iframe6')">Mantenimiento</button>
+        <button type="button" class="btn-custom" id="botonVehiculos" onclick="mostrarIframe('iframe7')">Vehículos</button>
       </div>
       
       <div class="separator"></div> <!-- Línea vertical -->
   
       <div class="tablas-container">
 
-        <iframe src="../Usuarios/listar_usuarios.html" width="100%" height="600" style="border:none;"></iframe>
+        <iframe class="iFrame" src="../Usuarios/listar_usuarios.html" style="display:none" width="100%" height="600" style="border:none;" id="iframe1"></iframe>
+        <iframe class="iFrame" src="../Proveedores/listar_proveedor.html" style="display:none" width="100%" height="600" style="border:none;" id="iframe2"></iframe>
+        <iframe class="iFrame" src="" style="display:none" width="100%" height="600" style="border:none;" id="iframe3"></iframe>
+        <iframe class="iFrame" src="../Compras/listar_compras.html" style="display:none" width="100%" height="600" style="border:none;" id="iframe4"></iframe>
+        <iframe class="iFrame" src="" style="display:none" width="100%" height="600" style="border:none;" id="iframe5"></iframe>
+        <iframe class="iFrame" src="" style="display:none" width="100%" height="600" style="border:none;" id="iframe6"></iframe>
+        <iframe class="iFrame" src="" style="display:none" width="100%" height="600" style="border:none;" id="iframe7"></iframe>
           
       </div>
     </div>
@@ -107,8 +113,9 @@
       </div>
   </footer>
   
-
+    
     <script src="../Menu_Principal/menu_principal.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     
   </body>
