@@ -1,5 +1,5 @@
 DROP PROCEDURE REGISTRAR_USUARIO
-DROP TABLE USUARIO_NUEVO
+DROP TABLE COMPRAS
 SELECT * FROM USUARIO_NUEVO
 DELETE FROM USUARIO_NUEVO WHERE IdCodigoUsuario = 105
 
@@ -65,9 +65,13 @@ CREATE TABLE CONDUCTOR
 CREATE TABLE COMPRAS
 (
 	NumeroFactura varchar(15) not null,
-	IdAdministrador varchar(15) not null,
-	IdProveedor varchar(15) not null,
-	NombreProducto varchar(80),
+	NombreProveedor varchar(100),
+	NitProveedor varchar(15) not null,
+	Dirección varchar(80),
+	Telefono varchar(15),
+	Correo varchar(100),
+	NombreArticulo varchar(80),
+	Cantidad int,
 	Total int,
 	Fecha datetime
 )
@@ -109,7 +113,7 @@ CREATE TABLE DETALLE_COMPRA
 	Fecha datetime
 )
 
---CLAVES PRIMARIAS
+CLAVES PRIMARIAS
 
 alter table USUARIO_NUEVO
 add constraint PK_USUARIO_NUEVO primary key (IdCodigoUsuario)
@@ -489,55 +493,76 @@ select * from CONDUCTOR
 
 
 --PROCEDIMIENTOS ALMACENADOS TABLA COMPRAS
-
+	NumeroFactura varchar(15) not null,
+	NombreProveedor varchar(100),
+	NitProveedor varchar(15) not null,
+	Dirección varchar(80),
+	Telefono varchar(15),
+	Correo varchar(100),
+	NombreArticulo varchar(80),
+	Cantidad int,
+	Total int,
+	Fecha datetime
 --REGISTRAR COMPRAS
 create procedure REGISTRAR_COMPRAS
 	@NumeroFactura varchar(15),
-	@IdAdministrador varchar(15),
-	@IdProveedor varchar(15),
-	@NombreProducto varchar(80),
+	@NombreProveedor varchar(100),
+	@NitProveedor varchar(15),
+	@Dirección varchar(80),
+	@Telefono varchar(15),
+	@Correo varchar(100),
+	@NombreArticulo varchar(80),
+	@Cantidad int,
 	@Total int,
 	@Fecha datetime
 
 as
 begin
-	insert into COMPRAS (NumeroFactura,IdAdministrador,IdProveedor,NombreProducto,Total,Fecha)
-	values (@NumeroFactura,@IdAdministrador,@IdProveedor,@NombreProducto,@Total,@Fecha)
+	insert into COMPRAS (NumeroFactura,NombreProveedor,NitProveedor,Dirección,Telefono,Correo,NombreArticulo,Cantidad,Total,Fecha)
+	values (@NumeroFactura,@NombreProveedor,@NitProveedor,@Dirección,@Telefono,@Correo,@NombreArticulo,@Cantidad,@Total,@Fecha)
 end
 
 set dateformat dmy
 
-execute REGISTRAR_COMPRAS '00513','101','1538','LLANTAS X 4','2000000','15-03-2024'
-execute REGISTRAR_COMPRAS '00205','101','1538','LLANTAS X 4','60000','16-03-2024'
-execute REGISTRAR_COMPRAS '00427','101','1538','LLANTAS X 4','20000','17-03-2024'
-execute REGISTRAR_COMPRAS '00462','101','1538','LLANTAS X 4','450000','18-03-2024'
-execute REGISTRAR_COMPRAS '00915','101','1538','LLANTAS X 4','33000','19-03-2024'
+execute REGISTRAR_COMPRAS '00513','LLANTAS COLOMBIA','99056418-1','CALLE 31 # 81A 51','300654956','LLANTASCOLOMBIA@GMAIL.COM','LLANTAS X 4','100','2000000','15-03-2024'
+execute REGISTRAR_COMPRAS '00514','LLANTAS COLOMBIA','99056418-1','CALLE 31 # 81A 51','300654956','LLANTASCOLOMBIA@GMAIL.COM','LLANTAS X 4','100','2000000','15-03-2024'
+execute REGISTRAR_COMPRAS '00515','LLANTAS COLOMBIA','99056418-1','CALLE 31 # 81A 51','300654956','LLANTASCOLOMBIA@GMAIL.COM','LLANTAS X 4','100','2000000','15-03-2024'
+execute REGISTRAR_COMPRAS '00516','LLANTAS COLOMBIA','99056418-1','CALLE 31 # 81A 51','300654956','LLANTASCOLOMBIA@GMAIL.COM','LLANTAS X 4','100','2000000','15-03-2024'
+execute REGISTRAR_COMPRAS '00517','LLANTAS COLOMBIA','99056418-1','CALLE 31 # 81A 51','300654956','LLANTASCOLOMBIA@GMAIL.COM','LLANTAS X 4','100','2000000','15-03-2024'
+execute REGISTRAR_COMPRAS '00518','LLANTAS COLOMBIA','99056418-1','CALLE 31 # 81A 51','300654956','LLANTASCOLOMBIA@GMAIL.COM','LLANTAS X 4','100','2000000','15-03-2024'
+execute REGISTRAR_COMPRAS '00519','LLANTAS COLOMBIA','99056418-1','CALLE 31 # 81A 51','300654956','LLANTASCOLOMBIA@GMAIL.COM','LLANTAS X 4','100','2000000','15-03-2024'
 
 select * from COMPRAS
 
 --ACTUALIZAR COMPRAS
 create procedure ACTUALIZAR_COMPRAS
 	@NumeroFactura varchar(15),
-	@IdAdministrador varchar(15),
-	@IdProveedor varchar(15),
-	@NombreProducto varchar(80),
+	@NombreProveedor varchar(100),
+	@NitProveedor varchar(15),
+	@Dirección varchar(80),
+	@Telefono varchar(15),
+	@Correo varchar(100),
+	@NombreArticulo varchar(80),
+	@Cantidad int,
 	@Total int,
 	@Fecha datetime
 
 as
 begin
-	update COMPRAS set NumeroFactura=@NumeroFactura,IdAdministrador=@IdAdministrador,IdProveedor=@IdProveedor,
-					NombreProducto=@NombreProducto,Total=@Total,Fecha=@Fecha where NumeroFactura=@NumeroFactura
+	update COMPRAS set NumeroFactura=@NumeroFactura,NombreProveedor=@NombreProveedor,NitProveedor=@NitProveedor,Dirección=@Dirección,
+	Telefono=@Telefono,Correo=@Correo,NombreArticulo=@NombreArticulo,Cantidad=@Cantidad,Total=@Total,Fecha=@Fecha where NumeroFactura=@NumeroFactura
+	
 end
 
-execute ACTUALIZAR_COMPRAS '00513','101','1538','LLANTAS X 4','5000000','15-03-2024'
+execute ACTUALIZAR_COMPRAS '00513','LLANTAS COLOMBIA','99056418-1','CALLE 31 # 81A 51','1111111111','LLANTASCOLOMBIA@GMAIL.COM','LLANTAS X 4','100','2000000','15-03-2024'
 
 --CONSULTAR COMPRAS
 create procedure CONSULTAR_COMPRAS
 	@NumeroFactura varchar(15)
 as
 begin
-	select NumeroFactura,IdAdministrador,IdProveedor,NombreProducto,Total,Fecha from COMPRAS where NumeroFactura=@NumeroFactura
+	select NumeroFactura,NombreProveedor,NitProveedor,Dirección,Telefono,Correo,NombreArticulo,Cantidad,Total,Fecha from COMPRAS
+	where NumeroFactura=@NumeroFactura
 end
 
 execute CONSULTAR_COMPRAS '00513'
@@ -546,7 +571,7 @@ execute CONSULTAR_COMPRAS '00513'
 create procedure LISTAR_COMPRAS
 as
 begin
-	select NumeroFactura,IdAdministrador,IdProveedor,NombreProducto,Total,Fecha from COMPRAS
+	select NumeroFactura,NombreProveedor,NitProveedor,Dirección,Telefono,Correo,NombreArticulo,Cantidad,Total,Fecha from COMPRAS
 end
 
 execute LISTAR_COMPRAS
