@@ -13,7 +13,7 @@ namespace ConsorcioExpress.Data
         {
             ConexionBD objEst = new ConexionBD();
             string sentencia;
-            sentencia = "REGISTRAR_PROVEEDOR'" + oProveedor.IdProveedor + "','" + oProveedor.NitProveedor + "','"
+            sentencia = "REGISTRAR_PROVEEDOR'" + oProveedor.NitProveedor + "','"
                 + oProveedor.NombreProveedor + "','" + oProveedor.Direccion + "','" + oProveedor.Telefono + "','"
                 + oProveedor.Correo + "'";
             if (!objEst.EjecutarSentencia(sentencia, false))
@@ -33,7 +33,7 @@ namespace ConsorcioExpress.Data
         {
             ConexionBD objEst = new ConexionBD();
             string sentencia;
-            sentencia = "ACTUALIZAR_PROVEEDOR'" + oProveedor.IdProveedor + "','" + oProveedor.NitProveedor + "','"
+            sentencia = "ACTUALIZAR_PROVEEDOR'" + oProveedor.NitProveedor + "','"
                 + oProveedor.NombreProveedor + "','" + oProveedor.Direccion + "','" + oProveedor.Telefono + "','"
                 + oProveedor.Correo + "'";
             if (!objEst.EjecutarSentencia(sentencia, false))
@@ -81,7 +81,6 @@ namespace ConsorcioExpress.Data
                 {
                     oProveedor.Add(new Proveedor()
                     {
-                        IdProveedor = dr["IdProveedor"].ToString(),
                         NitProveedor = dr["NitProveedor"].ToString(),
                         NombreProveedor = dr["NombreProveedor"].ToString(),
                         Direccion = dr["Direccion"].ToString(),
@@ -111,7 +110,6 @@ namespace ConsorcioExpress.Data
                 {
                     oProveedor.Add(new Proveedor()
                     {
-                        IdProveedor = dr["IdProveedor"].ToString(),
                         NitProveedor = dr["NitProveedor"].ToString(),
                         NombreProveedor = dr["NombreProveedor"].ToString(),
                         Direccion = dr["Direccion"].ToString(),

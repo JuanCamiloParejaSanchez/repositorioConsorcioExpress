@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const correo = document.getElementById("correo");
   
     fetch("http://www.consorcioexpress.somee.com/api/proveedor/" + id)
-    /* fetch("https://localhost:44303/api/registrousuario/" + id) */
+    /* fetch("https://localhost:44314/api/proveedor/" + id) */
       .then((response) => response.json())
       .then((data) => {
         data.forEach((proveedor) => {
@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
   
   
       fetch("http://www.consorcioexpress.somee.com/api/proveedor/", {
-      /* fetch("https://localhost:44303/api/registrousuario/", { */
+      /* fetch("https://localhost:44314/api/proveedor/", { */
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

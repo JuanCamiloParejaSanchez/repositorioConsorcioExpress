@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", () => {
     registrar.addEventListener("click", (e) => {
       /* e.preventDefault(); */
   
-      const idProveedor = document.getElementById("idProveedor").value;
       const nitProveedor = document.getElementById("nitProveedor").value;
       const nombreProveedor = document.getElementById("nombreProveedor").value;
       const direccion = document.getElementById("direccion").value;
@@ -13,7 +12,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const correo = document.getElementById("correo").value;
   
       const data = {
-        idProveedor: idProveedor,
         nitProveedor: nitProveedor,
         nombreProveedor: nombreProveedor,
         direccion: direccion,
@@ -22,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
   
       fetch(`http://www.consorcioexpress.somee.com/api/proveedor`, {
-      /* fetch(`https://localhost:44303/api/registrousuario/`, { */
+      /* fetch(`https://localhost:44314/api/proveedor/`, { */
           method: "POST",
           headers:{
               "Content-Type": "application/json"

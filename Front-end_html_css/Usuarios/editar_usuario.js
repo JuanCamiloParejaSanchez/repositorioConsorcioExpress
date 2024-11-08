@@ -12,8 +12,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const cargo = document.getElementById("cargo");
   const contrasena = document.getElementById("contrasena");
 
-  /* fetch("http://www.consorcioexpress.somee.com/api/registrousuario/" + id) */
-  fetch("https://localhost:44314/api/registrousuario/" + id)
+  fetch("http://www.consorcioexpress.somee.com/api/registrousuario/" + id)
+  /* fetch("https://localhost:44314/api/registrousuario/" + id) */
     .then((response) => response.json())
     .then((data) => {
       data.forEach((usuario) => {
@@ -45,8 +45,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 
-    /* fetch("http://www.consorcioexpress.somee.com/api/registrousuario/", { */
-    fetch("https://localhost:44314/api/registrousuario/", {
+    fetch("http://www.consorcioexpress.somee.com/api/registrousuario/", {
+    /* fetch("https://localhost:44314/api/registrousuario/", { */
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

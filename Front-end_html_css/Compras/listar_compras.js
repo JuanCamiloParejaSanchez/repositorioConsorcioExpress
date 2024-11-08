@@ -18,7 +18,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Función para obtener datos de la API
     function obtenerCompras() {
-        fetch(`https://localhost:44314/api/compras`)
+        fetch(`http://www.consorcioexpress.somee.com/api/compras`)
+        /* fetch(`https://localhost:44314/api/compras`) */
             .then((response) => {
                 console.log("Respuesta de la API:", response);
                 if (!response.ok) {
@@ -44,13 +45,13 @@ document.addEventListener("DOMContentLoaded", () => {
             compras.NumeroFactura.toString().includes(filterText) ||
             compras.NombreProveedor.includes(filterText) ||
             compras.NitProveedor.toLowerCase().includes(filterText) ||
-            compras.Dirección.toLowerCase().includes(filterText) ||
+            compras.Direccion.toLowerCase().includes(filterText) ||
             compras.Telefono.includes(filterText) ||
             compras.Correo.toLowerCase().includes(filterText) ||
             compras.NombreArticulo.toLowerCase().includes(filterText) ||
             compras.Cantidad.toLowerCase().includes(filterText) ||
-            compras.Total.toLowerCase().includes(filterText) ||
-            compras.Fecha.toLowerCase().includes(filterText)
+            compras.Total.toLowerCase().includes(filterText)
+            
         );
         totalPages = Math.ceil(filteredCompras.length / pageSize);
         displayPage(1);  // Mostrar la primera página después de aplicar filtro
@@ -71,13 +72,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 <td class="text-center">${compras.NumeroFactura}</td>
                 <td class="text-center">${compras.NombreProveedor}</td>
                 <td class="text-center">${compras.NitProveedor}</td>
-                <td class="text-center">${compras.Dirección}</td>
+                <td class="text-center">${compras.Direccion}</td>
                 <td class="text-center">${compras.Telefono}</td>
                 <td class="text-center">${compras.Correo}</td>
                 <td class="text-center">${compras.NombreArticulo}</td>
                 <td class="text-center">${compras.Cantidad}</td>
                 <td class="text-center">${compras.Total}</td>
-                <td class="text-center">${compras.Fecha}</td>
             `;
             row.addEventListener("click", () => selectRow(row, compras));
             tabla.appendChild(row);
@@ -123,12 +123,12 @@ document.addEventListener("DOMContentLoaded", () => {
     borrarBtn.addEventListener("click", () => {
         const confirmacion = confirm("¿Estás seguro de que deseas eliminar este registro?");
         if (confirmacion) {
-            fetch(`https://localhost:44314/api/compras/${borrarBtn.value}`, {
+            fetch(`http://www.consorcioexpress.somee.com/api/compras/${borrarBtn.value}`, {
                 method: "DELETE",
             })
             .then((response) => {
                 if (!response.ok) throw new Error("Error al eliminar la compra");
-                obtenerUsuarios(); // Actualizar la lista después de eliminar
+                obtenerCompras(); // Actualizar la lista después de eliminar
             })
             .catch((error) => console.error("Error al eliminar compra:", error));
         }

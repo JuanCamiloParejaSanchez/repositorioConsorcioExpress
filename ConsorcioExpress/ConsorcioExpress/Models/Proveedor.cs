@@ -7,7 +7,6 @@ namespace ConsorcioExpress.Models
 {
     public class Proveedor
     {
-        public string IdProveedor { get; set; }
         public string NitProveedor { get; set; }
         public string NombreProveedor { get; set; }
         public string Direccion { get; set; }

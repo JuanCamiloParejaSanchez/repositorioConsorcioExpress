@@ -53,8 +53,9 @@ namespace ConsorcioExpress.Data
         {
             try
             {
-                strCadenaCnx = "Data Source=CAMILO;Initial Catalog=DBCONSORCIO_EXPRESS;Integrated Security=True";
-                /*strCadenaCnx = "workstation id=DBCONSORCIO_EXPRESS.mssql.somee.com;packet size=4096;user id=Jcparejas_SQLLogin_1;pwd=qot3zkag5h;data source=DBCONSORCIO_EXPRESS.mssql.somee.com;persist security info=False;initial catalog=DBCONSORCIO_EXPRESS;TrustServerCertificate=True";*/
+                /*strCadenaCnx = "Data Source=BD_CONSORCIO_EXPRESS.mssql.somee.com;Initial Catalog=BDCONSORCIO_EXPRESS;Integrated Security=True";*/
+                /*strCadenaCnx = "Data Source=CAMILO;Initial Catalog=BD_CONSORCIO_EXPRESS;Integrated Security=True";*/
+                strCadenaCnx = "workstation id=BD_CONSORCIO_EXPRESS.mssql.somee.com;packet size=4096;user id=Jcparejas_SQLLogin_1;pwd=qot3zkag5h;data source=BD_CONSORCIO_EXPRESS.mssql.somee.com;persist security info=False;initial catalog=BD_CONSORCIO_EXPRESS;TrustServerCertificate=True";
                 objCnnBD.ConnectionString = strCadenaCnx;
                 objCnnBD.Open();
                 blnBDAbierta = true;

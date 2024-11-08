@@ -5,32 +5,32 @@ document.addEventListener("DOMContentLoaded", () => {
     registrar.addEventListener("click", (e) => {
     e.preventDefault();
   
-      const NumeroFactura = document.getElementById("NumeroFactura").value;
-      const NombreProveedor = document.getElementById("NombreProveedor").value;
-      const NitProveedor = document.getElementById("NitProveedor").value;
-      const Dirección = document.getElementById("Dirección").value;
-      const Telefono = document.getElementById("Telefono").value;
-      const Correo = document.getElementById("Correo").value;    
-      const NombreArticulo = document.getElementById("NombreArticulo").value;
-      const Cantidad = document.getElementById("Cantidad").value;
-      const Total = document.getElementById("Total").value;
-      const Fecha = document.getElementById("Fecha").value;
+      const numeroFactura = document.getElementById("numeroFactura").value;
+      const nombreProveedor = document.getElementById("nombreProveedor").value;
+      const nitProveedor = document.getElementById("nitProveedor").value;
+      const direccion = document.getElementById("direccion").value;
+      const telefono = document.getElementById("telefono").value;
+      const correo = document.getElementById("correo").value;    
+      const nombreArticulo = document.getElementById("nombreArticulo").value;
+      const cantidad = document.getElementById("cantidad").value;
+      const total = document.getElementById("total").value;
+      
   
       const data = {
-        NumeroFactura: NumeroFactura,
-        NombreProveedor: NombreProveedor,
-        NitProveedor: NitProveedor,
-        Dirección: Dirección,
-        Telefono: Telefono,
-        Correo: Correo,
-        NombreArticulo: NombreArticulo,
-        Cantidad: Cantidad,
-        Total: Total,
-        Fecha: Fecha
+        numeroFactura: numeroFactura,
+        nombreProveedor: nombreProveedor,
+        nitProveedor: nitProveedor,
+        direccion: direccion,
+        telefono: telefono,
+        correo: correo,
+        nombreArticulo: nombreArticulo,
+        cantidad: cantidad,
+        total: total
+        
       }
   
-      /* fetch(`http://www.consorcioexpress.somee.com/api/compras`, { */
-      fetch(`https://localhost:44314/api/compras/`, {
+      fetch(`http://www.consorcioexpress.somee.com/api/compras`, {
+      /* fetch(`https://localhost:44314/api/compras/`, { */
           method: "POST",
           headers:{
               "Content-Type": "application/json"
@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
           if (response.ok) {
             console.log("Datos enviados correctamente");
   
-            window.location.href = "listar_compras.js"
+            window.location.href = "../Compras/listar_compras.js"
   
           } else {
             console.error("Error al enviar la solicitud:", response.status);

@@ -1,13 +1,14 @@
-DROP PROCEDURE REGISTRAR_USUARIO
-DROP TABLE COMPRAS
+DROP PROCEDURE REGISTRAR_COMPRAS
+DROP TABLE PROVEEDOR
 SELECT * FROM USUARIO_NUEVO
 DELETE FROM USUARIO_NUEVO WHERE IdCodigoUsuario = 105
 
+
 --CREAR BASE DE DATOS
-CREATE DATABASE DBCONSORCIO_EXPRESS
+CREATE DATABASE BD_CONSORCIO_EXPRESS
 
 --USAR BASE DE DATOS DBCONSORCIO_EXPRESS
-USE DBCONSORCIO_EXPRESS
+USE BD_CONSORCIO_EXPRESS
 
 --CREAMOS LAS TABLAS DE LA BASE DE DATOS
 
@@ -36,8 +37,7 @@ CREATE TABLE ADMINISTRADOR
 
 CREATE TABLE PROVEEDOR
 (
-	IdProveedor varchar(15) not null,
-	NitProveedor varchar(20),
+	NitProveedor varchar(20) not null,
 	NombreProveedor varchar(80),
 	Direccion varchar(80),
 	Telefono varchar(30),
@@ -66,14 +66,13 @@ CREATE TABLE COMPRAS
 (
 	NumeroFactura varchar(15) not null,
 	NombreProveedor varchar(100),
-	NitProveedor varchar(15) not null,
-	Dirección varchar(80),
+	NitProveedor varchar(15),
+	Direccion varchar(80),
 	Telefono varchar(15),
 	Correo varchar(100),
 	NombreArticulo varchar(80),
 	Cantidad int,
-	Total int,
-	Fecha datetime
+	Total int
 )
 
 CREATE TABLE ARTICULO
@@ -122,7 +121,7 @@ alter table ADMINISTRADOR
 add constraint PK_ADMINISTRADOR primary key (IdAdministrador)
 
 alter table PROVEEDOR
-add constraint PK_PROVEEDOR primary key (IdProveedor)
+add constraint PK_PROVEEDOR primary key (NitProveedor)
 
 alter table VEHICULO
 add constraint PK_VEHICULO primary key (NumeroBus)
@@ -152,21 +151,9 @@ add constraint PK_DETALLE_COMPRA primary key (IdArticulo,NumeroFactura)
 
 --CREAR LLAVES FORANEAS
 
-alter table VEHICULO
-add constraint FK_ADMINISTRADOR_VEHICULO foreign key (IdAdministrador)
-references ADMINISTRADOR(IdAdministrador)
-on delete cascade
-on update cascade
-
 alter table COMPRAS
-add constraint FK_ADMINISTRADOR_COMPRAS foreign key (IdAdministrador)
-references ADMINISTRADOR(IdAdministrador)
-on delete cascade
-on update cascade
-
-alter table COMPRAS
-add constraint FK_PROVEEDOR_COMPRAS foreign key (IdProveedor)
-references PROVEEDOR(IdProveedor)
+add constraint FK_PROVEEDOR_COMPRAS foreign key (NitProveedor)
+references PROVEEDOR(NitProveedor)
 on delete cascade
 on update cascade
 
@@ -310,7 +297,6 @@ execute LISTAR_USUARIOS
 
 --REGISTRAR PROVEEDOR
 create procedure REGISTRAR_PROVEEDOR
-	@IdProveedor varchar(15),
 	@NitProveedor varchar(20),
 	@NombreProveedor varchar(80),
 	@Direccion varchar(80),
@@ -319,18 +305,38 @@ create procedure REGISTRAR_PROVEEDOR
 
 as
 begin
-	insert into PROVEEDOR (IdProveedor,NitProveedor,NombreProveedor,Direccion,Telefono,Correo)
-	values (@IdProveedor,@NitProveedor,@NombreProveedor,@Direccion,@Telefono,@Correo)
+	insert into PROVEEDOR (NitProveedor,NombreProveedor,Direccion,Telefono,Correo)
+	values (@NitProveedor,@NombreProveedor,@Direccion,@Telefono,@Correo)
 end
 
-execute REGISTRAR_PROVEEDOR '1538','900156487-1','CAUCHOS S.A','CR 23 56C 12','3418725','cauchossa@hotmail.com'
-execute REGISTRAR_PROVEEDOR '1540','900156487-1','CAUCHOS S.A','CR 23 56C 12','5640219','cauchossa@hotmail.com'
-execute REGISTRAR_PROVEEDOR '1542','900156487-1','CAUCHOS S.A','CR 23 56C 12','5640219','cauchossa@hotmail.com'
-execute REGISTRAR_PROVEEDOR '1544','900156487-1','CAUCHOS S.A','CR 23 56C 12','5640219','cauchossa@hotmail.com'
+execute REGISTRAR_PROVEEDOR '900156487-1','CAUCHOS S.A','CR 23 56C 12','3418725','cauchossa@hotmail.com'
+execute REGISTRAR_PROVEEDOR '900156487-2','CAUCHOS S.A','CR 23 56C 12','5640219','cauchossa@hotmail.com'
+execute REGISTRAR_PROVEEDOR '900156487-3','CAUCHOS S.A','CR 23 56C 12','5640219','cauchossa@hotmail.com'
+execute REGISTRAR_PROVEEDOR '900156487-4','CAUCHOS S.A','CR 23 56C 12','5640219','cauchossa@hotmail.com'
+execute REGISTRAR_PROVEEDOR '900156487-5','CAUCHOS S.A','CR 23 56C 12','3418725','cauchossa@hotmail.com'
+execute REGISTRAR_PROVEEDOR '900156487-6','CAUCHOS S.A','CR 23 56C 12','5640219','cauchossa@hotmail.com'
+execute REGISTRAR_PROVEEDOR '900156487-7','CAUCHOS S.A','CR 23 56C 12','5640219','cauchossa@hotmail.com'
+execute REGISTRAR_PROVEEDOR '900156487-8','CAUCHOS S.A','CR 23 56C 12','5640219','cauchossa@hotmail.com'
+execute REGISTRAR_PROVEEDOR '900156487-9','CAUCHOS S.A','CR 23 56C 12','3418725','cauchossa@hotmail.com'
+execute REGISTRAR_PROVEEDOR '900156481-2','CAUCHOS S.A','CR 23 56C 12','5640219','cauchossa@hotmail.com'
+execute REGISTRAR_PROVEEDOR '900156482-3','CAUCHOS S.A','CR 23 56C 12','5640219','cauchossa@hotmail.com'
+execute REGISTRAR_PROVEEDOR '900156483-4','CAUCHOS S.A','CR 23 56C 12','5640219','cauchossa@hotmail.com'
+execute REGISTRAR_PROVEEDOR '900156484-1','CAUCHOS S.A','CR 23 56C 12','3418725','cauchossa@hotmail.com'
+execute REGISTRAR_PROVEEDOR '900156485-2','CAUCHOS S.A','CR 23 56C 12','5640219','cauchossa@hotmail.com'
+execute REGISTRAR_PROVEEDOR '900156486-3','CAUCHOS S.A','CR 23 56C 12','5640219','cauchossa@hotmail.com'
+execute REGISTRAR_PROVEEDOR '900116487-4','CAUCHOS S.A','CR 23 56C 12','5640219','cauchossa@hotmail.com'
+execute REGISTRAR_PROVEEDOR '900156488-1','CAUCHOS S.A','CR 23 56C 12','3418725','cauchossa@hotmail.com'
+execute REGISTRAR_PROVEEDOR '900156489-2','CAUCHOS S.A','CR 23 56C 12','5640219','cauchossa@hotmail.com'
+execute REGISTRAR_PROVEEDOR '900156417-3','CAUCHOS S.A','CR 23 56C 12','5640219','cauchossa@hotmail.com'
+execute REGISTRAR_PROVEEDOR '900156427-4','CAUCHOS S.A','CR 23 56C 12','5640219','cauchossa@hotmail.com'
+execute REGISTRAR_PROVEEDOR '900156437-1','CAUCHOS S.A','CR 23 56C 12','3418725','cauchossa@hotmail.com'
+execute REGISTRAR_PROVEEDOR '900156447-2','CAUCHOS S.A','CR 23 56C 12','5640219','cauchossa@hotmail.com'
+execute REGISTRAR_PROVEEDOR '900156457-3','CAUCHOS S.A','CR 23 56C 12','5640219','cauchossa@hotmail.com'
+execute REGISTRAR_PROVEEDOR '900156467-4','CAUCHOS S.A','CR 23 56C 12','5640219','cauchossa@hotmail.com'
+
 
 --ACTUALIZAR PROVEEDOR
 create procedure ACTUALIZAR_PROVEEDOR
-	@IdProveedor varchar(15),
 	@NitProveedor varchar(20),
 	@NombreProveedor varchar(80),
 	@Direccion varchar(80),
@@ -339,18 +345,18 @@ create procedure ACTUALIZAR_PROVEEDOR
 
 as
 begin
-	update PROVEEDOR set IdProveedor=@IdProveedor,NitProveedor=@NitProveedor,NombreProveedor=@NombreProveedor,Direccion=@Direccion,Telefono=@Telefono,Correo=@Correo
-						where IdProveedor=@IdProveedor
+	update PROVEEDOR set NitProveedor=@NitProveedor,NombreProveedor=@NombreProveedor,Direccion=@Direccion,Telefono=@Telefono,Correo=@Correo
+						where NitProveedor=@NitProveedor
 end
 
-execute ACTUALIZAR_PROVEEDOR '1538','900156487-1','CAUCHOS S.A','CR 23 56C 12','5640219','cauchossa@hotmail.com'
+execute ACTUALIZAR_PROVEEDOR '900156487-1','CAUCHOS S.A','CR 23 56C 12','5640219','cauchossa@hotmail.com'
 
 --CONSULTAR PROVEEDOR
 create procedure CONSULTAR_PROVEEDOR
-	@IdProveedor varchar(15)
+	@NitProveedor varchar(15)
 as
 begin
-	select IdProveedor,NitProveedor,NombreProveedor,Direccion,Telefono,Correo from PROVEEDOR where IdProveedor=@IdProveedor
+	select NitProveedor,NombreProveedor,Direccion,Telefono,Correo from PROVEEDOR where NitProveedor=@NitProveedor
 end
 
 execute CONSULTAR_PROVEEDOR '1540'
@@ -359,17 +365,17 @@ execute CONSULTAR_PROVEEDOR '1540'
 create procedure LISTAR_PROVEEDOR
 as
 begin
-	select IdProveedor,NitProveedor,NombreProveedor,Direccion,Telefono,Correo from PROVEEDOR
+	select NitProveedor,NombreProveedor,Direccion,Telefono,Correo from PROVEEDOR
 end
 
 execute LISTAR_PROVEEDOR
 
 --ELIMINAR PROVEEDOR
 create procedure ELIMINAR_PROVEEDOR
-	@IdProveedor varchar(15)
+	@NitProveedor varchar(15)
 as
 begin
-	delete from PROVEEDOR where IdProveedor=@IdProveedor
+	delete from PROVEEDOR where NitProveedor=@NitProveedor
 end
 
 execute ELIMINAR_PROVEEDOR ''
@@ -493,75 +499,70 @@ select * from CONDUCTOR
 
 
 --PROCEDIMIENTOS ALMACENADOS TABLA COMPRAS
-	NumeroFactura varchar(15) not null,
-	NombreProveedor varchar(100),
-	NitProveedor varchar(15) not null,
-	Dirección varchar(80),
-	Telefono varchar(15),
-	Correo varchar(100),
-	NombreArticulo varchar(80),
-	Cantidad int,
-	Total int,
-	Fecha datetime
+	
 --REGISTRAR COMPRAS
 create procedure REGISTRAR_COMPRAS
 	@NumeroFactura varchar(15),
 	@NombreProveedor varchar(100),
 	@NitProveedor varchar(15),
-	@Dirección varchar(80),
+	@Direccion varchar(80),
 	@Telefono varchar(15),
 	@Correo varchar(100),
 	@NombreArticulo varchar(80),
 	@Cantidad int,
-	@Total int,
-	@Fecha datetime
+	@Total int
 
 as
 begin
-	insert into COMPRAS (NumeroFactura,NombreProveedor,NitProveedor,Dirección,Telefono,Correo,NombreArticulo,Cantidad,Total,Fecha)
-	values (@NumeroFactura,@NombreProveedor,@NitProveedor,@Dirección,@Telefono,@Correo,@NombreArticulo,@Cantidad,@Total,@Fecha)
+	insert into COMPRAS (NumeroFactura,NombreProveedor,NitProveedor,Direccion,Telefono,Correo,NombreArticulo,Cantidad,Total)
+	values (@NumeroFactura,@NombreProveedor,@NitProveedor,@Direccion,@Telefono,@Correo,@NombreArticulo,@Cantidad,@Total)
 end
 
-set dateformat dmy
+--set dateformat dmy
 
-execute REGISTRAR_COMPRAS '00513','LLANTAS COLOMBIA','99056418-1','CALLE 31 # 81A 51','300654956','LLANTASCOLOMBIA@GMAIL.COM','LLANTAS X 4','100','2000000','15-03-2024'
-execute REGISTRAR_COMPRAS '00514','LLANTAS COLOMBIA','99056418-1','CALLE 31 # 81A 51','300654956','LLANTASCOLOMBIA@GMAIL.COM','LLANTAS X 4','100','2000000','15-03-2024'
-execute REGISTRAR_COMPRAS '00515','LLANTAS COLOMBIA','99056418-1','CALLE 31 # 81A 51','300654956','LLANTASCOLOMBIA@GMAIL.COM','LLANTAS X 4','100','2000000','15-03-2024'
-execute REGISTRAR_COMPRAS '00516','LLANTAS COLOMBIA','99056418-1','CALLE 31 # 81A 51','300654956','LLANTASCOLOMBIA@GMAIL.COM','LLANTAS X 4','100','2000000','15-03-2024'
-execute REGISTRAR_COMPRAS '00517','LLANTAS COLOMBIA','99056418-1','CALLE 31 # 81A 51','300654956','LLANTASCOLOMBIA@GMAIL.COM','LLANTAS X 4','100','2000000','15-03-2024'
-execute REGISTRAR_COMPRAS '00518','LLANTAS COLOMBIA','99056418-1','CALLE 31 # 81A 51','300654956','LLANTASCOLOMBIA@GMAIL.COM','LLANTAS X 4','100','2000000','15-03-2024'
-execute REGISTRAR_COMPRAS '00519','LLANTAS COLOMBIA','99056418-1','CALLE 31 # 81A 51','300654956','LLANTASCOLOMBIA@GMAIL.COM','LLANTAS X 4','100','2000000','15-03-2024'
+execute REGISTRAR_COMPRAS '00513','LLANTAS COLOMBIA','99056418-1','CALLE 31 # 81A 51','300654956','LLANTASCOLOMBIA@GMAIL.COM','LLANTAS X 4','100','2000000'
+execute REGISTRAR_COMPRAS '00514','LLANTAS COLOMBIA','99056418-1','CALLE 31 # 81A 51','300654956','LLANTASCOLOMBIA@GMAIL.COM','LLANTAS X 4','100','2000000'
+execute REGISTRAR_COMPRAS '00515','LLANTAS COLOMBIA','99056418-1','CALLE 31 # 81A 51','300654956','LLANTASCOLOMBIA@GMAIL.COM','LLANTAS X 4','100','2000000'
+execute REGISTRAR_COMPRAS '00516','LLANTAS COLOMBIA','99056418-1','CALLE 31 # 81A 51','300654956','LLANTASCOLOMBIA@GMAIL.COM','LLANTAS X 4','100','2000000'
+execute REGISTRAR_COMPRAS '00517','LLANTAS COLOMBIA','99056418-1','CALLE 31 # 81A 51','300654956','LLANTASCOLOMBIA@GMAIL.COM','LLANTAS X 4','100','2000000'
+execute REGISTRAR_COMPRAS '00518','LLANTAS COLOMBIA','99056418-1','CALLE 31 # 81A 51','300654956','LLANTASCOLOMBIA@GMAIL.COM','LLANTAS X 4','100','2000000'
+execute REGISTRAR_COMPRAS '00519','LLANTAS COLOMBIA','99056418-1','CALLE 31 # 81A 51','300654956','LLANTASCOLOMBIA@GMAIL.COM','LLANTAS X 4','100','2000000'
+execute REGISTRAR_COMPRAS '00520','LLANTAS COLOMBIA','99056418-1','CALLE 31 # 81A 51','300654956','LLANTASCOLOMBIA@GMAIL.COM','LLANTAS X 4','100','2000000'
+execute REGISTRAR_COMPRAS '00521','LLANTAS COLOMBIA','99056418-1','CALLE 31 # 81A 51','300654956','LLANTASCOLOMBIA@GMAIL.COM','LLANTAS X 4','100','2000000'
+execute REGISTRAR_COMPRAS '00522','LLANTAS COLOMBIA','99056418-1','CALLE 31 # 81A 51','300654956','LLANTASCOLOMBIA@GMAIL.COM','LLANTAS X 4','100','2000000'
+execute REGISTRAR_COMPRAS '00523','LLANTAS COLOMBIA','99056418-1','CALLE 31 # 81A 51','300654956','LLANTASCOLOMBIA@GMAIL.COM','LLANTAS X 4','100','2000000'
+execute REGISTRAR_COMPRAS '00524','LLANTAS COLOMBIA','99056418-1','CALLE 31 # 81A 51','300654956','LLANTASCOLOMBIA@GMAIL.COM','LLANTAS X 4','100','2000000'
+execute REGISTRAR_COMPRAS '00525','LLANTAS COLOMBIA','99056418-1','CALLE 31 # 81A 51','300654956','LLANTASCOLOMBIA@GMAIL.COM','LLANTAS X 4','100','2000000'
+execute REGISTRAR_COMPRAS '00526','LLANTAS COLOMBIA','99056418-1','CALLE 31 # 81A 51','300654956','LLANTASCOLOMBIA@GMAIL.COM','LLANTAS X 4','100','2000000'
 
-select * from COMPRAS
+--select * from COMPRAS
 
 --ACTUALIZAR COMPRAS
 create procedure ACTUALIZAR_COMPRAS
 	@NumeroFactura varchar(15),
 	@NombreProveedor varchar(100),
 	@NitProveedor varchar(15),
-	@Dirección varchar(80),
+	@Direccion varchar(80),
 	@Telefono varchar(15),
 	@Correo varchar(100),
 	@NombreArticulo varchar(80),
 	@Cantidad int,
-	@Total int,
-	@Fecha datetime
-
+	@Total int
 as
 begin
-	update COMPRAS set NumeroFactura=@NumeroFactura,NombreProveedor=@NombreProveedor,NitProveedor=@NitProveedor,Dirección=@Dirección,
-	Telefono=@Telefono,Correo=@Correo,NombreArticulo=@NombreArticulo,Cantidad=@Cantidad,Total=@Total,Fecha=@Fecha where NumeroFactura=@NumeroFactura
+	update COMPRAS set NumeroFactura=@NumeroFactura,NombreProveedor=@NombreProveedor,NitProveedor=@NitProveedor,Direccion=@Direccion,
+	Telefono=@Telefono,Correo=@Correo,NombreArticulo=@NombreArticulo,Cantidad=@Cantidad,Total=@Total where NumeroFactura=@NumeroFactura
 	
 end
 
-execute ACTUALIZAR_COMPRAS '00513','LLANTAS COLOMBIA','99056418-1','CALLE 31 # 81A 51','1111111111','LLANTASCOLOMBIA@GMAIL.COM','LLANTAS X 4','100','2000000','15-03-2024'
+execute ACTUALIZAR_COMPRAS '00513','LLANTAS COLOMBIA','99056418-1','CALLE 31 # 81A 51','1111111111','LLANTASCOLOMBIA@GMAIL.COM','LLANTAS X 4','100','2000000'
 
 --CONSULTAR COMPRAS
 create procedure CONSULTAR_COMPRAS
 	@NumeroFactura varchar(15)
 as
 begin
-	select NumeroFactura,NombreProveedor,NitProveedor,Dirección,Telefono,Correo,NombreArticulo,Cantidad,Total,Fecha from COMPRAS
+	select NumeroFactura,NombreProveedor,NitProveedor,Direccion,Telefono,Correo,NombreArticulo,Cantidad,Total from COMPRAS
 	where NumeroFactura=@NumeroFactura
 end
 
@@ -571,7 +572,7 @@ execute CONSULTAR_COMPRAS '00513'
 create procedure LISTAR_COMPRAS
 as
 begin
-	select NumeroFactura,NombreProveedor,NitProveedor,Dirección,Telefono,Correo,NombreArticulo,Cantidad,Total,Fecha from COMPRAS
+	select NumeroFactura,NombreProveedor,NitProveedor,Direccion,Telefono,Correo,NombreArticulo,Cantidad,Total from COMPRAS
 end
 
 execute LISTAR_COMPRAS

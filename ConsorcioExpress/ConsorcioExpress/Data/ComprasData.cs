@@ -14,9 +14,9 @@ namespace ConsorcioExpress.Data
             ConexionBD objEst = new ConexionBD();
             string sentencia;
             sentencia = "REGISTRAR_COMPRAS'" + regCompras.NumeroFactura + "','" + regCompras.NombreProveedor + "','"
-                + regCompras.NitProveedor + "','" + regCompras.Dirección + "','" + regCompras.Telefono + "','"
+                + regCompras.NitProveedor + "','" + regCompras.Direccion + "','" + regCompras.Telefono + "','"
                 + regCompras.Correo + "','" + regCompras.NombreArticulo + "','" + regCompras.Cantidad + "','"
-                + regCompras.Total + "','" + regCompras.Fecha + "'";
+                + regCompras.Total + "'";
             if (!objEst.EjecutarSentencia(sentencia, false))
             {
                 objEst = null;
@@ -35,9 +35,9 @@ namespace ConsorcioExpress.Data
             ConexionBD objEst = new ConexionBD();
             string sentencia;
             sentencia = "ACTUALIZAR_COMPRAS'" + regCompras.NumeroFactura + "','" + regCompras.NombreProveedor + "','"
-                + regCompras.NitProveedor + "','" + regCompras.Dirección + "','" + regCompras.Telefono + "','"
+                + regCompras.NitProveedor + "','" + regCompras.Direccion + "','" + regCompras.Telefono + "','"
                 + regCompras.Correo + "','" + regCompras.NombreArticulo + "','" + regCompras.Cantidad + "','"
-                + regCompras.Total + "','" + regCompras.Fecha + "'";
+                + regCompras.Total + "'";
             if (!objEst.EjecutarSentencia(sentencia, false))
             {
                 objEst = null;
@@ -86,13 +86,13 @@ namespace ConsorcioExpress.Data
                         NumeroFactura = dr["NumeroFactura"].ToString(),
                         NombreProveedor = dr["NombreProveedor"].ToString(),
                         NitProveedor = dr["NitProveedor"].ToString(),
-                        Dirección = dr["Dirección"].ToString(),
+                        Direccion = dr["Direccion"].ToString(),
                         Telefono = dr["Telefono"].ToString(),
                         Correo = dr["Correo"].ToString(),
                         NombreArticulo = dr["NombreArticulo"].ToString(),
                         Cantidad = Convert.ToInt32(dr["Cantidad"].ToString()),
-                        Total = Convert.ToInt32(dr["Total"].ToString()),
-                        Fecha = Convert.ToDateTime(dr["Fecha"].ToString())
+                        Total = Convert.ToInt32(dr["Total"].ToString())
+
                     });
                 }
                 return regCompras;
@@ -120,13 +120,13 @@ namespace ConsorcioExpress.Data
                         NumeroFactura = dr["NumeroFactura"].ToString(),
                         NombreProveedor = dr["NombreProveedor"].ToString(),
                         NitProveedor = dr["NitProveedor"].ToString(),
-                        Dirección = dr["Dirección"].ToString(),
+                        Direccion = dr["Direccion"].ToString(),
                         Telefono = dr["Telefono"].ToString(),
                         Correo = dr["Correo"].ToString(),
                         NombreArticulo = dr["NombreArticulo"].ToString(),
                         Cantidad = Convert.ToInt32(dr["Cantidad"].ToString()),
-                        Total = Convert.ToInt32(dr["Total"].ToString()),
-                        Fecha = Convert.ToDateTime(dr["Fecha"].ToString())
+                        Total = Convert.ToInt32(dr["Total"].ToString())
+
                     });
                 }
                 return regCompras;

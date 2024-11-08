@@ -25,8 +25,8 @@ document.addEventListener("DOMContentLoaded", () => {
         contrasena: contrasena
     }
 
-    /* fetch(`http://www.consorcioexpress.somee.com/api/registrousuario`, { */
-    fetch(`https://localhost:44314/api/registrousuario/`, {
+    fetch(`http://www.consorcioexpress.somee.com/api/registrousuario`, {
+    /* fetch(`https://localhost:44314/api/registrousuario/`, { */
         method: "POST",
         headers:{
             "Content-Type": "application/json"

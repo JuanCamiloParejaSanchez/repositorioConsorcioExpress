@@ -18,7 +18,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Función para obtener datos de la API
   function obtenerProveedor() {
-      fetch(`https://localhost:44314/api/proveedor`)
+      fetch(`http://www.consorcioexpress.somee.com/api/proveedor`)
+      /* fetch(`https://localhost:44314/api/proveedor`) */
           .then((response) => {
               console.log("Respuesta de la API:", response);
               if (!response.ok) {
@@ -41,7 +42,6 @@ document.addEventListener("DOMContentLoaded", () => {
   function applyFilterAndPagination() {
       const filterText = filterInput.value.toLowerCase();
       filteredProveedor = proveedor.filter(proveedor =>
-        proveedor.IdProveedor.toString().includes(filterText) ||
         proveedor.NitProveedor.includes(filterText) ||
         proveedor.NombreProveedor.toLowerCase().includes(filterText) ||
         proveedor.Direccion.toLowerCase().includes(filterText) ||
@@ -64,7 +64,6 @@ document.addEventListener("DOMContentLoaded", () => {
       currentUsers.forEach(proveedor => {
           const row = document.createElement("tr");
           row.innerHTML = `
-              <td class="text-center">${proveedor.IdProveedor}</td>
               <td class="text-center">${proveedor.NitProveedor}</td>
               <td class="text-center">${proveedor.NombreProveedor}</td>
               <td class="text-center">${proveedor.Direccion}</td>
@@ -107,20 +106,21 @@ document.addEventListener("DOMContentLoaded", () => {
       row.classList.add("selected");
       editarBtn.disabled = false;
       borrarBtn.disabled = false;
-      editarBtn.value = proveedor.IdProveedor;
-      borrarBtn.value = proveedor.IdProveedor;
+      editarBtn.value = proveedor.NitProveedor;
+      borrarBtn.value = proveedor.NitProveedor;
   }
 
   // Eventos para botones de edición y eliminación
   borrarBtn.addEventListener("click", () => {
       const confirmacion = confirm("¿Estás seguro de que deseas eliminar este registro?");
       if (confirmacion) {
-          fetch(`https://localhost:44314/api/proveedor/${borrarBtn.value}`, {
+            fetch(`http://www.consorcioexpress.somee.com/api/proveedor/${borrarBtn.value}`, {
+            /* fetch(`https://localhost:44314/api/proveedor/${borrarBtn.value}`, { */
               method: "DELETE",
           })
           .then((response) => {
               if (!response.ok) throw new Error("Error al eliminar el usuario");
-              obtenerUsuarios(); // Actualizar la lista después de eliminar
+              obtenerProveedor(); // Actualizar la lista después de eliminar
           })
           .catch((error) => console.error("Error al eliminar usuario:", error));
       }
