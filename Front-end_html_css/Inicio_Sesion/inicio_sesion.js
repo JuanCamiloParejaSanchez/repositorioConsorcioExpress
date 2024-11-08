@@ -29,14 +29,3 @@ document.getElementById("btnIngresar").addEventListener("click", function(event)
         document.getElementById("mensaje").textContent = "Ocurrió un error. Intente de nuevo.";
     });
 });
-
-    /* if (documento === "" || contrasena === "") {
-        alert("Todos los campos son obligatorios");
-        return;
-    } else if (documento === "71387351" && contrasena === "1234") {
-        alert("Bienvenido");
-        window.location.href = "../Menu_Principal/menu_principal.html";
-    } else {
-        alert("Usuario y contraseña incorrectos");
-    }
-}); */

@@ -126,7 +126,7 @@
 
   form .message{
     display:flex;
-    /* background-color: rgb(237, 159, 198); */
+    /* background-color: rgb(179, 173, 248); */
     padding-block: 1rem;
     justify-content: center;
   }

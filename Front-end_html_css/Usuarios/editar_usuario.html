@@ -24,147 +24,87 @@
     <link rel="stylesheet" href="editar_usuario.css">
 
   </head>
-
   <body>
 
-    <!-- Barra de navegacion -->
-    <nav class="navbar navbar-expand-md navbar-light">
-      <div class="container-fluid">                    
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-Toggler" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbar-Toggler">
-          <a class="navbar-brand" href="#">
-            <img src="imagenes\icono.png" width="50" alt="Logo de la página web">
-          </a>          
-          <ul class="navbar-nav mx-auto d-flex justify-content-center align-items-center">
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="#">Inicio</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Nosotros</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Servicios</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Productos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#pie de página">Contacto</a>
-            </li>
-          </ul>
-          <div class="dropdown">
-            <button class="btn-navbar ms-auto btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Juan Camilo Pareja Sánchez
-            </button>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="editar_usuario.html" target="_blank" rel="noopener noreferrer">Editar</a></li>
-              <li><a class="dropdown-item" href="#">Eliminar</a></li>
-              <li><a class="dropdown-item" href="index.html" target="_blank" rel="noopener noreferrer">Cerrar sesión</a></li>
-            </ul>
-              <img class="navbar-imagen-usuario rounded-circle" src="imagenes\Foto_usuario.jpg" width="40" alt="Imagen de usuario">
-          </div>        
-        </div>                      
-      </div>
-    </nav>
-
-    <!-- Sección hero(principal) -->
-
-    <section class="hero align-items-center">
-      <div class="d-flex flex-column align-items-center justify-content-center">
-        <img class="hero-imagen-desarrollador" src="imagenes\ConsorcioExpress.jpg" alt="Imagen Consorcio Express">
-      </div>
-    </section>
-
-    <!-- Formulario -->
-
     
-      <div class="container">
-        <form class="row g-3 mt-3">
 
-          <h1 class="seccion-titulo">EDITAR USUARIO</h1>
+    <!-- Menu principal -->
 
-          <div class="col-4 mt-5">      
+    <div class="form-container">      
+
+      <form class="formEditar" method="post" id="registroForm">
+
+        <h2>Editar Usuario</h2>
+
+        <div class="d-flex flex-row gap-lg-5 mb-2">
+          <div class="d-flex flex-column">
             <label for="documento" class="form-label">Documento</label>
-            <input type="text" class="form-control" id="documento" placeholder="Número de documento" required>
+            <input type="text" id="documento" class="form-control" size="25px" placeholder="Número Factura" required>
           </div>
-
-          <div class="col-4 mt-5">      
+          <div class="d-flex flex-column">
             <label for="nombres" class="form-label">Nombres</label>
-            <input type="text" class="form-control" id="nombres" placeholder="Escribe tus nombres" required>
+            <input type="text" id="nombres" class="form-control" size="75px" placeholder="Nombre del proveedor" required>
           </div>
+        </div>
 
-          <div class="col-4 mt-5">      
+        <div class="d-flex flex-row gap-lg-5 mb-2">
+          <div class="d-flex flex-column">
             <label for="apellidos" class="form-label">Apellidos</label>
-            <input type="text" class="form-control" id="apellidos" placeholder="Escribe tus apellidos" required>
+            <input type="text" id="apellidos" class="form-control" size="30px" placeholder="Nit del proveedor" required>
           </div>
-          
-          <div class="col-4 mt-5">      
+          <div class="d-flex flex-column">
             <label for="telefono" class="form-label">Telefono</label>
-            <input type="number" class="form-control" id="telefono" placeholder="Escribe tu teléfono" required>
-          </div>          
+            <input type="text" id="telefono" class="form-control" size="70px" placeholder="Dirección del proveedor" required>
+          </div>
+        </div>
 
-          <div class="col-4 mt-5">      
+        <div class="d-flex flex-row gap-lg-5 mb-2">
+          <div class="d-flex flex-column">
             <label for="correo" class="form-label">Correo</label>
-            <input type="email" class="form-control" id="correo" placeholder="Correo electrónico" required>
+            <input type="text" id="correo" class="form-control" size="25px" placeholder="Teléfono del proveedor" required>
           </div>
-
-          <div class="col-4 mt-5">      
+          <div class="d-flex flex-column">
             <label for="cargo" class="form-label">Cargo</label>
-            <input type="text" class="form-control" id="cargo" placeholder="Escribe tu cargo" required>
+            <input type="email" id="cargo" class="form-control" size="75px" placeholder="Correo del proveedor" required>
           </div>
+        </div>
 
-          <div class="col-4 mt-5">      
+        <div class="d-flex flex-row gap-lg-5 mb-2">
+          <div class="d-flex flex-column">
             <label for="contrasena" class="form-label">Contraseña</label>
-            <input type="password" class="form-control" id="contrasena" placeholder="Escribe tu contraseña" required>
+            <input type="text" id="contrasena" class="form-control" size="80px" placeholder="Nombre del artículo" required>
           </div>
+        </div>
+                           
+        <button type="button" class="btn btn-primary mt-4" id="editar">Actualizar</button>
 
-          <!-- <div class="col-4 mt-5">      
-            <label for="nuevaCon" class="form-label">Nueva contraseña</label>
-            <input type="password" class="form-control" id="nuevaCon" placeholder="Escribe tu nueva contraseña" required>
-          </div> -->
-
-          <div class="text-center col-12 mt-5"> 
-            <div class="align-items-center gap-2">     
-              <label for="checkTerms" class="form-check-label">Acepto términos y condiciones</label>
-              <input type="checkbox" class="form-check-input" id="checkTerms" required>
+        <div class="modal" tabindex="-1" id="exampleModal">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Confirmar acción</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <p>¿Estás seguro de que deseas guardar los cambios?</p>
+              </div>
+              <div class="modal-footer custom-footer">
+                <button type="button" class="btn btn-secondary" id="btn-cancelar" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="btn-confirmar">Aceptar</button>
+              </div>
             </div>
           </div>
+        </div>
+        
+        
+      </form>
+    </div>
 
-          <div class="text-center col-12 mt-5 mb-5">
-            <button type="button" class="btn btn-warning" id="editar">Actualizar</button>                        
-          </div>
-        </form>
-      </div>
 
-    
-    <!-- Pie de página (footer) -->
-
-    <footer id="pie de página" class="d-flex flex-column align-items-center justify-content-center">
-      <img class="footer-logo" src="imagenes\icono.png" alt="Logo del portafolio">
-      <p class="footer-texto text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus luctus sit amet ligula in scelerisque. Suspendisse interdum tristique leo, non fermentum magna aliquam at.</p>
-      <div class="iconos-redes-sociales d-flex flex-wrap align-items-center justify-content-center">
-        <a href="https://twitter.com/freecodecampES" target="_blank" rel="noopener noreferrer"> 
-          <i class="bi bi-twitter-x"></i>
-        </a>
-        <a href="https://github.com/freeCodeCamp/freeCodeCamp" target="_blank" rel="noopener noreferrer"> 
-          <i class="bi bi-github"></i>
-        </a>
-        <a href="https://www.instagram.com/freeCodeCamp/" target="_blank" rel="noopener noreferrer"> 
-          <i class="bi bi-instagram"></i>
-        </a>
-        <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer"> 
-          <i class="bi bi-linkedin"></i>
-        </a>
-        <a href="mailto:jeandoe@micorreo.com" target="_blank" rel="noopener noreferrer"> 
-          <i class="bi bi-envelope"></i>
-        </a>
-      </div>
-      <div class="derechos-de-autor">Creado por Camilo Pareja (2024) &#169;</div>
-    </footer>
-    
     <script src="editar_usuario.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
   </body>
 </html>
+
