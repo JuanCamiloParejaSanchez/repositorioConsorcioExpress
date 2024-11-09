@@ -1,6 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
-
     const registrar = document.getElementById("registrar");
+    const modalElement = document.getElementById("exampleModal");
+
+    // Inicializar modal con Bootstrap
+    const modal = new bootstrap.Modal(modalElement);
   
     registrar.addEventListener("click", (e) => {
       /* e.preventDefault(); */
@@ -30,9 +33,14 @@ document.addEventListener("DOMContentLoaded", () => {
         .then((response) => {
           // Verificar si la respuesta es exitosa (código de estado 200)
           if (response.ok) {
-            console.log("Datos enviados correctamente");
-  
-            window.location.href = "listar_proveedor.html"
+            // Mostrar modal al enviar datos correctamente
+            modal.show();
+
+            // Opcional: Redirigir después de cerrar el modal
+            const closeModalButton = document.getElementById("btn-cerrar-modal");
+            closeModalButton.addEventListener("click", ()=>{
+              window.location.href = "listar_proveedor.html";
+            });            
   
           } else {
             console.error("Error al enviar la solicitud:", response.status);

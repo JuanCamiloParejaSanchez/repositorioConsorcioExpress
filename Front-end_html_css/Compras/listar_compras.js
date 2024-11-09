@@ -16,6 +16,14 @@ document.addEventListener("DOMContentLoaded", () => {
     let pageSize = parseInt(tableSizeSelect.value);
     let totalPages = 0;
 
+    // Inicializar modal de Bootstrap
+    const modalElement = document.getElementById("exampleModal");
+    const modal = new bootstrap.Modal(modalElement);
+
+    // Botones dentro del modal
+    const confirmButton = document.getElementById("btn-confirmar");
+    const cancelButton = document.getElementById("btn-cancelar");
+
     // Función para obtener datos de la API
     function obtenerCompras() {
         fetch(`http://www.consorcioexpress.somee.com/api/compras`)
@@ -121,8 +129,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Eventos para botones de edición y eliminación
     borrarBtn.addEventListener("click", () => {
-        const confirmacion = confirm("¿Estás seguro de que deseas eliminar este registro?");
-        if (confirmacion) {
+        modal.show(); // Mostrar modal para confirmar
+    });
+
+    // Manejar confirmación en el modal
+    confirmButton.addEventListener("click", () => {
+        if (confirmButton) {
+            modal.hide();
             fetch(`http://www.consorcioexpress.somee.com/api/compras/${borrarBtn.value}`, {
                 method: "DELETE",
             })
@@ -132,6 +145,10 @@ document.addEventListener("DOMContentLoaded", () => {
             })
             .catch((error) => console.error("Error al eliminar compra:", error));
         }
+    });
+
+    cancelButton.addEventListener("click", () => {
+        modal.hide(); // Ocultar modal sin realizar cambios
     });
 
     editarBtn.addEventListener("click", () => {
@@ -147,6 +164,6 @@ document.addEventListener("DOMContentLoaded", () => {
         applyFilterAndPagination();
     });
 
-    // Inicializar obtención de usuarios
+    // Inicializar obtención de compras
     obtenerCompras();
 });

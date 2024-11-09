@@ -1,9 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
-
     const registrar = document.getElementById("registrar");
+    const modalElement = document.getElementById("exampleModal");
+
+    // Inicializar modal con Bootstrap
+    const modal = new bootstrap.Modal(modalElement);
   
     registrar.addEventListener("click", (e) => {
-    e.preventDefault();
+      e.preventDefault();
   
       const numeroFactura = document.getElementById("numeroFactura").value;
       const nombreProveedor = document.getElementById("nombreProveedor").value;
@@ -25,25 +28,27 @@ document.addEventListener("DOMContentLoaded", () => {
         correo: correo,
         nombreArticulo: nombreArticulo,
         cantidad: cantidad,
-        total: total
-        
+        total: total        
       }
   
       fetch(`http://www.consorcioexpress.somee.com/api/compras`, {
       /* fetch(`https://localhost:44314/api/compras/`, { */
           method: "POST",
           headers:{
-              "Content-Type": "application/json"
+              "Content-Type": "application/json",
           },
-          body: JSON.stringify(data)
+          body: JSON.stringify(data),
       })
-        .then((response) => {
-          // Verificar si la respuesta es exitosa (código de estado 200)
+        .then((response) => {          
           if (response.ok) {
-            console.log("Datos enviados correctamente");
-  
-            window.location.href = "../Compras/listar_compras.js"
-  
+            // Mostrar modal al enviar datos correctamente
+            modal.show();
+
+          // Opcional: Redirigir después de cerrar el modal
+          const closeModalButton = document.getElementById("btn-cerrar-modal");
+          closeModalButton.addEventListener("click", () => {
+            window.location.href = "../Compras/listar_compras.js";
+          });  
           } else {
             console.error("Error al enviar la solicitud:", response.status);
           }

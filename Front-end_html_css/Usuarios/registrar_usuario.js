@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
       telefono: telefono,
       correo: correo,
       cargo: cargo,
-      contrasena: contrasena,
+      contrasena: contrasena
     };
 
     fetch(`http://www.consorcioexpress.somee.com/api/registrousuario`, {
