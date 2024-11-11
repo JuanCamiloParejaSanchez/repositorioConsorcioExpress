@@ -91,11 +91,11 @@ iframe {
 }
 
 .separator {
-  width: 2px;
+  width: 3px;
   background-color: black;
-  margin-left: 200px;
+  margin-left: 60px;
   height: 100vh;
-  position: absolute;
+  position: inherit;
 
 }
 
@@ -103,6 +103,7 @@ iframe {
   flex: 2; /* Hace que la sección de tablas ocupe más espacio a la derecha */
   width: 100%;
   margin-right: auto;
+  position: inherit;
 }
 
 .btn-custom {
@@ -147,6 +148,7 @@ footer {
   color: white;
   text-align: center;
   padding: 10px;
+  height: 30hv;
 }
 
 .iconos-redes-sociales i {
@@ -181,6 +183,7 @@ footer {
   align-items: center;
   z-index: 1000;
   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  position: relative;
 }
 
 .iconos-redes-sociales a {

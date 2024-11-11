@@ -9,7 +9,7 @@ document.getElementById("btnIngresar").addEventListener("click", function(event)
         contrasena: contrasena
     }
 
-    fetch(`https://localhost:44314/api/login`, {
+    fetch(`https://http://www.consorcioexpress.somee.com/api/login`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -21,7 +21,7 @@ document.getElementById("btnIngresar").addEventListener("click", function(event)
         if (data.success) {
             window.location.href = "../Menu_Principal/menu_principal.html"; // Redirige si el login es exitoso
         } else {
-            document.getElementById("mensaje").textContent = "Usuario o contraseña incorrectos.";
+            document.getElementById("lblError").textContent = "Usuario o contraseña incorrectos.";
         }
     })
     .catch(error => {

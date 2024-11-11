@@ -12,3 +12,10 @@ function mostrarIframe(id) {
     }
 }
 mostrarIframe();
+
+document.addEventListener("DOMContentLoaded", ()=>{
+    const cerrarSesion = document.getElementById("botonCerrarSesion");
+    cerrarSesion.addEventListener("click", ()=>{
+        window.location.href="../Index/index.html"
+    });
+});

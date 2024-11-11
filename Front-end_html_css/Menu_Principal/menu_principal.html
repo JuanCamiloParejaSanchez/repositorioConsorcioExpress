@@ -45,10 +45,12 @@
             </button>
             
             <!-- Opciones del menú desplegable -->
-            <ul class="dropdown-menu dropdown-menu-end">
-              <li><a class="dropdown-item" href="#" id="botonEditar">Editar usuario</a></li>
-              <li><a class="dropdown-item" href="#" id="botonCerrarSesion">Cerrar sesión</a></li>
-            </ul>
+            <div class="dropdown-menu dropdown-menu-end"><!-- <ul class="dropdown-menu dropdown-menu-end"> -->
+              <button type="button" class="dropdown-item" id="botonEditar" onclick="mostrarIframe('editar')">Editar usuario</button>
+              <button type="button" class="dropdown-item" href="../Index/index.html" id="botonCerrarSesion">Cerrar sesión</button>
+              <!-- <li><a class="dropdown-item" href="" id="botonEditar" onclick="mostrarIframe('botonEditar')">Editar usuario</a></li>
+              <li><a class="dropdown-item" href="../Index/index.html" id="botonCerrarSesion">Cerrar sesión</a></li> -->
+            </div><!-- </ul> -->
           </div>        
         </div>                      
       </div>
@@ -78,6 +80,7 @@
         <iframe class="iFrame" src="../Compras/listar_compras.html" style="display:none" width="100%" height="600" style="border:none;" id="compras"></iframe>
         <iframe class="iFrame" src="" style="display:none" width="100%" height="600" style="border:none;" id="conductores"></iframe>
         <iframe class="iFrame" src="" style="display:none" width="100%" height="600" style="border:none;" id="vehiculos"></iframe>
+        <iframe class="iFrame" src="../Usuarios/editar_usuario.html" style="display:none" width="100%" height="600" style="border:none;" id="editar"></iframe>
           
       </div>
     </div>

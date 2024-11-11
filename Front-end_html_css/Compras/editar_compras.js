@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
             correo.value = usuario.correo;
             nombreArticulo.value = usuario.nombreArticulo;
             cantidad.value = usuario.cantidad;
-            total.value = usuario.total;
+            total.value = usuario.total.substring(0, 10);
         });
       })
       .catch((error) =>
@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
         body: JSON.stringify(data),
       })
         .then((response) => {
-          if (response) {          
+          if (response.ok) {          
             modal.hide();
             window.location.href = "listar_compras.html";
           } else {

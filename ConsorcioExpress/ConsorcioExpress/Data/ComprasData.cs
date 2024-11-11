@@ -72,16 +72,15 @@ namespace ConsorcioExpress.Data
 
         public static List<Compras> Listar()
         {
-            List<Compras> regCompras = new List<Compras>();
-            ConexionBD objEst = new ConexionBD();
-            string sentencia;
-            sentencia = "LISTAR_COMPRAS";
-            if (objEst.Consultar(sentencia, false))
+            List<Compras> listar = new List<Compras>();
+            ConexionBD conexion = new ConexionBD();
+            string sentencia = "LISTAR_COMPRAS";
+            if (conexion.Consultar(sentencia, false))
             {
-                SqlDataReader dr = objEst.Reader;
+                SqlDataReader dr = conexion.Reader;
                 while (dr.Read())
                 {
-                    regCompras.Add(new Compras()
+                    listar.Add(new Compras()
                     {
                         NumeroFactura = dr["NumeroFactura"].ToString(),
                         NombreProveedor = dr["NombreProveedor"].ToString(),
@@ -95,27 +94,28 @@ namespace ConsorcioExpress.Data
 
                     });
                 }
-                return regCompras;
+                return listar;
             }
             else
             {
-                return regCompras;
+                return listar;
             }
         }
 
 
         public static List<Compras> Obtener(string id)
         {
-            List<Compras> regCompras = new List<Compras>();
-            ConexionBD objEst = new ConexionBD();
+            List<Compras> listar = new List<Compras>();
+            ConexionBD conexion = new ConexionBD();
             string sentencia;
             sentencia = "CONSULTAR_COMPRAS'" + id + "'";
-            if (objEst.Consultar(sentencia, false))
+
+            if (conexion.Consultar(sentencia, false))
             {
-                SqlDataReader dr = objEst.Reader;
+                SqlDataReader dr = conexion.Reader;
                 while (dr.Read())
                 {
-                    regCompras.Add(new Compras()
+                    listar.Add(new Compras()
                     {
                         NumeroFactura = dr["NumeroFactura"].ToString(),
                         NombreProveedor = dr["NombreProveedor"].ToString(),
@@ -129,11 +129,11 @@ namespace ConsorcioExpress.Data
 
                     });
                 }
-                return regCompras;
+                return listar;
             }
             else
             {
-                return regCompras;
+                return listar;
             }
         }
     }

@@ -52,5 +52,5 @@ document.addEventListener("DOMContentLoaded", () => {
       .catch((error) => {
         console.error("Error al enviar la solicitud:", error);
       });
-  });
+    });
 });

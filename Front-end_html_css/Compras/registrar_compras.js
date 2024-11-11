@@ -1,11 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const registrar = document.getElementById("registrar");
+    const registrarCompra = document.getElementById("registrarCompra");
     const modalElement = document.getElementById("exampleModal");
 
     // Inicializar modal con Bootstrap
     const modal = new bootstrap.Modal(modalElement);
   
-    registrar.addEventListener("click", (e) => {
+    registrarCompra.addEventListener("click", (e) => {
       e.preventDefault();
   
       const numeroFactura = document.getElementById("numeroFactura").value;
@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
         nombreArticulo: nombreArticulo,
         cantidad: cantidad,
         total: total        
-      }
+      };
   
       fetch(`http://www.consorcioexpress.somee.com/api/compras`, {
       /* fetch(`https://localhost:44314/api/compras/`, { */
@@ -44,17 +44,17 @@ document.addEventListener("DOMContentLoaded", () => {
             // Mostrar modal al enviar datos correctamente
             modal.show();
 
-          // Opcional: Redirigir después de cerrar el modal
-          const closeModalButton = document.getElementById("btn-cerrar-modal");
-          closeModalButton.addEventListener("click", () => {
-            window.location.href = "../Compras/listar_compras.js";
-          });  
+            // Opcional: Redirigir después de cerrar el modal
+            const closeModalButton = document.getElementById("btn-cerrar-modal");
+            closeModalButton.addEventListener("click", () => {
+              window.location.href = "listar_compras.html";
+            });  
           } else {
             console.error("Error al enviar la solicitud:", response.status);
           }
-        })
-        .catch((error) => {
-          console.error("Error al enviar la solicitud:", error);
-        });
+      })
+      .catch((error) => {
+        console.error("Error al enviar la solicitud:", error);
+      });
     });
-  });
+});
