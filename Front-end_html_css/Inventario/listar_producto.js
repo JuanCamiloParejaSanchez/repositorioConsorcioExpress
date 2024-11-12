@@ -9,25 +9,25 @@ document.addEventListener("DOMContentLoaded", () => {
     const prevPageButton = document.getElementById("prevPage");
     const nextPageButton = document.getElementById("nextPage");
     const footerInfo = document.querySelector(".footer");
-
-    let compras = [];
-    let filteredCompras = [];
+  
+    let producto = [];
+    let filteredProducto = [];
     let currentPage = 1;
     let pageSize = parseInt(tableSizeSelect.value);
     let totalPages = 0;
-
+  
     // Inicializar modal de Bootstrap
     const modalElement = document.getElementById("exampleModal");
     const modal = new bootstrap.Modal(modalElement);
-
+  
     // Botones dentro del modal
     const confirmButton = document.getElementById("btn-confirmar");
     const cancelButton = document.getElementById("btn-cancelar");
-
+  
     // Función para obtener datos de la API
-    function obtenerCompras() {
-        //fetch(`http://www.consorcioexpress.somee.com/api/compras`)
-        fetch(`https://localhost:44314/api/compras`)
+    function obtenerProducto() {
+        //fetch(`http://www.consorcioexpress.somee.com/api/proveedor`)
+        fetch(`https://localhost:44314/api/inventario`)
             .then((response) => {
                 console.log("Respuesta de la API:", response);
                 if (!response.ok) {
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
             })
             .then((data) => {
                 console.log("Datos recibidos:", data);
-                compras = data;
+                producto = data;
                 applyFilterAndPagination();
             })
             .catch((error) => {
@@ -45,56 +45,45 @@ document.addEventListener("DOMContentLoaded", () => {
                 alert('Hubo un problema al obtener los datos. Por favor, intenta nuevamente.');
             });
     }
-
+  
     // Función para filtrar y paginar los datos
     function applyFilterAndPagination() {
         const filterText = filterInput.value.toLowerCase();
-        filteredCompras = compras.filter(compras =>
-            compras.NumeroFactura.toString().includes(filterText) ||
-            compras.NombreProveedor.includes(filterText) ||
-            compras.NitProveedor.toLowerCase().includes(filterText) ||
-            compras.Direccion.toLowerCase().includes(filterText) ||
-            compras.Telefono.includes(filterText) ||
-            compras.Correo.toLowerCase().includes(filterText) ||
-            compras.NombreArticulo.toLowerCase().includes(filterText) ||
-            compras.Cantidad.toLowerCase().includes(filterText) ||
-            compras.Total.toLowerCase().includes(filterText)
-            
+        filteredProducto = producto.filter(producto =>
+            producto.ReferenciaProducto.includes(filterText) ||
+            producto.NombreProducto.toLowerCase().includes(filterText) ||
+            producto.Precio.toLowerCase().includes(filterText) ||
+            producto.Cantidad.includes(filterText)          
         );
-        totalPages = Math.ceil(filteredCompras.length / pageSize);
+        totalPages = Math.ceil(filteredProducto.length / pageSize);
         displayPage(1);  // Mostrar la primera página después de aplicar filtro
         displayPaginationButtons();
     }
-
+  
     // Función para mostrar los datos en la página actual
     function displayPage(page) {
         currentPage = page;
         const startIndex = (currentPage - 1) * pageSize;
-        const endIndex = Math.min(startIndex + pageSize, filteredCompras.length);
-        const currentUsers = filteredCompras.slice(startIndex, endIndex);
-
+        const endIndex = Math.min(startIndex + pageSize, filteredProducto.length);
+        const currentUsers = filteredProducto.slice(startIndex, endIndex);
+  
         tabla.innerHTML = ""; // Limpiar tabla
-        currentUsers.forEach(compras => {
+        currentUsers.forEach(producto => {
             const row = document.createElement("tr");
             row.innerHTML = `
-                <td class="text-center">${compras.NumeroFactura}</td>
-                <td class="text-center">${compras.NombreProveedor}</td>
-                <td class="text-center">${compras.NitProveedor}</td>
-                <td class="text-center">${compras.Direccion}</td>
-                <td class="text-center">${compras.Telefono}</td>
-                <td class="text-center">${compras.Correo}</td>
-                <td class="text-center">${compras.NombreArticulo}</td>
-                <td class="text-center">${compras.Cantidad}</td>
-                <td class="text-center">${compras.Total}</td>
+                <td class="text-center">${producto.ReferenciaProducto}</td>
+                <td class="text-center">${producto.NombreProducto}</td>
+                <td class="text-center">${producto.Precio}</td>
+                <td class="text-center">${producto.Cantidad}</td>               
             `;
-            row.addEventListener("click", () => selectRow(row, compras));
+            row.addEventListener("click", () => selectRow(row, producto));
             tabla.appendChild(row);
         });
-
+  
         // Mostrar información en el pie de página
-        footerInfo.textContent = `Mostrando ${startIndex + 1} a ${endIndex} de ${filteredCompras.length} entradas`;
+        footerInfo.textContent = `Mostrando ${startIndex + 1} a ${endIndex} de ${filteredProducto.length} entradas`;
     }
-
+  
     // Función para mostrar los botones de paginación
     function displayPaginationButtons() {
         paginationContainer.innerHTML = "";
@@ -102,7 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
         prevButton.textContent = "Anterior";
         prevButton.onclick = () => displayPage(currentPage > 1 ? currentPage - 1 : 1);
         paginationContainer.appendChild(prevButton);
-
+  
         for (let i = 1; i <= totalPages; i++) {
             const pageButton = document.createElement("button");
             pageButton.textContent = i;
@@ -116,55 +105,55 @@ document.addEventListener("DOMContentLoaded", () => {
         nextButton.onclick = () => displayPage(currentPage < totalPages ? currentPage + 1 : totalPages);
         paginationContainer.appendChild(nextButton);
     }
-
+  
     // Función para seleccionar una fila y habilitar botones
-    function selectRow(row, compras) {
+    function selectRow(row, producto) {
         document.querySelectorAll("tr").forEach(tr => tr.classList.remove("selected"));
         row.classList.add("selected");
         editarBtn.disabled = false;
         borrarBtn.disabled = false;
-        editarBtn.value = compras.NumeroFactura;
-        borrarBtn.value = compras.NumeroFactura;
+        editarBtn.value = producto.ReferenciaProducto;
+        borrarBtn.value = producto.ReferenciaProducto;
     }
-
+  
     // Eventos para botones de edición y eliminación
     borrarBtn.addEventListener("click", () => {
-        modal.show(); // Mostrar modal para confirmar
+        modal.show();
     });
-
+  
     // Manejar confirmación en el modal
     confirmButton.addEventListener("click", () => {
         if (confirmButton) {
-            modal.hide();
-            //fetch(`http://www.consorcioexpress.somee.com/api/compras/${borrarBtn.value}`, {
-            fetch(`https://localhost:44314/api/compras/${borrarBtn.value}`, {
+              modal.hide();
+              //fetch(`http://www.consorcioexpress.somee.com/api/proveedor/${borrarBtn.value}`, {
+              fetch(`https://localhost:44314/api/inventario/${borrarBtn.value}`, {
                 method: "DELETE",
             })
             .then((response) => {
-                if (!response.ok) throw new Error("Error al eliminar la compra");
-                obtenerCompras(); // Actualizar la lista después de eliminar
+                if (!response.ok) throw new Error("Error al eliminar el usuario");
+                obtenerProducto(); // Actualizar la lista después de eliminar
             })
-            .catch((error) => console.error("Error al eliminar compra:", error));
+            .catch((error) => console.error("Error al eliminar usuario:", error));
         }
     });
-
+  
     cancelButton.addEventListener("click", () => {
-        modal.hide(); // Ocultar modal sin realizar cambios
-    });
-
+          modal.hide(); // Ocultar modal sin realizar cambios
+     });
+  
     editarBtn.addEventListener("click", () => {
         if (editarBtn.value) {
-            window.location.href = `editar_compras.html?id=${editarBtn.value}`;
+            window.location.href = `editar_producto.html?id=${editarBtn.value}`;
         }
     });
-
+  
     // Eventos de filtro y cambio de tamaño de página
     filterButton.addEventListener("click", applyFilterAndPagination);
     tableSizeSelect.addEventListener("change", () => {
         pageSize = parseInt(tableSizeSelect.value);
         applyFilterAndPagination();
     });
-
-    // Inicializar obtención de compras
-    obtenerCompras();
-});
+  
+    // Inicializar obtención de proveedores
+    obtenerProducto();
+  });

@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="es">
   <head>
-    <title>Módulo Compras | Consorcio Express</title>
+    <title>Módulo productos | Consorcio Express</title>
 
     <!-- Metadatos -->
     <meta charset="utf-8" />
@@ -20,101 +20,99 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="../Compras/registrar_compras.css">
+    <link rel="stylesheet" href="../Inventario/registrar_producto.css">
 
   </head>
 
-  <body>
-
-    
+  <body>    
 
     <!-- Menu principal -->
 
     <div class="form-container">      
 
-      <form class="formCompras" method="post" id="registroForm">
-
-        <h2>Ingresar Factura</h2>
-
-        <div class="d-flex flex-row gap-lg-5 mb-2">
-          <div class="d-flex flex-column">
-            <label for="numeroFactura" class="form-label">Numero de Factura</label>
-            <input type="text" id="numeroFactura" class="form-control" size="25px" placeholder="Número Factura" required>
+        <form class="formCompras" method="post" id="registroForm">
+  
+          <h2>Ingresar Factura</h2>
+  
+          <div class="d-flex flex-row gap-lg-5 mb-2">
+            <div class="d-flex flex-column">
+              <label for="numeroFactura" class="form-label">Numero de Factura</label>
+              <input type="text" id="numeroFactura" class="form-control" size="25px" placeholder="Número Factura" required>
+            </div>
+            <div class="d-flex flex-column">
+              <label for="proveedor" class="form-label">Nombre del proveedor</label>
+              <input type="text" id="proveedor" class="form-control" size="75px" placeholder="Nombre del proveedor" required>
+            </div>
           </div>
-          <div class="d-flex flex-column">
-            <label for="proveedor" class="form-label">Nombre del proveedor</label>
-            <input type="text" id="proveedor" class="form-control" size="75px" placeholder="Nombre del proveedor" required>
+  
+          <div class="d-flex flex-row gap-lg-5 mb-2">
+            <div class="d-flex flex-column">
+              <label for="nitProveedor" class="form-label">Nit del proveedor</label>
+              <input type="text" id="nitProveedor" class="form-control" size="30px" placeholder="Nit del proveedor" required>
+            </div>
+            <div class="d-flex flex-column">
+              <label for="direccion" class="form-label">Direccion</label>
+              <input type="text" id="direccion" class="form-control" size="70px" placeholder="Dirección del proveedor" required>
+            </div>
           </div>
-        </div>
-
-        <div class="d-flex flex-row gap-lg-5 mb-2">
-          <div class="d-flex flex-column">
-            <label for="nitProveedor" class="form-label">Nit del proveedor</label>
-            <input type="text" id="nitProveedor" class="form-control" size="30px" placeholder="Nit del proveedor" required>
+  
+          <div class="d-flex flex-row gap-lg-5 mb-2">
+            <div class="d-flex flex-column">
+              <label for="telefono" class="form-label">Telefono</label>
+              <input type="text" id="telefono" class="form-control" size="25px" placeholder="Teléfono del proveedor" required>
+            </div>
+            <div class="d-flex flex-column">
+              <label for="correo" class="form-label">Correo</label>
+              <input type="email" id="correo" class="form-control" size="75px" placeholder="Correo del proveedor" required>
+            </div>
           </div>
-          <div class="d-flex flex-column">
-            <label for="direccion" class="form-label">Direccion</label>
-            <input type="text" id="direccion" class="form-control" size="70px" placeholder="Dirección del proveedor" required>
+  
+          <div class="d-flex flex-row gap-lg-5 mb-2">
+            <div class="d-flex flex-column">
+              <label for="articulo" class="form-label">Articulo</label>
+              <input type="text" id="articulo" class="form-control" size="80px" placeholder="Nombre del artículo" required>
+            </div>
+            <div class="d-flex flex-column">
+              <label for="cantidad" class="form-label">Cantidad</label>
+              <input type="text" id="cantidad" class="form-control" size="20px" placeholder="Cantidad del artículo" required>
+            </div>
           </div>
-        </div>
-
-        <div class="d-flex flex-row gap-lg-5 mb-2">
-          <div class="d-flex flex-column">
-            <label for="telefono" class="form-label">Telefono</label>
-            <input type="text" id="telefono" class="form-control" size="25px" placeholder="Teléfono del proveedor" required>
+  
+          <div class="d-flex flex-row gap-lg-5 mb-2">
+            <div class="d-flex flex-column">
+              <label for="totalFactura" class="form-label">Total Factura</label>
+              <input type="text" id="totalFactura" class="form-control" size="50px" placeholder="Total factura" required>
+            </div>
           </div>
-          <div class="d-flex flex-column">
-            <label for="correo" class="form-label">Correo</label>
-            <input type="email" id="correo" class="form-control" size="75px" placeholder="Correo del proveedor" required>
-          </div>
-        </div>
-
-        <div class="d-flex flex-row gap-lg-5 mb-2">
-          <div class="d-flex flex-column">
-            <label for="articulo" class="form-label">Articulo</label>
-            <input type="text" id="articulo" class="form-control" size="80px" placeholder="Nombre del artículo" required>
-          </div>
-          <div class="d-flex flex-column">
-            <label for="cantidad" class="form-label">Cantidad</label>
-            <input type="text" id="cantidad" class="form-control" size="20px" placeholder="Cantidad del artículo" required>
-          </div>
-        </div>
-
-        <div class="d-flex flex-row gap-lg-5 mb-2">
-          <div class="d-flex flex-column">
-            <label for="totalFactura" class="form-label">Total Factura</label>
-            <input type="text" id="totalFactura" class="form-control" size="50px" placeholder="Total factura" required>
-          </div>
-          <!-- <div class="d-flex flex-column">
-            <label for="fecha" class="form-label">Fecha</label>
-            <input type="texto" id="fecha" class="form-control" size="50px" placeholder="Fecha de ingreso" required>
-          </div> -->
-        </div>
-                           
-        <button type="button" class="btn btn-primary mt-4" id="registrarCompra">Ingresar Factura</button>
-        
-        <div class="modal" tabindex="-1" id="exampleModal">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title">¡Todo salió bien!</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                <p>Factura registrada correctamente.</p>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="btn-cerrar-modal">Aceptar</button>
+            <!-- <div class="d-flex flex-column">
+              <label for="fecha" class="form-label">Fecha</label>
+              <input type="texto" id="fecha" class="form-control" size="50px" placeholder="Fecha de ingreso" required>
+            </div> -->
+          
+                             
+          <button type="button" class="btn btn-primary mt-4" id="registrar">Ingresar Factura</button>
+          
+          <div class="modal" tabindex="-1" id="exampleModal">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">¡Todo salió bien!</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <p>Factura registrada correctamente.</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="btn-cerrar-modal">Aceptar</button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-
-      </form>
+  
+        </form>
     </div>
 
-
-    <script src="../Compras/registrar_compras.js"></script>
+    <script src="../Inventario/registrar_producto.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 

@@ -11,6 +11,14 @@ CREATE DATABASE BD_CONSORCIO_EXPRESS
 USE BD_CONSORCIO_EXPRESS
 
 --CREAMOS LAS TABLAS DE LA BASE DE DATOS
+CREATE TABLE INVENTARIO
+(
+	ReferenciaProducto varchar(15) not null,	
+	NombreProducto varchar(80),
+	Precio varchar(20),
+	Cantidad int
+)
+
 
 CREATE TABLE USUARIO_NUEVO
 (
@@ -114,6 +122,9 @@ CREATE TABLE DETALLE_COMPRA
 
 CLAVES PRIMARIAS
 
+alter table INVENTARIO
+add constraint PK_INVENTARIO primary key (ReferenciaProducto)
+
 alter table USUARIO_NUEVO
 add constraint PK_USUARIO_NUEVO primary key (IdCodigoUsuario)
 
@@ -194,6 +205,99 @@ on delete cascade
 on update cascade
 
 
+
+CREATE PROCEDURE ACTUALIZAR_INVENTARIO_COMPRA
+    @NombreProducto VARCHAR(80),
+    @Cantidad INT
+AS
+BEGIN
+    UPDATE INVENTARIO
+    SET Cantidad = Cantidad + @Cantidad
+    WHERE NombreProducto = @NombreProducto
+END
+
+CREATE PROCEDURE ACTUALIZAR_INVENTARIO_SALIDA
+    @NombreProducto VARCHAR(80),
+    @Cantidad INT
+AS
+BEGIN
+    UPDATE INVENTARIO
+    SET Cantidad = Cantidad - @Cantidad
+    WHERE NombreProducto = @NombreProducto
+END
+
+
+
+
+
+
+
+
+--PROCEDIMIENTOS ALMACENADOS TABLA INVENTARIO
+
+create procedure REGISTRAR_PRODUCTO
+	@ReferenciaProducto varchar(15),	
+	@NombreProducto varchar(80),
+	@Precio varchar(20),
+	@Cantidad int
+
+as
+begin
+	insert into INVENTARIO (ReferenciaProducto,NombreProducto,Precio,Cantidad)
+	values (@ReferenciaProducto,@NombreProducto,@Precio,@Cantidad)
+end
+
+execute REGISTRAR_PRODUCTO 'ABC82','MOTORES','15000000','10'
+execute REGISTRAR_PRODUCTO 'ABC83','MOTORES','15000000','10'
+execute REGISTRAR_PRODUCTO 'ABC84','MOTORES','15000000','10'
+execute REGISTRAR_PRODUCTO 'ABC85','MOTORES','15000000','10'
+execute REGISTRAR_PRODUCTO 'ABC86','MOTORES','15000000','10'
+
+--ACTUALIZAR USUARIO
+create procedure ACTUALIZAR_PRODUCTO
+	@ReferenciaProducto varchar(15),	
+	@NombreProducto varchar(80),
+	@Precio varchar(20),
+	@Cantidad int
+
+as
+begin
+	update INVENTARIO set ReferenciaProducto=@ReferenciaProducto,NombreProducto=@NombreProducto,
+	Precio=@Precio,Cantidad=@Cantidad where ReferenciaProducto=@ReferenciaProducto
+end
+
+execute ACTUALIZAR_PRODUCTO 'ABC82','MOTORES','15000000','15'
+
+--CONSULTAR USUARIO
+create procedure CONSULTAR_PRODUCTO
+	@ReferenciaProducto varchar(15)
+as
+begin
+	select ReferenciaProducto,NombreProducto,Precio,Cantidad from INVENTARIO where ReferenciaProducto=@ReferenciaProducto
+end
+
+execute CONSULTAR_PRODUCTO 'ABC82'
+
+--LISTAR USUARIOS
+create procedure LISTAR_PRODUCTO
+as
+begin
+	select ReferenciaProducto,NombreProducto,Precio,Cantidad from INVENTARIO
+end
+
+execute LISTAR_PRODUCTO
+
+--ELIMINAR USUARIO
+create procedure ELIMINAR_PRODUCTO
+	@ReferenciaProducto varchar(15)
+as
+begin
+	delete from INVENTARIO where ReferenciaProducto=@ReferenciaProducto
+end
+
+execute ELIMINAR_PRODUCTO ''
+
+
 --PROCEDIMIENTOS ALMACENADOS TABLA USUARIO_NUEVO
 
 --REGISTRAR USUARIO
@@ -214,7 +318,7 @@ begin
 end
 
 execute REGISTRAR_USUARIO '101','71387351','JUAN CAMILO','PAREJA SANCHEZ','3006315482','JUAN@GMAIL.COM','ADMINISTRADOR','abcd'
-execute REGISTRAR_USUARIO '102','32354286','MARIA ANGELICA','ALVARADO TORRES','3014331294','MARIA@GMAIL.COM','GERENTE','abcd'
+execute REGISTRAR_USUARIO '102','32354286','MARIA ANGELICA','ALVARADO TORRES','3014331294','MARIA@GMAIL.COM','GERENTE','123456789'
 execute REGISTRAR_USUARIO '103','32517722','MARGARITA','SANCHEZ GARCES','3138482370','MARGARITA@GMAIL.COM','SUPERVISORA','abcd'
 execute REGISTRAR_USUARIO '104','42977632','LUZ ESTELA','SANCHEZ GARCES','3007822183','ESTELA@GMAIL.COM','EMPLEADA','abcd'
 execute REGISTRAR_USUARIO '105','32851762','JULIO ALFREDO','MUÑOZ PANIAGUA','314974651','JULIO@GMAIL.COM','EMPLEADO','abcd'
@@ -287,7 +391,22 @@ execute ELIMINAR_USUARIO '102'
 execute ELIMINAR_USUARIO '103'
 execute ELIMINAR_USUARIO '104'
 execute ELIMINAR_USUARIO '105'
-execute ELIMINAR_USUARIO ''
+execute ELIMINAR_USUARIO '106'
+execute ELIMINAR_USUARIO '107'
+execute ELIMINAR_USUARIO '108'
+execute ELIMINAR_USUARIO '109'
+execute ELIMINAR_USUARIO '110'
+execute ELIMINAR_USUARIO '111'
+execute ELIMINAR_USUARIO '112'
+execute ELIMINAR_USUARIO '113'
+execute ELIMINAR_USUARIO '114'
+execute ELIMINAR_USUARIO '115'
+execute ELIMINAR_USUARIO '116'
+execute ELIMINAR_USUARIO '117'
+execute ELIMINAR_USUARIO '118'
+execute ELIMINAR_USUARIO '119'
+execute ELIMINAR_USUARIO '120'
+
 
 
 execute LISTAR_USUARIOS

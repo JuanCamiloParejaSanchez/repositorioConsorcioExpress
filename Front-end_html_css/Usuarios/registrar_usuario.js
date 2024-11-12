@@ -28,6 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
       contrasena: contrasena
     };
 
+    //fetch(`https://localhost:44314/api/registrousuario`, {
     fetch(`http://www.consorcioexpress.somee.com/api/registrousuario`, {
       method: "POST",
       headers: {

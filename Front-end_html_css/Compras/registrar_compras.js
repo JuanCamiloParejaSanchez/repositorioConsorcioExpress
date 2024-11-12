@@ -1,12 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const registrarCompra = document.getElementById("registrarCompra");
+    const registrar = document.getElementById("registrar");
     const modalElement = document.getElementById("exampleModal");
 
     // Inicializar modal con Bootstrap
     const modal = new bootstrap.Modal(modalElement);
   
-    registrarCompra.addEventListener("click", (e) => {
-      e.preventDefault();
+    registrar.addEventListener("click", (e) => {
+      /* e.preventDefault(); */
   
       const numeroFactura = document.getElementById("numeroFactura").value;
       const nombreProveedor = document.getElementById("nombreProveedor").value;
@@ -31,8 +31,8 @@ document.addEventListener("DOMContentLoaded", () => {
         total: total        
       };
   
-      fetch(`http://www.consorcioexpress.somee.com/api/compras`, {
-      /* fetch(`https://localhost:44314/api/compras/`, { */
+      //fetch(`http://www.consorcioexpress.somee.com/api/compras`, {
+      fetch(`https://localhost:44314/api/compras/`, {
           method: "POST",
           headers:{
               "Content-Type": "application/json",
@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
             // Opcional: Redirigir después de cerrar el modal
             const closeModalButton = document.getElementById("btn-cerrar-modal");
             closeModalButton.addEventListener("click", () => {
-              window.location.href = "listar_compras.html";
+              window.location.href = "../Compras/listar_compras.html";
             });  
           } else {
             console.error("Error al enviar la solicitud:", response.status);
@@ -56,5 +56,25 @@ document.addEventListener("DOMContentLoaded", () => {
       .catch((error) => {
         console.error("Error al enviar la solicitud:", error);
       });
+
+      fetch("https://localhost:44314/api/ActualizarInventarioCompra", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            nombreArticulo: nombreArticulo,
+            cantidad: cantidad,
+        }),
+      })
+        .then(response => {
+            if (response.ok) {
+                console.log("Inventario actualizado correctamente.");
+            } else {
+                console.error("Error al actualizar el inventario.");
+            }
+      })
+      .catch(error => console.error("Error en la solicitud:", error));
+    
     });
 });
