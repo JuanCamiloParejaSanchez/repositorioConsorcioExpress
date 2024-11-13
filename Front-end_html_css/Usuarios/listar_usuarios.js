@@ -26,8 +26,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Función para obtener datos de la API
     function obtenerUsuarios() {
-        fetch(`http://www.consorcioexpress.somee.com/api/registrousuario`)
-        /* fetch(`https://localhost:44314/api/registrousuario`) */
+        //fetch(`http://www.consorcioexpress.somee.com/api/registrousuario`)
+        fetch(`https://localhost:44314/api/registrousuario`)
             .then((response) => {
                 console.log("Respuesta de la API:", response);
                 if (!response.ok) {
@@ -132,7 +132,8 @@ document.addEventListener("DOMContentLoaded", () => {
     confirmButton.addEventListener("click", () => {
         if (confirmButton) {
             modal.hide();
-            fetch(`http://www.consorcioexpress.somee.com/api/registrousuario/${borrarBtn.value}`, {
+            //fetch(`http://www.consorcioexpress.somee.com/api/registrousuario/${borrarBtn.value}`, {
+            fetch(`https://localhost:44314/api/registrousuario/${borrarBtn.value}`, {
                 method: "DELETE",            
             })            
             .then((response) => {

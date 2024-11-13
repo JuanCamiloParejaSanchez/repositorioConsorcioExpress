@@ -1,4 +1,4 @@
-DROP PROCEDURE REGISTRAR_USUARIO
+DROP PROCEDURE ACTUALIZAR_INVENTARIO_SALIDA
 DROP TABLE USUARIO_NUEVO
 SELECT * FROM USUARIO_NUEVO
 DELETE FROM USUARIO_NUEVO WHERE IdCodigoUsuario = 105
@@ -206,33 +206,6 @@ on update cascade
 
 
 
-CREATE PROCEDURE ACTUALIZAR_INVENTARIO_COMPRA
-    @NombreProducto VARCHAR(80),
-    @Cantidad INT
-AS
-BEGIN
-    UPDATE INVENTARIO
-    SET Cantidad = Cantidad + @Cantidad
-    WHERE NombreProducto = @NombreProducto
-END
-
-CREATE PROCEDURE ACTUALIZAR_INVENTARIO_SALIDA
-    @NombreProducto VARCHAR(80),
-    @Cantidad INT
-AS
-BEGIN
-    UPDATE INVENTARIO
-    SET Cantidad = Cantidad - @Cantidad
-    WHERE NombreProducto = @NombreProducto
-END
-
-
-
-
-
-
-
-
 --PROCEDIMIENTOS ALMACENADOS TABLA INVENTARIO
 
 create procedure REGISTRAR_PRODUCTO
@@ -299,6 +272,26 @@ execute ELIMINAR_PRODUCTO ''
 
 
 --PROCEDIMIENTOS ALMACENADOS TABLA USUARIO_NUEVO
+
+CREATE PROCEDURE sp_ValidarCredenciales
+    @Documento varchar(20),
+    @Contrasena varchar(50)
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    IF EXISTS (SELECT 1 
+               FROM USUARIO_NUEVO 
+               WHERE Documento = @Documento AND Contrasena = @Contrasena)
+    BEGIN
+        SELECT 'Bienvenido' AS Mensaje, 1 AS Resultado;
+    END
+    ELSE
+    BEGIN
+        SELECT 'Credenciales incorrectas' AS Mensaje, 0 AS Resultado;
+    END
+END
+
 
 --REGISTRAR USUARIO
 create procedure REGISTRAR_USUARIO

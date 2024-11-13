@@ -2,9 +2,6 @@
 using ConsorcioExpress.Models;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Data.SqlClient;
-using System.Data;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -20,40 +17,24 @@ namespace ConsorcioExpress.Controllers
             return InventarioData.Listar();
         }
         // GET api/<controller>/5
-        public List<Inventario> Get(string producto)
+        public List<Inventario> Get(string id)
         {
-            return InventarioData.Obtener(producto);
+            return InventarioData.Obtener(id);
         }
         // POST api/<controller>
-        public bool Post([FromBody] Inventario producto)
+        public bool Post([FromBody] Inventario id)
         {
-            return InventarioData.RegistrarUsuario(producto);
+            return InventarioData.RegistrarUsuario(id);
         }
         // PUT api/<controller>/5
-        public bool Put([FromBody] Inventario producto)
+        public bool Put([FromBody] Inventario regProducto)
         {
-            return InventarioData.ActualizarUsuario(producto);
+            return InventarioData.ActualizarUsuario(regProducto);
         }
         // DELETE api/<controller>/5
         public bool Delete(string id)
         {
             return InventarioData.EliminarUsuario(id);
-        }
-
-        [HttpPost]
-        public IHttpActionResult ActualizarInventarioSalida(string nombreArticulo, int cantidad)
-        {
-            using (var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["ConexionBD"].ConnectionString))
-            {
-                var command = new SqlCommand("ACTUALIZAR_INVENTARIO_SALIDA", connection);
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@NombreArticulo", nombreArticulo);
-                command.Parameters.AddWithValue("@Cantidad", cantidad);
-                connection.Open();
-                command.ExecuteNonQuery();
-                connection.Close();
-            }
-            return Ok("Inventario actualizado exitosamente.");
         }
     }
 }

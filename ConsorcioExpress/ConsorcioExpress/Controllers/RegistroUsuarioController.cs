@@ -2,6 +2,7 @@
 using ConsorcioExpress.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
@@ -38,42 +39,38 @@ namespace ConsorcioExpress.Controllers
         {
             return RegistroUsuarioData.EliminarUsuario(id);
         }
-
-
-        // POST api/<controller>
-
-        [HttpPost]
-        [Route("api/login")]
-        public HttpResponseMessage Login([FromBody] InicioSesion inicioSesion)
+        public static string ValidarCredenciales(string documento, string contrasena)
         {
-            string coneccion = "Data Source=CAMILO;Initial Catalog=DBCONSORCIO_EXPRESS;Integrated Security=True";
-            bool autenticado = false;
+            string mensaje = "";
 
-            using (SqlConnection connection = new SqlConnection(coneccion))
+            using (SqlConnection conexion = new SqlConnection(ConexionBD.Conection))
             {
-                connection.Open();
-                string query = "SELECT COUNT(1) FROM USUARIO_NUEVO WHERE documento=@documento AND contrasena=@contrasena";
-                using (SqlCommand command = new SqlCommand(query, connection))
+                try
                 {
-                    command.Parameters.AddWithValue("@documento", inicioSesion.Documento);
-                    command.Parameters.AddWithValue("@contrasena", inicioSesion.Contrasena);
-                    autenticado = Convert.ToInt32(command.ExecuteScalar()) == 1;
+                    conexion.Open();
+
+                    using (SqlCommand comando = new SqlCommand("sp_ValidarCredenciales", conexion))
+                    {
+                        comando.CommandType = CommandType.StoredProcedure;
+                        comando.Parameters.AddWithValue("@Documento", documento);
+                        comando.Parameters.AddWithValue("@Contrasena", contrasena);
+
+                        using (SqlDataReader reader = comando.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                mensaje = reader["Mensaje"].ToString();
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    mensaje = $"Error: {ex.Message}";
                 }
             }
 
-            if (autenticado)
-            {
-                return Request.CreateResponse(HttpStatusCode.OK, new { success = true });
-            }
-            else
-            {
-                return Request.CreateResponse(HttpStatusCode.Unauthorized, new { success = false });
-            }
+            return mensaje;
         }
-        public class InicioSesion
-        {
-            public string Documento { get; set; }
-            public string Contrasena { get; set; }
-        }        
     }
 }

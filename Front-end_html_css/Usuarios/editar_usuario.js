@@ -21,7 +21,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const cancelButton = document.getElementById("btn-cancelar");
 
   // Obtener datos del usuario
-  fetch("http://www.consorcioexpress.somee.com/api/registrousuario/" + id)
+  //fetch("http://www.consorcioexpress.somee.com/api/registrousuario/" + id)
+  fetch("https://localhost:44314/api/registrousuario/" + id)
     .then((response) => response.json())
     .then((data) => {
       data.forEach((usuario) => {
@@ -56,7 +57,8 @@ document.addEventListener("DOMContentLoaded", () => {
       contrasena: contrasena.value
     };
 
-    fetch("http://www.consorcioexpress.somee.com/api/registrousuario/", {
+    //fetch("http://www.consorcioexpress.somee.com/api/registrousuario/", {
+    fetch("https://localhost:44314/api/registrousuario/", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

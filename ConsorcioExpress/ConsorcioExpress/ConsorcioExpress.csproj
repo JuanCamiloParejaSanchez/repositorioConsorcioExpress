@@ -116,6 +116,7 @@
     <Compile Include="Controllers\ComprasController.cs" />
     <Compile Include="Controllers\ConductorController.cs" />
     <Compile Include="Controllers\DetalleCompraController.cs" />
+    <Compile Include="Controllers\InventarioController.cs" />
     <Compile Include="Controllers\ProveedorController.cs" />
     <Compile Include="Controllers\RegistroUsuarioController.cs" />
     <Compile Include="Controllers\ServicioController.cs" />
@@ -127,6 +128,7 @@
     <Compile Include="Data\ConductorData.cs" />
     <Compile Include="Data\ConexionBD.cs" />
     <Compile Include="Data\DetalleCompraData.cs" />
+    <Compile Include="Data\InventarioData.cs" />
     <Compile Include="Data\ProveedorData.cs" />
     <Compile Include="Data\RegistroUsuarioData.cs" />
     <Compile Include="Data\RequerimientoData.cs" />
@@ -141,6 +143,7 @@
     <Compile Include="Models\Compras.cs" />
     <Compile Include="Models\Conductor.cs" />
     <Compile Include="Models\DetalleCompra.cs" />
+    <Compile Include="Models\Inventario.cs" />
     <Compile Include="Models\Proveedor.cs" />
     <Compile Include="Models\RegistroUsuario.cs" />
     <Compile Include="Models\Requerimiento.cs" />
