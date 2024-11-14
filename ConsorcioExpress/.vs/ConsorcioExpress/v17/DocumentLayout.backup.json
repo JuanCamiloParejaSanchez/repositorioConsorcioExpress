@@ -3,8 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\PICHOLO\\Desktop\\SENA\\CodigoConsorcioExpress\\repositorioConsorcioExpress\\ConsorcioExpress\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{EFFA62FB-3961-48A6-9262-0324A7B5BCEA}|ConsorcioExpress\\ConsorcioExpress.csproj|c:\\users\\picholo\\desktop\\sena\\codigoconsorcioexpress\\repositorioconsorcioexpress\\consorcioexpress\\consorcioexpress\\controllers\\registrousuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EFFA62FB-3961-48A6-9262-0324A7B5BCEA}|ConsorcioExpress\\ConsorcioExpress.csproj|solutionrelative:consorcioexpress\\controllers\\registrousuariocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EFFA62FB-3961-48A6-9262-0324A7B5BCEA}|ConsorcioExpress\\ConsorcioExpress.csproj|c:\\users\\picholo\\desktop\\sena\\codigoconsorcioexpress\\repositorioconsorcioexpress\\consorcioexpress\\consorcioexpress\\controllers\\indexcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EFFA62FB-3961-48A6-9262-0324A7B5BCEA}|ConsorcioExpress\\ConsorcioExpress.csproj|solutionrelative:consorcioexpress\\controllers\\indexcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EFFA62FB-3961-48A6-9262-0324A7B5BCEA}|ConsorcioExpress\\ConsorcioExpress.csproj|c:\\users\\picholo\\desktop\\sena\\codigoconsorcioexpress\\repositorioconsorcioexpress\\consorcioexpress\\consorcioexpress\\models\\index.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EFFA62FB-3961-48A6-9262-0324A7B5BCEA}|ConsorcioExpress\\ConsorcioExpress.csproj|solutionrelative:consorcioexpress\\models\\index.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -23,14 +27,27 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "RegistroUsuarioController.cs",
-              "DocumentMoniker": "C:\\Users\\PICHOLO\\Desktop\\SENA\\CodigoConsorcioExpress\\repositorioConsorcioExpress\\ConsorcioExpress\\ConsorcioExpress\\Controllers\\RegistroUsuarioController.cs",
-              "RelativeDocumentMoniker": "ConsorcioExpress\\Controllers\\RegistroUsuarioController.cs",
-              "ToolTip": "C:\\Users\\PICHOLO\\Desktop\\SENA\\CodigoConsorcioExpress\\repositorioConsorcioExpress\\ConsorcioExpress\\ConsorcioExpress\\Controllers\\RegistroUsuarioController.cs",
-              "RelativeToolTip": "ConsorcioExpress\\Controllers\\RegistroUsuarioController.cs",
-              "ViewState": "AgIAABYAAAAAAAAAAAAqwCcAAAAJAAAAAAAAAA==",
+              "Title": "IndexController.cs",
+              "DocumentMoniker": "C:\\Users\\PICHOLO\\Desktop\\SENA\\CodigoConsorcioExpress\\repositorioConsorcioExpress\\ConsorcioExpress\\ConsorcioExpress\\Controllers\\IndexController.cs",
+              "RelativeDocumentMoniker": "ConsorcioExpress\\Controllers\\IndexController.cs",
+              "ToolTip": "C:\\Users\\PICHOLO\\Desktop\\SENA\\CodigoConsorcioExpress\\repositorioConsorcioExpress\\ConsorcioExpress\\ConsorcioExpress\\Controllers\\IndexController.cs",
+              "RelativeToolTip": "ConsorcioExpress\\Controllers\\IndexController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-13T01:43:40.553Z",
+              "WhenOpened": "2024-11-14T18:26:36.31Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Index.cs",
+              "DocumentMoniker": "C:\\Users\\PICHOLO\\Desktop\\SENA\\CodigoConsorcioExpress\\repositorioConsorcioExpress\\ConsorcioExpress\\ConsorcioExpress\\Models\\Index.cs",
+              "RelativeDocumentMoniker": "ConsorcioExpress\\Models\\Index.cs",
+              "ToolTip": "C:\\Users\\PICHOLO\\Desktop\\SENA\\CodigoConsorcioExpress\\repositorioConsorcioExpress\\ConsorcioExpress\\ConsorcioExpress\\Models\\Index.cs",
+              "RelativeToolTip": "ConsorcioExpress\\Models\\Index.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-14T18:25:15.259Z",
               "EditorCaption": ""
             }
           ]

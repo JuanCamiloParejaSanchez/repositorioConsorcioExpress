@@ -39,38 +39,5 @@ namespace ConsorcioExpress.Controllers
         {
             return RegistroUsuarioData.EliminarUsuario(id);
         }
-        public static string ValidarCredenciales(string documento, string contrasena)
-        {
-            string mensaje = "";
-
-            using (SqlConnection conexion = new SqlConnection(ConexionBD.Conection))
-            {
-                try
-                {
-                    conexion.Open();
-
-                    using (SqlCommand comando = new SqlCommand("sp_ValidarCredenciales", conexion))
-                    {
-                        comando.CommandType = CommandType.StoredProcedure;
-                        comando.Parameters.AddWithValue("@Documento", documento);
-                        comando.Parameters.AddWithValue("@Contrasena", contrasena);
-
-                        using (SqlDataReader reader = comando.ExecuteReader())
-                        {
-                            if (reader.Read())
-                            {
-                                mensaje = reader["Mensaje"].ToString();
-                            }
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    mensaje = $"Error: {ex.Message}";
-                }
-            }
-
-            return mensaje;
-        }
     }
 }
