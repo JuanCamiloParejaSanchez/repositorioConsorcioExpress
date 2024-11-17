@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
             // Opcional: Redirigir después de cerrar el modal
             const closeModalButton = document.getElementById("btn-cerrar-modal");
             closeModalButton.addEventListener("click", ()=>{
-              window.location.href = "listar_proveedor.html";
+              window.location.href = "../Menu_Principal/menu_principal.html";
             });            
   
           } else {

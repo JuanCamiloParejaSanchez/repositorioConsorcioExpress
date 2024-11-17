@@ -26,8 +26,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Función para obtener datos de la API
   function obtenerProveedor() {
-      fetch(`http://www.consorcioexpress.somee.com/api/proveedor`)
-      /* fetch(`https://localhost:44314/api/proveedor`) */
+      //fetch(`http://www.consorcioexpress.somee.com/api/proveedor`)
+      fetch(`https://localhost:44314/api/proveedor`)
           .then((response) => {
               console.log("Respuesta de la API:", response);
               if (!response.ok) {
@@ -127,8 +127,8 @@ document.addEventListener("DOMContentLoaded", () => {
   confirmButton.addEventListener("click", () => {
       if (confirmButton) {
             modal.hide();
-            fetch(`http://www.consorcioexpress.somee.com/api/proveedor/${borrarBtn.value}`, {
-            /* fetch(`https://localhost:44314/api/proveedor/${borrarBtn.value}`, { */
+            //fetch(`http://www.consorcioexpress.somee.com/api/proveedor/${borrarBtn.value}`, {
+            fetch(`https://localhost:44314/api/proveedor/${borrarBtn.value}`, {
               method: "DELETE",
           })
           .then((response) => {

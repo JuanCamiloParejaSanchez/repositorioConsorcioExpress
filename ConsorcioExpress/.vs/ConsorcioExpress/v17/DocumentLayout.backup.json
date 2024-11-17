@@ -3,12 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\PICHOLO\\Desktop\\SENA\\CodigoConsorcioExpress\\repositorioConsorcioExpress\\ConsorcioExpress\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{EFFA62FB-3961-48A6-9262-0324A7B5BCEA}|ConsorcioExpress\\ConsorcioExpress.csproj|c:\\users\\picholo\\desktop\\sena\\codigoconsorcioexpress\\repositorioconsorcioexpress\\consorcioexpress\\consorcioexpress\\controllers\\indexcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EFFA62FB-3961-48A6-9262-0324A7B5BCEA}|ConsorcioExpress\\ConsorcioExpress.csproj|solutionrelative:consorcioexpress\\controllers\\indexcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EFFA62FB-3961-48A6-9262-0324A7B5BCEA}|ConsorcioExpress\\ConsorcioExpress.csproj|c:\\users\\picholo\\desktop\\sena\\codigoconsorcioexpress\\repositorioconsorcioexpress\\consorcioexpress\\consorcioexpress\\views\\index.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{EFFA62FB-3961-48A6-9262-0324A7B5BCEA}|ConsorcioExpress\\ConsorcioExpress.csproj|solutionrelative:consorcioexpress\\views\\index.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EFFA62FB-3961-48A6-9262-0324A7B5BCEA}|ConsorcioExpress\\ConsorcioExpress.csproj|c:\\users\\picholo\\desktop\\sena\\codigoconsorcioexpress\\repositorioconsorcioexpress\\consorcioexpress\\consorcioexpress\\models\\index.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EFFA62FB-3961-48A6-9262-0324A7B5BCEA}|ConsorcioExpress\\ConsorcioExpress.csproj|solutionrelative:consorcioexpress\\models\\index.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EFFA62FB-3961-48A6-9262-0324A7B5BCEA}|ConsorcioExpress\\ConsorcioExpress.csproj|c:\\users\\picholo\\desktop\\sena\\codigoconsorcioexpress\\repositorioconsorcioexpress\\consorcioexpress\\consorcioexpress\\views\\index.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EFFA62FB-3961-48A6-9262-0324A7B5BCEA}|ConsorcioExpress\\ConsorcioExpress.csproj|solutionrelative:consorcioexpress\\views\\index.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EFFA62FB-3961-48A6-9262-0324A7B5BCEA}|ConsorcioExpress\\ConsorcioExpress.csproj|c:\\users\\picholo\\desktop\\sena\\codigoconsorcioexpress\\repositorioconsorcioexpress\\consorcioexpress\\consorcioexpress\\views\\login.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{EFFA62FB-3961-48A6-9262-0324A7B5BCEA}|ConsorcioExpress\\ConsorcioExpress.csproj|solutionrelative:consorcioexpress\\views\\login.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EFFA62FB-3961-48A6-9262-0324A7B5BCEA}|ConsorcioExpress\\ConsorcioExpress.csproj|c:\\users\\picholo\\desktop\\sena\\codigoconsorcioexpress\\repositorioconsorcioexpress\\consorcioexpress\\consorcioexpress\\views\\login.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EFFA62FB-3961-48A6-9262-0324A7B5BCEA}|ConsorcioExpress\\ConsorcioExpress.csproj|solutionrelative:consorcioexpress\\views\\login.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -27,27 +35,53 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "IndexController.cs",
-              "DocumentMoniker": "C:\\Users\\PICHOLO\\Desktop\\SENA\\CodigoConsorcioExpress\\repositorioConsorcioExpress\\ConsorcioExpress\\ConsorcioExpress\\Controllers\\IndexController.cs",
-              "RelativeDocumentMoniker": "ConsorcioExpress\\Controllers\\IndexController.cs",
-              "ToolTip": "C:\\Users\\PICHOLO\\Desktop\\SENA\\CodigoConsorcioExpress\\repositorioConsorcioExpress\\ConsorcioExpress\\ConsorcioExpress\\Controllers\\IndexController.cs",
-              "RelativeToolTip": "ConsorcioExpress\\Controllers\\IndexController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "Index.aspx",
+              "DocumentMoniker": "C:\\Users\\PICHOLO\\Desktop\\SENA\\CodigoConsorcioExpress\\repositorioConsorcioExpress\\ConsorcioExpress\\ConsorcioExpress\\Views\\Index.aspx",
+              "RelativeDocumentMoniker": "ConsorcioExpress\\Views\\Index.aspx",
+              "ToolTip": "C:\\Users\\PICHOLO\\Desktop\\SENA\\CodigoConsorcioExpress\\repositorioConsorcioExpress\\ConsorcioExpress\\ConsorcioExpress\\Views\\Index.aspx",
+              "RelativeToolTip": "ConsorcioExpress\\Views\\Index.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2024-11-17T03:57:56.177Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Login.aspx",
+              "DocumentMoniker": "C:\\Users\\PICHOLO\\Desktop\\SENA\\CodigoConsorcioExpress\\repositorioConsorcioExpress\\ConsorcioExpress\\ConsorcioExpress\\Views\\Login.aspx",
+              "RelativeDocumentMoniker": "ConsorcioExpress\\Views\\Login.aspx",
+              "ToolTip": "C:\\Users\\PICHOLO\\Desktop\\SENA\\CodigoConsorcioExpress\\repositorioConsorcioExpress\\ConsorcioExpress\\ConsorcioExpress\\Views\\Login.aspx",
+              "RelativeToolTip": "ConsorcioExpress\\Views\\Login.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2024-11-17T03:21:32.412Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Login.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\PICHOLO\\Desktop\\SENA\\CodigoConsorcioExpress\\repositorioConsorcioExpress\\ConsorcioExpress\\ConsorcioExpress\\Views\\Login.aspx.cs",
+              "RelativeDocumentMoniker": "ConsorcioExpress\\Views\\Login.aspx.cs",
+              "ToolTip": "C:\\Users\\PICHOLO\\Desktop\\SENA\\CodigoConsorcioExpress\\repositorioConsorcioExpress\\ConsorcioExpress\\ConsorcioExpress\\Views\\Login.aspx.cs",
+              "RelativeToolTip": "ConsorcioExpress\\Views\\Login.aspx.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAswB8AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-14T18:26:36.31Z",
+              "WhenOpened": "2024-11-17T03:22:04.669Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Index.cs",
-              "DocumentMoniker": "C:\\Users\\PICHOLO\\Desktop\\SENA\\CodigoConsorcioExpress\\repositorioConsorcioExpress\\ConsorcioExpress\\ConsorcioExpress\\Models\\Index.cs",
-              "RelativeDocumentMoniker": "ConsorcioExpress\\Models\\Index.cs",
-              "ToolTip": "C:\\Users\\PICHOLO\\Desktop\\SENA\\CodigoConsorcioExpress\\repositorioConsorcioExpress\\ConsorcioExpress\\ConsorcioExpress\\Models\\Index.cs",
-              "RelativeToolTip": "ConsorcioExpress\\Models\\Index.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "Index.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\PICHOLO\\Desktop\\SENA\\CodigoConsorcioExpress\\repositorioConsorcioExpress\\ConsorcioExpress\\ConsorcioExpress\\Views\\Index.aspx.cs",
+              "RelativeDocumentMoniker": "ConsorcioExpress\\Views\\Index.aspx.cs",
+              "ToolTip": "C:\\Users\\PICHOLO\\Desktop\\SENA\\CodigoConsorcioExpress\\repositorioConsorcioExpress\\ConsorcioExpress\\ConsorcioExpress\\Views\\Index.aspx.cs",
+              "RelativeToolTip": "ConsorcioExpress\\Views\\Index.aspx.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-14T18:25:15.259Z",
+              "WhenOpened": "2024-11-17T04:32:40.63Z",
               "EditorCaption": ""
             }
           ]

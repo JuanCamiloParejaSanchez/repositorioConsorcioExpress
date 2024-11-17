@@ -10,7 +10,7 @@ namespace ConsorcioExpress.Views
 {
     public partial class Login : System.Web.UI.Page
     {
-        protected void btnIniciarSesion_Click(object sender, EventArgs e)
+        protected void BtnIniciarSesion_Click(object sender, EventArgs e)
         {
             // Obtener los valores del formulario
             string documento = txtDocumento.Text;
@@ -22,7 +22,7 @@ namespace ConsorcioExpress.Views
             if (resultado == "Bienvenido")
             {
                 // Redirigir si las credenciales son correctas
-                Response.Redirect("http://127.0.0.1:5500/Menu_Principal/menu_principal.html");
+                Response.Redirect("http:/127.0.0.1:5500/Menu_Principal/menu_principal.html");
             }
             else
             {
@@ -48,4 +48,5 @@ namespace ConsorcioExpress.Views
             }
         }
     }
+
 }

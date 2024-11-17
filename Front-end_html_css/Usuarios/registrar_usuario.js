@@ -28,8 +28,8 @@ document.addEventListener("DOMContentLoaded", () => {
       contrasena: contrasena
     };
 
-    //fetch(`https://localhost:44314/api/registrousuario`, {
-    fetch(`http://www.consorcioexpress.somee.com/api/registrousuario`, {
+    fetch(`https://localhost:44314/api/registrousuario`, {
+    //fetch(`http://www.consorcioexpress.somee.com/api/registrousuario`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
           // Opcional: Redirigir después de cerrar el modal
           const closeModalButton = document.getElementById("btn-cerrar-modal");
           closeModalButton.addEventListener("click", () => {
-            window.location.href = "listar_usuarios.html";
+            window.location.href = "../Inicio_Sesion/inicio_sesion.html";
           });
         } else {
           console.error("Error al enviar la solicitud:", response.status);

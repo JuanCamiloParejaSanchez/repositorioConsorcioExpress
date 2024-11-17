@@ -1,0 +1,210 @@
+﻿/* Barra de navegacion*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar {
+    z-index: 1000;
+    position: fixed;
+    padding: 10px;
+    color: white;
+    background: linear-gradient(rgb(78, 81, 243), rgb(46, 219, 46));
+    width: 100%;
+}
+
+.navbar-collapse {
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Imagen de usuario */
+.navbar .imagen {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
+
+/* Botón del dropdown */
+.navbar .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    border: 2px solid white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: all 0.2s ease-in;
+}
+
+.navbar .btn:hover {
+    background-color: white;
+    border: 3px solid rgb(13, 110, 253);
+    outline: none;
+    color: black;
+}
+
+.navbar a {
+    text-decoration: none;
+    text-align: center;
+}
+
+/* Menú */
+
+.carousel-inner {
+    max-width: 1000px;
+    height: 80vh;
+}
+
+.container {
+    padding-top: 8rem;
+    display: flex;
+    margin-left: 20px;
+}
+
+.carrusel-container {
+    margin-left: 100px;
+    position: inherit;
+    margin-bottom: 20px;
+    animation: slide 2s alternate;
+}
+
+.botones-container {
+    display: flex;
+    flex-direction: column; /* Alinea los botones verticalmente */
+    gap: 10px; /* Espacio entre los botones */
+    margin-right: 20px; /* Margen derecho para separar los botones de la línea */
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.separator {
+    width: 2px; /* Ancho de la línea vertical */
+    background-color: black; /* Color de la línea */
+    margin-right: 30px;
+    margin-left: 150px;
+    height: 100vh;
+    position: absolute;
+}
+
+.btn-custom {
+    background-color: rgb(78, 81, 243); /* Color de fondo del botón */
+    color: #fff; /* Color del texto */
+    border: none; /* Sin borde */
+    padding: 10px; /* Relleno del botón */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor al pasar el ratón */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Transiciones para hover */
+}
+
+.btn-custom:hover {
+    background-color: #5a6268; /* Color al pasar el ratón */
+    transform: scale(1.3); /* Aumenta un poco el tamaño del botón */
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    display: flex;
+    align-items: center;
+    background-color: grey;
+    padding: 20px;
+    border-radius: 50%;
+}
+
+
+/* Pie de página (footer) */
+
+footer {
+    background-color: #333; /* Cambia a tu color preferido */
+    color: white;
+    text-align: center;
+    padding: 10px;
+    height: 30%;
+}
+
+.iconos-redes-sociales i {
+    color: white;
+    font-size: 1.5rem;
+    transition: all 0.2s ease-in;
+}
+
+.iconos-redes-sociales a:hover {
+    background-color: white;
+    border: 2px solid rgb(13, 110, 253);
+}
+
+.iconos-redes-sociales a:hover i {
+    color: black;
+}
+
+.derechos-de-autor {
+    font-size: 15px;
+    color: white;
+    padding: 10px;
+}
+
+#pie-de-pagina {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    background-color: rgb(78, 81, 243);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.iconos-redes-sociales a {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    padding: 2px;
+    margin: 10px;
+    color: #000;
+    font-size: 1.5rem;
+    border: 2px solid white;
+    border-radius: 50%;
+    transition: all 0.2s ease-in;
+}
+
+.footer-info {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.footer-logo {
+    width: 50px; /* Ajusta el tamaño según sea necesario */
+    height: auto;
+    height: 70px;
+    width: 70px;
+    margin: 10px;
+    border-radius: 50%;
+}
+
+/*adaptable (responsivo)*/
+
+@media screen and (max-width: 767px) {
+    .navbar-brand {
+        display: none;
+    }
+}
