@@ -2,7 +2,7 @@
 
 <!DOCTYPE html>
 <html lang="es">
-  <head>
+  <head runat="server">
 
     <!-- Metadatos -->
     <meta charset="UTF-8">
@@ -40,9 +40,9 @@
     
       <div class="right-form" id="btnInicio">
         <div class="form-container">
-          <%--<div class="d-flex justify-content-center">
-            <img src="../Views/DOR.jpg" alt="login-icon" style="height: 7rem">
-          </div>--%>
+          <div class="d-flex justify-content-center">
+            <img src="../Views/login-icon.svg" alt="login-icon" style="height: 7rem">
+          </div>
     
           <h2>Iniciar Sesión</h2>
     
@@ -58,12 +58,12 @@
                 <div class="pt-0.5" style="font-size: 0.9rem">Recordarme</div>
               </div>
               <div class="pt-0.8">
-                <a href="http:/127.0.0.1:5500/Usuarios/registrar_usuario.html" target="_blank" runat="server" rel="noopener noreferrer" class="text-decoration-none fw-semibold fst-italic" style="font-size: 0.9rem">¿No estás registrado?</a>
+                <a href="http://127.0.0.1:5500/Usuarios/registrar_usuario.html" target="_blank" runat="server" rel="noopener noreferrer" class="text-decoration-none fw-semibold fst-italic" style="font-size: 0.9rem">¿No estás registrado?</a>
               </div>
             </div>            
               <p id="lblMensaje" runat="server" class="message"></p>
-              <div>
-                <asp:Button type="button" runat="server" class="btn btn-primary mt-5" id="btnIngresar" Text="Ingresar" OnClick="BtnIniciarSesion_Click"></asp:Button>
+              <div style="text-align: center;">
+                <asp:Button type="button" runat="server" CssClass="btn btn-primary mt-5" id="btnIngresar" Text="Ingresar" OnClick="BtnIniciarSesion_Click"></asp:Button>
               </div>
               
           </form>

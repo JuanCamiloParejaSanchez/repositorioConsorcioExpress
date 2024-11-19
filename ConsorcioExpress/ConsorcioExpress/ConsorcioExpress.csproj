@@ -110,8 +110,10 @@
     <Content Include="Views\Icono_inicio_sesion.jpg" />
     <Content Include="Views\Index.aspx" />
     <Content Include="Views\Index.css" />
+    <Content Include="Views\login-icon.svg" />
     <Content Include="Views\Login.aspx" />
     <Content Include="Views\inicio_sesion.css" />
+    <Content Include="Views\ObtenerNombreUsuario.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -171,6 +173,13 @@
     </Compile>
     <Compile Include="Views\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ObtenerNombreUsuario.aspx.cs">
+      <DependentUpon>ObtenerNombreUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ObtenerNombreUsuario.aspx.designer.cs">
+      <DependentUpon>ObtenerNombreUsuario.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

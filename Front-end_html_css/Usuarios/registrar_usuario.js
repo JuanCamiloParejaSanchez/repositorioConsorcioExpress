@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
           // Opcional: Redirigir después de cerrar el modal
           const closeModalButton = document.getElementById("btn-cerrar-modal");
           closeModalButton.addEventListener("click", () => {
-            window.location.href = "../Inicio_Sesion/inicio_sesion.html";
+            window.location.href = "https://localhost:44314/Views/Login.aspx";
           });
         } else {
           console.error("Error al enviar la solicitud:", response.status);

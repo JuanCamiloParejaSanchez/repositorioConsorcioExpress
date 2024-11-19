@@ -1,4 +1,4 @@
-DROP PROCEDURE ACTUALIZAR_INVENTARIO_SALIDA
+DROP PROCEDURE REGISTRAR_USUARIO
 DROP TABLE USUARIO_NUEVO
 SELECT * FROM USUARIO_NUEVO
 DELETE FROM USUARIO_NUEVO WHERE IdCodigoUsuario = 105
@@ -29,7 +29,7 @@ CREATE TABLE USUARIO_NUEVO
 	Telefono varchar(30),
 	Correo varchar(80),
 	Cargo varchar(40),
-	Contrasena varchar (50),
+	Contrasena varbinary(64)
 	--ConfirmarContrasena varchar (50)
 )
 
@@ -280,9 +280,14 @@ AS
 BEGIN
     SET NOCOUNT ON;
 
+	-- Generar el hash de la contraseña ingresada
+    DECLARE @ContrasenaHash varbinary(64);
+    SET @ContrasenaHash = HASHBYTES('SHA2_256', @Contrasena);
+
+	-- Verificar si existe un usuario con el documento y el hash correspondiente
     IF EXISTS (SELECT 1 
                FROM USUARIO_NUEVO 
-               WHERE Documento = @Documento AND Contrasena = @Contrasena)
+               WHERE Documento = @Documento AND Contrasena = @ContrasenaHash)
     BEGIN
         SELECT 'Bienvenido' AS Mensaje, 1 AS Resultado;
     END
@@ -302,12 +307,18 @@ create procedure REGISTRAR_USUARIO
 	@Telefono varchar(30),
 	@Correo varchar(60),
 	@Cargo varchar(40),
-	@Contrasena varchar (50)
+	@Contrasena varchar(50)
 
 as
 begin
+	SET NOCOUNT ON;
+
+    -- Generar el hash de la contraseña
+    DECLARE @ContrasenaHash VARBINARY(64);
+    SET @ContrasenaHash = HASHBYTES('SHA2_256', @Contrasena);
+
 	insert into USUARIO_NUEVO (IdCodigoUsuario,Documento,Nombres,Apellidos,Telefono,Correo,Cargo,Contrasena)
-	values (@IdCodigoUsuario,@Documento,@Nombres,@Apellidos,@Telefono,@Correo,@Cargo,@Contrasena)
+	values (@IdCodigoUsuario,@Documento,@Nombres,@Apellidos,@Telefono,@Correo,@Cargo,@ContrasenaHash);
 end
 
 execute REGISTRAR_USUARIO '101','71387351','JUAN CAMILO','PAREJA SANCHEZ','3006315482','JUAN@GMAIL.COM','ADMINISTRADOR','abcd'
@@ -341,7 +352,7 @@ create procedure ACTUALIZAR_USUARIO
 	@Telefono varchar(30),
 	@Correo varchar(60),
 	@Cargo varchar(40),
-	@Contrasena varchar (500)
+	@Contrasena varbinary(64)
 	--@ConfirmarContrasena varchar (500),
 
 as

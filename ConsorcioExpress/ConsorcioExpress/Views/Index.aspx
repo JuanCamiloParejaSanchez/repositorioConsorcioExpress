@@ -2,7 +2,7 @@
 
 <!DOCTYPE html>
 <html lang="es">
-  <head>
+  <head runat="server">
     <title>Página de inicio | Consorcio Express</title>
 
     <!-- Metadatos -->
@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="../Views/inicio_sesion.css">
+    <link rel="stylesheet" href="../Views/Index.css">
 
   </head>
 
