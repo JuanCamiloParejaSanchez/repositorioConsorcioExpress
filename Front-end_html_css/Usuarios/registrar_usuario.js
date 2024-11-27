@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const registrar = document.getElementById("registrar");
+  const registrar = document.getElementById("registrarUsuario");
   const modalElement = document.getElementById("exampleModal");
 
   // Inicializar modal con Bootstrap
@@ -53,5 +53,5 @@ document.addEventListener("DOMContentLoaded", () => {
       .catch((error) => {
         console.error("Error al enviar la solicitud:", error);
       });
-    });
+  });
 });

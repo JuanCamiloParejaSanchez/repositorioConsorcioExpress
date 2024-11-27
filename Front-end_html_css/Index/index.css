@@ -18,7 +18,7 @@ html, body {
   position: fixed;
   padding: 10px;
   color: white;
-  background: linear-gradient(rgb(78, 81, 243), rgb(46, 219, 46));
+  background: rgb(50, 147, 50);
   width: 100%;
 }
 
@@ -66,7 +66,7 @@ html, body {
 
 .carousel-inner{  
   max-width: 1000px;
-  height: 80vh; 
+  height: 500px; 
 }
 
 .container {
@@ -157,7 +157,7 @@ footer {
 }
 
 #pie-de-pagina {
-  bottom: 0;
+  margin-bottom: 0;
   left: 0;
   width: 100%;
   padding: 20px;

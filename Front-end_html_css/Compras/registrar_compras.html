@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="es">
-  <head>
-    <title>Módulo productos | Consorcio Express</title>
+  <head>    
 
     <!-- Metadatos -->
     <meta charset="utf-8" />
@@ -9,6 +8,9 @@
     <meta name="author" content="Camilo Pareja">
     <meta name="description" content="Software Consorcio Express">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Titulo -->
+    <title>Módulo productos | Consorcio Express</title>
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="../Imagenes/DOR.jpg">
@@ -26,9 +28,9 @@
 
   <body>    
 
-    <!-- Menu principal -->
+      <!-- Menu principal -->
 
-    <div class="form-container">      
+      <div class="form-container">      
 
         <form class="formCompras" method="post" id="registroForm">
   
@@ -37,56 +39,56 @@
           <div class="d-flex flex-row gap-lg-5 mb-2">
             <div class="d-flex flex-column">
               <label for="numeroFactura" class="form-label">Número de factura</label>
-              <input type="text" id="numeroFactura" class="form-control" size="25px" placeholder="Número Factura" required>
+              <input type="text" id="numeroFactura" class="form-control" size="50px" placeholder="Número Factura" required>
             </div>
             <div class="d-flex flex-column">
-              <label for="proveedor" class="form-label">Nombre del proveedor</label>
-              <input type="text" id="proveedor" class="form-control" size="75px" placeholder="Nombre del proveedor" required>
-            </div>
+              <label for="referenciaProducto" class="form-label">Referencia Producto</label>
+              <input type="text" id="referenciaProducto" class="form-control" size="50px" placeholder="Referencia del Producto" required>
+            </div>            
           </div>
-  
           <div class="d-flex flex-row gap-lg-5 mb-2">
             <div class="d-flex flex-column">
-              <label for="nitProveedor" class="form-label">Nit del proveedor</label>
-              <input type="text" id="nitProveedor" class="form-control" size="30px" placeholder="Nit del proveedor" required>
-            </div>
-            <div class="d-flex flex-column">
-              <label for="direccion" class="form-label">Dirección</label>
-              <input type="text" id="direccion" class="form-control" size="70px" placeholder="Dirección del proveedor" required>
-            </div>
-          </div>
-  
-          <div class="d-flex flex-row gap-lg-5 mb-2">
-            <div class="d-flex flex-column">
-              <label for="telefono" class="form-label">Teléfono</label>
-              <input type="text" id="telefono" class="form-control" size="25px" placeholder="Teléfono del proveedor" required>
-            </div>
-            <div class="d-flex flex-column">
-              <label for="correo" class="form-label">Correo</label>
-              <input type="email" id="correo" class="form-control" size="75px" placeholder="Correo del proveedor" required>
-            </div>
-          </div>
-  
-          <div class="d-flex flex-row gap-lg-5 mb-2">
-            <div class="d-flex flex-column">
-              <label for="articulo" class="form-label">Artículo</label>
-              <input type="text" id="articulo" class="form-control" size="80px" placeholder="Nombre del artículo" required>
+              <label for="nombreArticulo" class="form-label">Nombre Artículo</label>
+              <input type="text" id="nombreArticulo" class="form-control" size="80px" placeholder="Nombre del artículo" required>
             </div>
             <div class="d-flex flex-column">
               <label for="cantidad" class="form-label">Cantidad</label>
               <input type="text" id="cantidad" class="form-control" size="20px" placeholder="Cantidad del artículo" required>
-            </div>
-          </div>
-  
+            </div>            
+          </div>  
           <div class="d-flex flex-row gap-lg-5 mb-2">
             <div class="d-flex flex-column">
-              <label for="totalFactura" class="form-label">Total Factura</label>
-              <input type="text" id="totalFactura" class="form-control" size="50px" placeholder="Total factura" required>
+              <label for="nombreProveedor" class="form-label">Nombre del proveedor</label>
+              <input type="text" id="nombreProveedor" class="form-control" size="75px" placeholder="Nombre del proveedor" required>
+            </div>            
+            <div class="d-flex flex-column">
+              <label for="nitProveedor" class="form-label">Nit del proveedor</label>
+              <input type="text" id="nitProveedor" class="form-control" size="30px" placeholder="Nit del proveedor" required>
+            </div>            
+          </div>  
+          <div class="d-flex flex-row gap-lg-5 mb-2">
+            <div class="d-flex flex-column">
+              <label for="direccion" class="form-label">Dirección</label>
+              <input type="text" id="direccion" class="form-control" size="70px" placeholder="Dirección del proveedor" required>
+            </div>
+            <div class="d-flex flex-column">
+              <label for="telefono" class="form-label">Teléfono</label>
+              <input type="text" id="telefono" class="form-control" size="25px" placeholder="Teléfono del proveedor" required>
+            </div>            
+          </div>  
+          <div class="d-flex flex-row gap-lg-5 mb-2">
+            <div class="d-flex flex-column">
+              <label for="correo" class="form-label">Correo</label>
+              <input type="email" id="correo" class="form-control" size="75px" placeholder="Correo del proveedor" required>
+            </div>          
+            <div class="d-flex flex-column">
+              <label for="total" class="form-label">Total Factura</label>
+              <input type="text" id="total" class="form-control" size="50px" placeholder="Total factura" required>
             </div>
           </div>          
                              
-          <button type="button" class="btn btn-primary mt-4" id="registrarCompra">Ingresar Factura</button>
-          
+          <button type="button" class="btn btn-primary mt-4" id="registrarCompras">Ingresar Factura</button>
+
           <div class="modal" tabindex="-1" id="exampleModal">
             <div class="modal-dialog">
               <div class="modal-content">
@@ -105,9 +107,9 @@
           </div>
   
         </form>
-    </div>
+      </div>
 
-    <script src="../Compras/registrar_compras.js"></script>
+    <script src="registrar_compras.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 

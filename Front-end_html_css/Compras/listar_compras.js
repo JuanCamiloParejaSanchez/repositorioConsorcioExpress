@@ -48,23 +48,46 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Función para filtrar y paginar los datos
     function applyFilterAndPagination() {
-        const filterText = filterInput.value.toLowerCase();
-        filteredCompras = compras.filter(compras =>
-            compras.NumeroFactura.toString().includes(filterText) ||
-            compras.NombreProveedor.includes(filterText) ||
-            compras.NitProveedor.toLowerCase().includes(filterText) ||
-            compras.Direccion.toLowerCase().includes(filterText) ||
-            compras.Telefono.includes(filterText) ||
-            compras.Correo.toLowerCase().includes(filterText) ||
-            compras.NombreArticulo.toLowerCase().includes(filterText) ||
-            compras.Cantidad.toLowerCase().includes(filterText) ||
-            compras.Total.toLowerCase().includes(filterText)
-            
-        );
+        const filterText = filterInput.value.toLowerCase().trim().replace(/\s+/g, ' '); // Normalizar la entrada del filtro
+        filteredCompras = compras.filter(compra => {
+            // Asegurarse de que todos los valores sean cadenas antes de aplicar el filtro
+            return (
+                compra.NumeroFactura?.toString().toLowerCase().includes(filterText) ||
+                compra.ReferenciaProducto?.toString().toLowerCase().includes(filterText) ||
+                compra.NombreArticulo?.toString().toLowerCase().includes(filterText) ||
+                compra.Cantidad?.toString().toLowerCase().includes(filterText) ||  // Asegurarse de que es un número convertido a cadena
+                compra.NombreProveedor?.toLowerCase().includes(filterText) ||
+                compra.NitProveedor?.toString().toLowerCase().includes(filterText) ||
+                compra.Direccion?.toLowerCase().includes(filterText) ||
+                compra.Telefono?.toString().toLowerCase().includes(filterText) ||  // Asegurarse de que es un número convertido a cadena
+                compra.Correo?.toLowerCase().includes(filterText) || 
+                compra.Total?.toString().toLowerCase().includes(filterText) // Asegurarse de que es un número convertido a cadena
+            );
+        });
         totalPages = Math.ceil(filteredCompras.length / pageSize);
         displayPage(1);  // Mostrar la primera página después de aplicar filtro
         displayPaginationButtons();
     }
+    
+    // function applyFilterAndPagination() {
+    //     const filterText = filterInput.value.toLowerCase();
+    //     filteredCompras = compras.filter(compra =>
+    //         compra.NumeroFactura.toString().includes(filterText) ||
+    //         compra.ReferenciaProducto.toString().includes(filterText) ||
+    //         compra.NombreArticulo.toLowerCase().includes(filterText) ||
+    //         compra.Cantidad.toLowerCase().includes(filterText) ||
+    //         compra.NombreProveedor.includes(filterText) ||
+    //         compra.NitProveedor.toLowerCase().includes(filterText) ||
+    //         compra.Direccion.toLowerCase().includes(filterText) ||
+    //         compra.Telefono.includes(filterText) ||
+    //         compra.Correo.toLowerCase().includes(filterText) ||            
+    //         compra.Total.toLowerCase().includes(filterText)
+            
+    //     );
+    //     totalPages = Math.ceil(filteredCompras.length / pageSize);
+    //     displayPage(1);  // Mostrar la primera página después de aplicar filtro
+    //     displayPaginationButtons();
+    // }
 
     // Función para mostrar los datos en la página actual
     function displayPage(page) {
@@ -74,20 +97,21 @@ document.addEventListener("DOMContentLoaded", () => {
         const currentUsers = filteredCompras.slice(startIndex, endIndex);
 
         tabla.innerHTML = ""; // Limpiar tabla
-        currentUsers.forEach(compras => {
+        currentUsers.forEach(compra => {
             const row = document.createElement("tr");
             row.innerHTML = `
-                <td class="text-center">${compras.NumeroFactura}</td>
-                <td class="text-center">${compras.NombreProveedor}</td>
-                <td class="text-center">${compras.NitProveedor}</td>
-                <td class="text-center">${compras.Direccion}</td>
-                <td class="text-center">${compras.Telefono}</td>
-                <td class="text-center">${compras.Correo}</td>
-                <td class="text-center">${compras.NombreArticulo}</td>
-                <td class="text-center">${compras.Cantidad}</td>
-                <td class="text-center">${compras.Total}</td>
+                <td class="text-center">${compra.NumeroFactura}</td>
+                <td class="text-center">${compra.ReferenciaProducto}</td>
+                <td class="text-center">${compra.NombreArticulo}</td>
+                <td class="text-center">${compra.Cantidad}</td>
+                <td class="text-center">${compra.NombreProveedor}</td>
+                <td class="text-center">${compra.NitProveedor}</td>
+                <td class="text-center">${compra.Direccion}</td>
+                <td class="text-center">${compra.Telefono}</td>
+                <td class="text-center">${compra.Correo}</td>                
+                <td class="text-center">${compra.Total}</td>
             `;
-            row.addEventListener("click", () => selectRow(row, compras));
+            row.addEventListener("click", () => selectRow(row, compra));
             tabla.appendChild(row);
         });
 
@@ -118,13 +142,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Función para seleccionar una fila y habilitar botones
-    function selectRow(row, compras) {
+    function selectRow(row, compra) {
         document.querySelectorAll("tr").forEach(tr => tr.classList.remove("selected"));
         row.classList.add("selected");
         editarBtn.disabled = false;
         borrarBtn.disabled = false;
-        editarBtn.value = compras.NumeroFactura;
-        borrarBtn.value = compras.NumeroFactura;
+        editarBtn.value = compra.NumeroFactura;
+        borrarBtn.value = compra.NumeroFactura;
     }
 
     // Eventos para botones de edición y eliminación

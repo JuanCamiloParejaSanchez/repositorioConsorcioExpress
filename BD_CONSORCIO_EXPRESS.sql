@@ -1,7 +1,8 @@
-DROP PROCEDURE REGISTRAR_USUARIO
-DROP TABLE USUARIO_NUEVO
+DROP PROCEDURE ACTUALIZAR_COMPRAS
+DROP TABLE COMPRAS
 SELECT * FROM USUARIO_NUEVO
 DELETE FROM USUARIO_NUEVO WHERE IdCodigoUsuario = 105
+
 
 
 --CREAR BASE DE DATOS
@@ -13,12 +14,31 @@ USE BD_CONSORCIO_EXPRESS
 --CREAMOS LAS TABLAS DE LA BASE DE DATOS
 CREATE TABLE INVENTARIO
 (
-	ReferenciaProducto varchar(15) not null,	
+	ReferenciaProducto varchar(15) primary key not null,	
 	NombreProducto varchar(80),
-	Precio varchar(20),
 	Cantidad int
 )
 
+CREATE TABLE Salidas (
+    IdSalida INT PRIMARY KEY IDENTITY(1,1),
+    ReferenciaProducto varchar(15),
+    Cantidad INT,
+    FOREIGN KEY (ReferenciaProducto) REFERENCES Inventario(ReferenciaProducto)
+);
+
+CREATE TABLE COMPRAS
+(
+	NumeroFactura varchar(15) primary key not null,
+	ReferenciaProducto varchar(15),
+	NombreArticulo varchar(80),
+	Cantidad int,
+	NombreProveedor varchar(100),
+	NitProveedor varchar(15),
+	Direccion varchar(80),
+	Telefono varchar(15),
+	Correo varchar(100),	
+	Total int
+)
 
 CREATE TABLE USUARIO_NUEVO
 (
@@ -30,7 +50,6 @@ CREATE TABLE USUARIO_NUEVO
 	Correo varchar(80),
 	Cargo varchar(40),
 	Contrasena varbinary(64)
-	--ConfirmarContrasena varchar (50)
 )
 
 CREATE TABLE ADMINISTRADOR
@@ -68,19 +87,6 @@ CREATE TABLE CONDUCTOR
 	Documento varchar(20),
 	Nombres varchar(80),
 	Apellidos varchar(80)
-)
-
-CREATE TABLE COMPRAS
-(
-	NumeroFactura varchar(15) not null,
-	NombreProveedor varchar(100),
-	NitProveedor varchar(15),
-	Direccion varchar(80),
-	Telefono varchar(15),
-	Correo varchar(100),
-	NombreArticulo varchar(80),
-	Cantidad int,
-	Total int
 )
 
 CREATE TABLE ARTICULO
@@ -161,6 +167,11 @@ alter table DETALLE_COMPRA
 add constraint PK_DETALLE_COMPRA primary key (IdArticulo,NumeroFactura)
 
 --CREAR LLAVES FORANEAS
+alter table COMPRAS
+add constraint FK_INVENTARIO_COMPRAS foreign key (ReferenciaProducto)
+references INVENTARIO(ReferenciaProducto)
+on delete cascade
+on update cascade
 
 alter table COMPRAS
 add constraint FK_PROVEEDOR_COMPRAS foreign key (NitProveedor)
@@ -208,45 +219,59 @@ on update cascade
 
 --PROCEDIMIENTOS ALMACENADOS TABLA INVENTARIO
 
+CREATE PROCEDURE REGISTRAR_SALIDA
+    @ReferenciaProducto varchar,
+    @Cantidad INT
+AS
+BEGIN
+    BEGIN TRANSACTION
+        UPDATE Inventario
+        SET Cantidad = Cantidad - @Cantidad
+        WHERE ReferenciaProducto = @ReferenciaProducto;
+
+        INSERT INTO Salidas (ReferenciaProducto, Cantidad)
+        VALUES (@ReferenciaProducto, @Cantidad);
+    COMMIT TRANSACTION
+END;
+
+
 create procedure REGISTRAR_PRODUCTO
 	@ReferenciaProducto varchar(15),	
 	@NombreProducto varchar(80),
-	@Precio varchar(20),
 	@Cantidad int
 
 as
 begin
-	insert into INVENTARIO (ReferenciaProducto,NombreProducto,Precio,Cantidad)
-	values (@ReferenciaProducto,@NombreProducto,@Precio,@Cantidad)
+	insert into INVENTARIO (ReferenciaProducto,NombreProducto,Cantidad)
+	values (@ReferenciaProducto,@NombreProducto,@Cantidad)
 end
 
-execute REGISTRAR_PRODUCTO 'ABC82','MOTORES','15000000','10'
-execute REGISTRAR_PRODUCTO 'ABC83','MOTORES','15000000','10'
-execute REGISTRAR_PRODUCTO 'ABC84','MOTORES','15000000','10'
-execute REGISTRAR_PRODUCTO 'ABC85','MOTORES','15000000','10'
-execute REGISTRAR_PRODUCTO 'ABC86','MOTORES','15000000','10'
+execute REGISTRAR_PRODUCTO 'ABC82','MOTORES','10'
+execute REGISTRAR_PRODUCTO 'ABC83','MOTORES','8'
+execute REGISTRAR_PRODUCTO 'ABC84','MOTORES','30'
+execute REGISTRAR_PRODUCTO 'ABC85','MOTORES','5'
+execute REGISTRAR_PRODUCTO 'ABC86','MOTORES','7'
 
 --ACTUALIZAR USUARIO
 create procedure ACTUALIZAR_PRODUCTO
 	@ReferenciaProducto varchar(15),	
 	@NombreProducto varchar(80),
-	@Precio varchar(20),
 	@Cantidad int
 
 as
 begin
 	update INVENTARIO set ReferenciaProducto=@ReferenciaProducto,NombreProducto=@NombreProducto,
-	Precio=@Precio,Cantidad=@Cantidad where ReferenciaProducto=@ReferenciaProducto
+	Cantidad=@Cantidad where ReferenciaProducto=@ReferenciaProducto
 end
 
-execute ACTUALIZAR_PRODUCTO 'ABC82','MOTORES','15000000','15'
+execute ACTUALIZAR_PRODUCTO 'ABC82','MOTORES','15'
 
 --CONSULTAR USUARIO
 create procedure CONSULTAR_PRODUCTO
 	@ReferenciaProducto varchar(15)
 as
 begin
-	select ReferenciaProducto,NombreProducto,Precio,Cantidad from INVENTARIO where ReferenciaProducto=@ReferenciaProducto
+	select ReferenciaProducto,NombreProducto,Cantidad from INVENTARIO where ReferenciaProducto=@ReferenciaProducto
 end
 
 execute CONSULTAR_PRODUCTO 'ABC82'
@@ -255,7 +280,7 @@ execute CONSULTAR_PRODUCTO 'ABC82'
 create procedure LISTAR_PRODUCTO
 as
 begin
-	select ReferenciaProducto,NombreProducto,Precio,Cantidad from INVENTARIO
+	select ReferenciaProducto,NombreProducto,Cantidad from INVENTARIO
 end
 
 execute LISTAR_PRODUCTO
@@ -625,80 +650,99 @@ select * from CONDUCTOR
 --PROCEDIMIENTOS ALMACENADOS TABLA COMPRAS
 	
 --REGISTRAR COMPRAS
-create procedure REGISTRAR_COMPRAS
+
+CREATE PROCEDURE REGISTRAR_COMPRAS
 	@NumeroFactura varchar(15),
+	@ReferenciaProducto varchar(15),
+	@NombreArticulo varchar(80),
+	@Cantidad int,
 	@NombreProveedor varchar(100),
 	@NitProveedor varchar(15),
 	@Direccion varchar(80),
 	@Telefono varchar(15),
-	@Correo varchar(100),
-	@NombreArticulo varchar(80),
-	@Cantidad int,
+	@Correo varchar(100),	
 	@Total int
+AS
+BEGIN
+    BEGIN TRANSACTION
+        UPDATE Inventario
+        SET Cantidad = Cantidad + @Cantidad
+        WHERE ReferenciaProducto = @ReferenciaProducto;
 
-as
-begin
-	insert into COMPRAS (NumeroFactura,NombreProveedor,NitProveedor,Direccion,Telefono,Correo,NombreArticulo,Cantidad,Total)
-	values (@NumeroFactura,@NombreProveedor,@NitProveedor,@Direccion,@Telefono,@Correo,@NombreArticulo,@Cantidad,@Total)
-end
+		insert into COMPRAS (NumeroFactura,ReferenciaProducto,NombreArticulo,Cantidad,NombreProveedor,NitProveedor,Direccion,Telefono,Correo,Total)
+		values (@NumeroFactura,@ReferenciaProducto,@NombreArticulo,@Cantidad,@NombreProveedor,@NitProveedor,@Direccion,@Telefono,@Correo,@Total)
+    COMMIT TRANSACTION
+END;
+
+--create procedure REGISTRAR_COMPRAS
+--	@NumeroFactura varchar(15) not null,
+--	@ReferenciaProducto varchar(15),
+--	@NombreArticulo varchar(80),
+--	@Cantidad int,
+--	@NombreProveedor varchar(100),
+--	@NitProveedor varchar(15),
+--	@Direccion varchar(80),
+--	@Telefono varchar(15),
+--	@Correo varchar(100),	
+--	@Total int
+
+--as
+--begin
+--	insert into COMPRAS (NumeroFactura,NombreProveedor,NitProveedor,Direccion,Telefono,Correo,NombreArticulo,Cantidad,Total)
+--	values (@NumeroFactura,@NombreProveedor,@NitProveedor,@Direccion,@Telefono,@Correo,@NombreArticulo,@Cantidad,@Total)
+--end
 
 --set dateformat dmy
 
-execute REGISTRAR_COMPRAS '00513','LLANTAS COLOMBIA','99056418-1','CALLE 31 # 81A 51','300654956','LLANTASCOLOMBIA@GMAIL.COM','LLANTAS X 4','100','2000000'
-execute REGISTRAR_COMPRAS '00514','LLANTAS COLOMBIA','99056418-1','CALLE 31 # 81A 51','300654956','LLANTASCOLOMBIA@GMAIL.COM','LLANTAS X 4','100','2000000'
-execute REGISTRAR_COMPRAS '00515','FERRETERIA COLOMBIA','99056418-1','CALLE 31 # 81A 51','300654956','LLANTASCOLOMBIA@GMAIL.COM','LLANTAS X 4','100','2000000'
-execute REGISTRAR_COMPRAS '00516','ELECTRICOS COLOMBIA','99056418-1','CALLE 31 # 81A 51','300654956','LLANTASCOLOMBIA@GMAIL.COM','LLANTAS X 4','100','2000000'
-execute REGISTRAR_COMPRAS '00517','LLANTAS COLOMBIA','99056418-1','CALLE 31 # 81A 51','300654956','LLANTASCOLOMBIA@GMAIL.COM','LLANTAS X 4','100','2000000'
-execute REGISTRAR_COMPRAS '00518','FERRETERIA COLOMBIA','99056418-1','CALLE 31 # 81A 51','300654956','LLANTASCOLOMBIA@GMAIL.COM','LLANTAS X 4','100','2000000'
-execute REGISTRAR_COMPRAS '00519','LLANTAS COLOMBIA','99056418-1','CALLE 31 # 81A 51','300654956','LLANTASCOLOMBIA@GMAIL.COM','LLANTAS X 4','100','2000000'
-execute REGISTRAR_COMPRAS '00520','ELECTRICOS COLOMBIA','99056418-1','CALLE 31 # 81A 51','300654956','LLANTASCOLOMBIA@GMAIL.COM','LLANTAS X 4','100','2000000'
-execute REGISTRAR_COMPRAS '00521','FERRETERIA COLOMBIA','99056418-1','CALLE 31 # 81A 51','300654956','LLANTASCOLOMBIA@GMAIL.COM','LLANTAS X 4','100','2000000'
-execute REGISTRAR_COMPRAS '00522','LLANTAS COLOMBIA','99056418-1','CALLE 31 # 81A 51','300654956','LLANTASCOLOMBIA@GMAIL.COM','LLANTAS X 4','100','2000000'
-execute REGISTRAR_COMPRAS '00523','LLANTAS COLOMBIA','99056418-1','CALLE 31 # 81A 51','300654956','LLANTASCOLOMBIA@GMAIL.COM','LLANTAS X 4','100','2000000'
-execute REGISTRAR_COMPRAS '00524','FERRETERIA COLOMBIA','99056418-1','CALLE 31 # 81A 51','300654956','LLANTASCOLOMBIA@GMAIL.COM','LLANTAS X 4','100','2000000'
-execute REGISTRAR_COMPRAS '00525','ELECTRICOS COLOMBIA','99056418-1','CALLE 31 # 81A 51','300654956','LLANTASCOLOMBIA@GMAIL.COM','LLANTAS X 4','100','2000000'
-execute REGISTRAR_COMPRAS '00526','FERRETERIA COLOMBIA','99056418-1','CALLE 31 # 81A 51','300654956','LLANTASCOLOMBIA@GMAIL.COM','LLANTAS X 4','100','2000000'
+execute REGISTRAR_COMPRAS '00513','0001','LLANTAS X 4','100','FERRETERIA COLOMBIA','99056418-1','CALLE 31 # 81A 51','300654956','LLANTASCOLOMBIA@GMAIL.COM','2500000'
 
 
 --ACTUALIZAR COMPRAS
-create procedure ACTUALIZAR_COMPRAS
-	@NumeroFactura varchar(15),
-	@NombreProveedor varchar(100),
-	@NitProveedor varchar(15),
-	@Direccion varchar(80),
-	@Telefono varchar(15),
-	@Correo varchar(100),
-	@NombreArticulo varchar(80),
-	@Cantidad int,
-	@Total int
-as
-begin
-	update COMPRAS set NumeroFactura=@NumeroFactura,NombreProveedor=@NombreProveedor,NitProveedor=@NitProveedor,Direccion=@Direccion,
-	Telefono=@Telefono,Correo=@Correo,NombreArticulo=@NombreArticulo,Cantidad=@Cantidad,Total=@Total where NumeroFactura=@NumeroFactura
-	
-end
+CREATE PROCEDURE ACTUALIZAR_COMPRAS
+    @NumeroFactura VARCHAR(15),
+    @ReferenciaProducto VARCHAR(15),
+    @NombreArticulo VARCHAR(80),
+    @Cantidad INT,
+    @NombreProveedor VARCHAR(100),
+    @NitProveedor VARCHAR(15),
+    @Direccion VARCHAR(80),
+    @Telefono VARCHAR(15),
+    @Correo VARCHAR(100),	
+    @Total INT
+AS
+BEGIN
+    -- Verifica si existe la factura antes de actualizar
+    IF EXISTS (SELECT 1 FROM COMPRAS WHERE NumeroFactura = @NumeroFactura)
+    BEGIN
+        UPDATE COMPRAS
+        SET ReferenciaProducto = @ReferenciaProducto,
+            NombreArticulo = @NombreArticulo,
+            Cantidad = @Cantidad,
+            NombreProveedor = @NombreProveedor,
+            NitProveedor = @NitProveedor,
+            Direccion = @Direccion,
+            Telefono = @Telefono,
+            Correo = @Correo,
+            Total = @Total
+        WHERE NumeroFactura = @NumeroFactura;
+    END
+    ELSE
+    BEGIN
+        RAISERROR ('No se encontró un registro con el Número de Factura proporcionado.', 16, 1);
+    END
+END;
 
-execute ACTUALIZAR_COMPRAS '00513','LLANTAS COLOMBIA','99056418-1','CALLE 31 # 81A 51','300654956','LLANTASCOLOMBIA@GMAIL.COM','LLANTAS X 4','100','2000000'
+
+execute ACTUALIZAR_COMPRAS '00513','AB01','LLANTAS X 4','100','FERRETERIA COLOMBIA','99056418-1','CALLE 31 # 81A 51','300654956','LLANTASCOLOMBIA@GMAIL.COM','2500000'
 execute ACTUALIZAR_COMPRAS '00514','LLANTAS COLOMBIA','99056418-1','CALLE 31 # 81A 51','300654956','LLANTASCOLOMBIA@GMAIL.COM','LLANTAS X 4','100','2000000'
 execute ACTUALIZAR_COMPRAS '00515','FERRETERIA COLOMBIA','99056418-1','CALLE 31 # 81A 51','300654956','LLANTASCOLOMBIA@GMAIL.COM','LLANTAS X 4','100','2000000'
-execute ACTUALIZAR_COMPRAS '00516','ELECTRICOS COLOMBIA','99056418-1','CALLE 31 # 81A 51','300654956','LLANTASCOLOMBIA@GMAIL.COM','LLANTAS X 4','100','2000000'
-execute ACTUALIZAR_COMPRAS '00517','LLANTAS COLOMBIA','99056418-1','CALLE 31 # 81A 51','300654956','LLANTASCOLOMBIA@GMAIL.COM','LLANTAS X 4','100','2000000'
-execute ACTUALIZAR_COMPRAS '00518','FERRETERIA COLOMBIA','99056418-1','CALLE 31 # 81A 51','300654956','LLANTASCOLOMBIA@GMAIL.COM','LLANTAS X 4','100','2000000'
-execute ACTUALIZAR_COMPRAS '00519','LLANTAS COLOMBIA','99056418-1','CALLE 31 # 81A 51','300654956','LLANTASCOLOMBIA@GMAIL.COM','LLANTAS X 4','100','2000000'
-execute ACTUALIZAR_COMPRAS '00520','ELECTRICOS COLOMBIA','99056418-1','CALLE 31 # 81A 51','300654956','LLANTASCOLOMBIA@GMAIL.COM','LLANTAS X 4','100','2000000'
-execute ACTUALIZAR_COMPRAS '00521','FERRETERIA COLOMBIA','99056418-1','CALLE 31 # 81A 51','300654956','LLANTASCOLOMBIA@GMAIL.COM','LLANTAS X 4','100','2000000'
-execute ACTUALIZAR_COMPRAS '00522','LLANTAS COLOMBIA','99056418-1','CALLE 31 # 81A 51','300654956','LLANTASCOLOMBIA@GMAIL.COM','LLANTAS X 4','100','2000000'
-execute ACTUALIZAR_COMPRAS '00523','LLANTAS COLOMBIA','99056418-1','CALLE 31 # 81A 51','300654956','LLANTASCOLOMBIA@GMAIL.COM','LLANTAS X 4','100','2000000'
-execute ACTUALIZAR_COMPRAS '00524','FERRETERIA COLOMBIA','99056418-1','CALLE 31 # 81A 51','300654956','LLANTASCOLOMBIA@GMAIL.COM','LLANTAS X 4','100','2000000'
-execute ACTUALIZAR_COMPRAS '00525','ELECTRICOS COLOMBIA','99056418-1','CALLE 31 # 81A 51','300654956','LLANTASCOLOMBIA@GMAIL.COM','LLANTAS X 4','100','2000000'
-execute ACTUALIZAR_COMPRAS '00526','FERRETERIA COLOMBIA','99056418-1','CALLE 31 # 81A 51','300654956','LLANTASCOLOMBIA@GMAIL.COM','LLANTAS X 4','100','2000000'
 
 --CONSULTAR COMPRAS
 create procedure CONSULTAR_COMPRAS
 	@NumeroFactura varchar(15)
 as
 begin
-	select NumeroFactura,NombreProveedor,NitProveedor,Direccion,Telefono,Correo,NombreArticulo,Cantidad,Total from COMPRAS
+	select NumeroFactura,ReferenciaProducto,NombreArticulo,Cantidad,NombreProveedor,NitProveedor,Direccion,Telefono,Correo,Total from COMPRAS
 	where NumeroFactura=@NumeroFactura
 end
 
@@ -708,7 +752,7 @@ execute CONSULTAR_COMPRAS '00513'
 create procedure LISTAR_COMPRAS
 as
 begin
-	select NumeroFactura,NombreProveedor,NitProveedor,Direccion,Telefono,Correo,NombreArticulo,Cantidad,Total from COMPRAS
+	select NumeroFactura,ReferenciaProducto,NombreArticulo,Cantidad,NombreProveedor,NitProveedor,Direccion,Telefono,Correo,Total from COMPRAS
 end
 
 execute LISTAR_COMPRAS

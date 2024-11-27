@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const registrar = document.getElementById("registrarCompra");
+    const registrar = document.getElementById("registrarCompras");
     const modalElement = document.getElementById("exampleModal");
 
     // Inicializar modal con Bootstrap
@@ -9,26 +9,28 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();
   
       const numeroFactura = document.getElementById("numeroFactura").value;
+      const referenciaProducto = document.getElementById("referenciaProducto").value;
+      const nombreArticulo = document.getElementById("nombreArticulo").value;
+      const cantidad = document.getElementById("cantidad").value;
       const nombreProveedor = document.getElementById("nombreProveedor").value;
       const nitProveedor = document.getElementById("nitProveedor").value;
       const direccion = document.getElementById("direccion").value;
       const telefono = document.getElementById("telefono").value;
-      const correo = document.getElementById("correo").value;    
-      const nombreArticulo = document.getElementById("nombreArticulo").value;
-      const cantidad = document.getElementById("cantidad").value;
+      const correo = document.getElementById("correo").value;      
       const total = document.getElementById("total").value;
       
   
       const data = {
         numeroFactura: numeroFactura,
+        referenciaProducto: referenciaProducto,
+        nombreArticulo: nombreArticulo,
+        cantidad: cantidad,
         nombreProveedor: nombreProveedor,
         nitProveedor: nitProveedor,
         direccion: direccion,
         telefono: telefono,
-        correo: correo,
-        nombreArticulo: nombreArticulo,
-        cantidad: cantidad,
-        total: total        
+        correo: correo,        
+        total: total       
       };
   
       //fetch(`http://www.consorcioexpress.somee.com/api/compras`, {

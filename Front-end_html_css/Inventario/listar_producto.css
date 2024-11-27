@@ -1,17 +1,37 @@
 /* Tabla */
 table {
-    width: 100%;
-    border: none; 
-  }
-  
-  tr {
-    cursor: pointer;
-  }
-  
-  .table-hover {
-    --bs-table-hover-bg: rgb(210, 207, 207);
+  width: 100%;
+  border: none; 
+}
+
+tr {
+  cursor: pointer;
+}
+
+h1 {
+  font-size: 2rem;
+  font-family: 'Arial Narrow Bold';
+}
+
+.table-hover {
+    --bs-table-hover-bg: rgb(167, 166, 166);
     --bs-table-accent-bg: white;
-  }
+}
+
+.btn-secondary:hover {
+    color: black;
+    background-color: white;
+}
+
+.btn-danger:hover {
+    color: black;
+    background-color: white;
+}
+
+.btn-primary:hover {
+    color: black;
+    background-color: white;
+}
   
   /* Contenedores */
   .page_limit, .tab_filter_container {

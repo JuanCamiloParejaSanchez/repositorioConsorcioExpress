@@ -10,10 +10,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const nextPageButton = document.getElementById("nextPage");
     const footerInfo = document.querySelector(".footer");
   
-    let producto = [];
-    let filteredProducto = [];
+    let productos = [];
+    let filteredProductos = [];
     let currentPage = 1;
-    let pageSize = parseInt(tableSizeSelect.value);
+    let pageSize = parseInt(tableSizeSelect.value)||10;
     let totalPages = 0;
   
     // Inicializar modal de Bootstrap
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
             })
             .then((data) => {
                 console.log("Datos recibidos:", data);
-                producto = data;
+                productos = data;
                 applyFilterAndPagination();
             })
             .catch((error) => {
@@ -49,13 +49,21 @@ document.addEventListener("DOMContentLoaded", () => {
     // Función para filtrar y paginar los datos
     function applyFilterAndPagination() {
         const filterText = filterInput.value.toLowerCase();
-        filteredProducto = producto.filter(producto =>
-            producto.ReferenciaProducto.includes(filterText) ||
-            producto.NombreProducto.toLowerCase().includes(filterText) ||
-            producto.Precio.toLowerCase().includes(filterText) ||
-            producto.Cantidad.includes(filterText)          
-        );
-        totalPages = Math.ceil(filteredProducto.length / pageSize);
+                   
+            filteredProductos = productos.filter(producto => {
+                const referencia = producto.ReferenciaProducto?.toLowerCase().trim() || ""; // Normaliza a minúsculas y elimina espacios
+                const filtro = filterText.replace(/[^a-zA-Z0-9]/g, "").toLowerCase().trim(); // Normaliza a minúsculas y elimina espacios
+                return(
+                    referencia.includes(filtro) || 
+                    producto.NombreProducto?.toLowerCase().includes(filtro) || 
+                    producto.Cantidad?.toString().includes(filtro)
+                /* producto.ReferenciaProducto?.toString().includes(filterText) ||
+                producto.NombreProducto?.toLowerCase().includes(filterText) ||
+                producto.Cantidad?.toString().includes(filterText) */          
+            );
+        });
+        
+        totalPages = Math.ceil(filteredProductos.length / pageSize);
         displayPage(1);  // Mostrar la primera página después de aplicar filtro
         displayPaginationButtons();
     }
@@ -64,8 +72,8 @@ document.addEventListener("DOMContentLoaded", () => {
     function displayPage(page) {
         currentPage = page;
         const startIndex = (currentPage - 1) * pageSize;
-        const endIndex = Math.min(startIndex + pageSize, filteredProducto.length);
-        const currentUsers = filteredProducto.slice(startIndex, endIndex);
+        const endIndex = Math.min(startIndex + pageSize, filteredProductos.length);
+        const currentUsers = filteredProductos.slice(startIndex, endIndex);
   
         tabla.innerHTML = ""; // Limpiar tabla
         currentUsers.forEach(producto => {
@@ -73,7 +81,6 @@ document.addEventListener("DOMContentLoaded", () => {
             row.innerHTML = `
                 <td class="text-center">${producto.ReferenciaProducto}</td>
                 <td class="text-center">${producto.NombreProducto}</td>
-                <td class="text-center">${producto.Precio}</td>
                 <td class="text-center">${producto.Cantidad}</td>               
             `;
             row.addEventListener("click", () => selectRow(row, producto));
@@ -81,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
   
         // Mostrar información en el pie de página
-        footerInfo.textContent = `Mostrando ${startIndex + 1} a ${endIndex} de ${filteredProducto.length} entradas`;
+        footerInfo.textContent = `Mostrando ${startIndex + 1} a ${endIndex} de ${filteredProductos.length} entradas`;
     }
   
     // Función para mostrar los botones de paginación

@@ -9,7 +9,6 @@ namespace ConsorcioExpress.Models
     {
         public string ReferenciaProducto { get; set; }
         public string NombreProducto { get; set; }
-        public string Precio { get; set; }
         public Int32 Cantidad { get; set; }
     }
 }

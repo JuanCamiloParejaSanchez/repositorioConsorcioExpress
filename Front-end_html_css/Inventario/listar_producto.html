@@ -11,8 +11,9 @@
     <link rel="stylesheet" href="../Inventario/listar_producto.css">
 </head>
 <body>
-    <h1 class="text-center">BASE DE DATOS PRODUCTOS</h1>
+    
     <div class="w-100 mx-auto border p-4 table-responsive">
+        <h1 class="text-center">BASE DE DATOS PRODUCTOS</h1>
         <div class="d-flex justify-content-between align-items-center mb-3">
             <div class="page_limit">
                 <span>Mostrar</span>
@@ -34,7 +35,6 @@
                 <tr>
                     <th class="text-center">Referencia Producto</th>
                     <th class="text-center">Nombre Producto</th>
-                    <th class="text-center">Precio</th>
                     <th class="text-center">Cantidad</th>
                 </tr>
             </thead>
@@ -48,8 +48,8 @@
         </div>
         <!-- Botones para registrar, editar y eliminar usuario -->
         <div class="text-center mt-4">
-            <a href="registrar_producto.html" target="_blank" rel="noopener noreferrer" class="btn btn-primary" id="registrarUsuario">Registrar producto</a>
-            <button id="editarBtn" class="btn btn-warning" disabled>Editar</button>
+            <a href="registrar_producto.html" class="btn btn-primary" id="registrarProducto">Registrar producto</a>
+            <button id="editarBtn" class="btn btn-secondary" disabled>Editar</button>
             <button id="borrarBtn" class="btn btn-danger" disabled>Eliminar</button>
         </div>
 

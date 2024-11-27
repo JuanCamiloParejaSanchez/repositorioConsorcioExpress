@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const btnEditar = document.getElementById("editar");
+  const btnEditar = document.getElementById("editarUsuario");
 
   const urlParams = new URLSearchParams(window.location.search);
   const id = urlParams.get("id");

@@ -1,12 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const btnEditar = document.getElementById("editar");
+    const btnEditar = document.getElementById("editarInventario");
   
     const urlParams = new URLSearchParams(window.location.search);
     const id = urlParams.get("id");
   
     const referenciaProducto = document.getElementById("referenciaProducto");
     const nombreProducto = document.getElementById("nombreProducto");
-    const precio = document.getElementById("precio");
     const cantidad = document.getElementById("cantidad");
 
     // Inicializar modal de Bootstrap
@@ -25,7 +24,6 @@ document.addEventListener("DOMContentLoaded", () => {
             /* idProveedor.value = proveedor.IdProveedor; */
             referenciaProducto.value = producto.ReferenciaProducto;
             nombreProducto.value = producto.NombreProducto;
-            precio.value = producto.Precio;
             cantidad.value = producto.Cantidad;  
         });
       })
@@ -43,7 +41,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const data = {
         "referenciaProducto": id,
         "nombreProducto": nombreProducto.value,
-        "precio": precio.value,
         "cantidad": cantidad.value
       }
   

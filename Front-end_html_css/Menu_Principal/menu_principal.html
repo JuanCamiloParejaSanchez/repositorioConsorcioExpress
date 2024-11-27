@@ -40,14 +40,16 @@
           <div class="dropdown d-flex align-items-center">
             
             <!-- Botón desplegable -->
-            <button id="btnUsuario" class="btn btn-navbar dropdown-toggle" type="button" data-bs-toggle="dropdown" runat="server">
+             <a href="../Index/index.html">
+              <i class="bi bi-box-arrow-right"></i>
               
-            </button>
+            </a>
             
             <!-- Opciones del menú desplegable -->
-            <div class="dropdown-menu dropdown-menu-end">
+            <!-- <div class="dropdown-menu dropdown-menu-end">
+              <a href=""></a>
               <button type="button" runat="server" class="dropdown-item" href="#" id="botonCerrarSesion">Cerrar sesión</button>
-            </div>
+            </div> -->
           </div>        
         </div>                      
       </div>
@@ -65,23 +67,22 @@
         <button type="button" class="btn-custom" id="botonCompras" onclick="mostrarIframe('compras')">Compras</button>
         <button type="button" class="btn-custom" id="botonConductores" onclick="mostrarIframe('conductores')">Conductores</button>
         <button type="button" class="btn-custom" id="botonVehiculos" onclick="mostrarIframe('vehiculos')">Vehículos</button>
-      </div>
-      
-      <div class="separator"></div> <!-- Línea vertical -->
+      </div>      
   
       <div class="tablas-container">
 
-        <iframe class="iFrame" src="../Usuarios/listar_usuarios.html" style="display:none" width="100%" height="600" style="border:none;" id="usuarios"></iframe>
-        <iframe class="iFrame" src="../Proveedores/listar_proveedor.html" style="display:none" width="100%" height="600" style="border:none;" id="proveedores"></iframe>
-        <iframe class="iFrame" src="../Inventario/listar_producto.html" style="display:none" width="100%" height="600" style="border:none;" id="inventario"></iframe>
-        <iframe class="iFrame" src="../Compras/listar_compras.html" style="display:none" width="100%" height="600" style="border:none;" id="compras"></iframe>
-        <iframe class="iFrame" src="" style="display:none" width="100%" height="600" style="border:none;" id="conductores"></iframe>
-        <iframe class="iFrame" src="" style="display:none" width="100%" height="600" style="border:none;" id="vehiculos"></iframe>
-        <iframe class="iFrame" src="../Usuarios/editar_usuario.html" style="display:none" width="100%" height="600" style="border:none;" id="editar"></iframe>
-        <iframe class="iFrame" src="../Usuarios/registrar_usuario.html" style="display:none" width="100%" height="600" style="border:none;" id="registrarUsuario"></iframe>
-        <iframe class="iFrame" src="" style="display:none" width="100%" height="600" style="border:none;" id="vehiculos"></iframe>
-        <iframe class="iFrame" src="" style="display:none" width="100%" height="600" style="border:none;" id="vehiculos"></iframe>
-        <iframe class="iFrame" src="" style="display:none" width="100%" height="600" style="border:none;" id="vehiculos"></iframe>
+        <iframe class="iFrame" src="../Usuarios/listar_usuarios.html" style="display:none; border:none;" width="100%" height="600" id="usuarios"></iframe>
+        <iframe class="iFrame" src="../Proveedores/listar_proveedor.html" style="display:none; border:none;" width="100%" height="600" id="proveedores"></iframe>
+        <iframe class="iFrame" src="../Inventario/listar_producto.html" style="display:none; border:none;" width="100%" height="600" id="inventario"></iframe>
+        <iframe class="iFrame" src="../Compras/listar_compras.html" style="display:none; border:none;" width="100%" height="600" id="compras"></iframe>
+        <!-- <iframe class="iFrame" src="../Proveedores/registrar_proveedor.html" style="display:none; border:none;" width="100%" height="600" id="registrarProveedor"></iframe>
+        <iframe class="iFrame" src="../Proveedores/editar_proveedor.html" style="display:none; border:none;" width="100%" height="600" id="editarProveedor"></iframe>
+        <iframe class="iFrame" src="../Usuarios/editar_usuario.html" style="display:none; border:none;" width="100%" height="600" id="editarUsuario"></iframe>
+        <iframe class="iFrame" src="../Usuarios/registrar_usuario.html" style="display:none; border:none;" width="100%" height="600" id="registrarUsuario"></iframe>
+        <iframe class="iFrame" src="../Inventario/registrar_producto.html" style="display:none; border:none;" width="100%" height="600" id="registrarInventario"></iframe>
+        <iframe class="iFrame" src="../Inventario/editar_producto.html" style="display:none; border:none;" width="100%" height="600" id="editarInventario"></iframe>
+        <iframe class="iFrame" src="../Compras/registrar_compras.html" style="display:none; border:none;" width="100%" height="600" id="registrarCompras"></iframe>
+        <iframe class="iFrame" src="../Compras/editar_compras.html" style="display:none; border:none;" width="100%" height="600" id="editarCompras"></iframe> -->
           
       </div>
     </div>

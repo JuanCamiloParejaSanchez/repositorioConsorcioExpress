@@ -13,10 +13,9 @@ namespace ConsorcioExpress.Data
         {
             ConexionBD objEst = new ConexionBD();
             string sentencia;
-            sentencia = "REGISTRAR_COMPRAS'" + regCompras.NumeroFactura + "','" + regCompras.NombreProveedor + "','"
-                + regCompras.NitProveedor + "','" + regCompras.Direccion + "','" + regCompras.Telefono + "','"
-                + regCompras.Correo + "','" + regCompras.NombreArticulo + "','" + regCompras.Cantidad + "','"
-                + regCompras.Total + "'";
+            sentencia = "REGISTRAR_COMPRAS'" + regCompras.NumeroFactura + "','" + regCompras.ReferenciaProducto + "','" + regCompras.NombreArticulo + "','"
+                + regCompras.Cantidad + "','" + regCompras.NombreProveedor + "','" + regCompras.NitProveedor + "','"
+                + regCompras.Direccion + "','" + regCompras.Telefono + "','" + regCompras.Correo + "','" + regCompras.Total + "'";
             if (!objEst.EjecutarSentencia(sentencia, false))
             {
                 objEst = null;
@@ -34,10 +33,9 @@ namespace ConsorcioExpress.Data
         {
             ConexionBD objEst = new ConexionBD();
             string sentencia;
-            sentencia = "ACTUALIZAR_COMPRAS'" + regCompras.NumeroFactura + "','" + regCompras.NombreProveedor + "','"
-                + regCompras.NitProveedor + "','" + regCompras.Direccion + "','" + regCompras.Telefono + "','"
-                + regCompras.Correo + "','" + regCompras.NombreArticulo + "','" + regCompras.Cantidad + "','"
-                + regCompras.Total + "'";
+            sentencia = "ACTUALIZAR_COMPRAS'" + regCompras.NumeroFactura + "','" + regCompras.ReferenciaProducto + "','" + regCompras.NombreArticulo + "','"
+                + regCompras.Cantidad + "','" + regCompras.NombreProveedor + "','" + regCompras.NitProveedor + "','"
+                + regCompras.Direccion + "','" + regCompras.Telefono + "','" + regCompras.Correo + "','" + regCompras.Total + "'";
             if (!objEst.EjecutarSentencia(sentencia, false))
             {
                 objEst = null;
@@ -83,15 +81,15 @@ namespace ConsorcioExpress.Data
                     listar.Add(new Compras()
                     {
                         NumeroFactura = dr["NumeroFactura"].ToString(),
+                        ReferenciaProducto = dr["ReferenciaProducto"].ToString(),
+                        NombreArticulo = dr["NombreArticulo"].ToString(),
+                        Cantidad = Convert.ToInt32(dr["Cantidad"].ToString()),
                         NombreProveedor = dr["NombreProveedor"].ToString(),
                         NitProveedor = dr["NitProveedor"].ToString(),
                         Direccion = dr["Direccion"].ToString(),
                         Telefono = dr["Telefono"].ToString(),
                         Correo = dr["Correo"].ToString(),
-                        NombreArticulo = dr["NombreArticulo"].ToString(),
-                        Cantidad = Convert.ToInt32(dr["Cantidad"].ToString()),
                         Total = Convert.ToInt32(dr["Total"].ToString())
-
                     });
                 }
                 return listar;
@@ -118,15 +116,15 @@ namespace ConsorcioExpress.Data
                     listar.Add(new Compras()
                     {
                         NumeroFactura = dr["NumeroFactura"].ToString(),
+                        ReferenciaProducto = dr["ReferenciaProducto"].ToString(),
+                        NombreArticulo = dr["NombreArticulo"].ToString(),
+                        Cantidad = Convert.ToInt32(dr["Cantidad"].ToString()),
                         NombreProveedor = dr["NombreProveedor"].ToString(),
                         NitProveedor = dr["NitProveedor"].ToString(),
                         Direccion = dr["Direccion"].ToString(),
                         Telefono = dr["Telefono"].ToString(),
                         Correo = dr["Correo"].ToString(),
-                        NombreArticulo = dr["NombreArticulo"].ToString(),
-                        Cantidad = Convert.ToInt32(dr["Cantidad"].ToString()),
                         Total = Convert.ToInt32(dr["Total"].ToString())
-
                     });
                 }
                 return listar;

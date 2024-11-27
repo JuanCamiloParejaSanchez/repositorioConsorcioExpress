@@ -14,7 +14,7 @@ namespace ConsorcioExpress.Data
             ConexionBD objEst = new ConexionBD();
             string sentencia;
             sentencia = "REGISTRAR_PRODUCTO'" + producto.ReferenciaProducto + "','" + producto.NombreProducto + "','"
-                + producto.Precio + "','" + producto.Cantidad + "'";
+                + producto.Cantidad + "'";
             if (!objEst.EjecutarSentencia(sentencia, false))
             {
                 objEst = null;
@@ -33,7 +33,7 @@ namespace ConsorcioExpress.Data
             ConexionBD objEst = new ConexionBD();
             string sentencia;
             sentencia = "ACTUALIZAR_PRODUCTO'" + producto.ReferenciaProducto + "','" + producto.NombreProducto + "','"
-                + producto.Precio + "','" + producto.Cantidad + "'";
+                + producto.Cantidad + "'";
             if (!objEst.EjecutarSentencia(sentencia, false))
             {
                 objEst = null;
@@ -77,7 +77,6 @@ namespace ConsorcioExpress.Data
                     {
                         ReferenciaProducto = dr["ReferenciaProducto"].ToString(),
                         NombreProducto = dr["NombreProducto"].ToString(),
-                        Precio = dr["Precio"].ToString(),
                         Cantidad = Convert.ToInt32(dr["Cantidad"].ToString())
                     });
                 }
@@ -105,7 +104,6 @@ namespace ConsorcioExpress.Data
                     {
                         ReferenciaProducto = dr["ReferenciaProducto"].ToString(),
                         NombreProducto = dr["NombreProducto"].ToString(),
-                        Precio = dr["Precio"].ToString(),
                         Cantidad = Convert.ToInt32(dr["Cantidad"].ToString())
                     });
                 }

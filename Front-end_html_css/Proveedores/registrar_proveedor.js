@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const registrar = document.getElementById("registrar");
+    const registrar = document.getElementById("registrarProveedor");
     const modalElement = document.getElementById("exampleModal");
 
     // Inicializar modal con Bootstrap

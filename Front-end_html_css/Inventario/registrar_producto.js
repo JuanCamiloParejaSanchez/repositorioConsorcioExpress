@@ -1,22 +1,20 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const registrar = document.getElementById("registrar");
+    const registrar = document.getElementById("registrarInventario");
     const modalElement = document.getElementById("exampleModal");
 
     // Inicializar modal con Bootstrap
     const modal = new bootstrap.Modal(modalElement);
   
     registrar.addEventListener("click", (e) => {
-      /* e.preventDefault(); */
+      e.preventDefault();
   
       const referenciaProducto = document.getElementById("referenciaProducto").value;
       const nombreProducto = document.getElementById("nombreProducto").value;
-      const precio = document.getElementById("precio").value;
       const cantidad = document.getElementById("cantidad").value;      
   
       const data = {
         referenciaProducto: referenciaProducto,
         nombreProducto: nombreProducto,
-        precio: precio,
         cantidad: cantidad    
       };
 
@@ -25,9 +23,9 @@ document.addEventListener("DOMContentLoaded", () => {
       fetch(`https://localhost:44314/api/inventario/`, {
           method: "POST",
           headers:{
-              "Content-Type": "application/json"
+              "Content-Type": "application/json",
           },
-          body: JSON.stringify(data)
+          body: JSON.stringify(data),
       })
         .then((response) => {
           // Verificar si la respuesta es exitosa (código de estado 200)
@@ -47,26 +45,6 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .catch((error) => {
           console.error("Error al enviar la solicitud:", error);
-        });
-
-        fetch("https://localhost:44314/api/ActualizarInventarioSalida", {
-          method: "POST",
-          headers: {
-              "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-              nombreArticulo: nombreArticulo,
-              cantidad: cantidad,
-          }),
-        })
-          .then(response => {
-              if (response.ok) {
-                  console.log("Inventario actualizado correctamente.");
-              } else {
-                  console.error("Error al actualizar el inventario.");
-              }
-        })
-        .catch(error => console.error("Error en la solicitud:", error));
-      
+        });      
     });
-  });
+});
