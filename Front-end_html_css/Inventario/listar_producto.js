@@ -160,7 +160,38 @@ document.addEventListener("DOMContentLoaded", () => {
         pageSize = parseInt(tableSizeSelect.value);
         applyFilterAndPagination();
     });
+
+    document.getElementById('btnGenerarPdf').addEventListener('click', () => {
+        
+        const botones = document.querySelector('.no-imprimir');
+        botones.style.display = 'none';
+
+        // Mostrar el encabezado antes de generar el PDF
+        const encabezado = document.querySelector('.encabezado-pdf');
+        encabezado.style.display = 'block';
+
+        const elemento = document.getElementById('generarPdf');
+        const opciones = {
+          margin: 1,
+          filename: 'tabla_productos.pdf',
+          image: { type: 'pdf', quality: 0.98 },
+          html2canvas: { scale: 2, logging: true, useCORS: true  },
+          jsPDF: { unit: 'cm', format: 'a4', orientation: 'landscape' }
+        };
+
+        html2pdf()
+            .set(opciones)
+            .from(elemento)
+            .toPdf()
+            .get('pdf')
+            .then(function(pdf) {
+                // Ocultar el encabezado después de generar el PDF
+                const newWindow = window.open(pdf.output("bloburl"), '_blank');
+                encabezado.style.display = 'none';
+                botones.style.display = 'block';                
+            });                     
+    });
   
     // Inicializar obtención de proveedores
     obtenerProducto();
-  });
+});

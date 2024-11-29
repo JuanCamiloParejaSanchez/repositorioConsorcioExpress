@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const urlParams = new URLSearchParams(window.location.search);
   const id = urlParams.get("id");
 
+  /* const idCodigoUsuario = document.getElementById("idCodigoUsuario"); */
   const documento = document.getElementById("documento");
   const nombres = document.getElementById("nombres");
   const apellidos = document.getElementById("apellidos");
@@ -26,13 +27,15 @@ document.addEventListener("DOMContentLoaded", () => {
     .then((response) => response.json())
     .then((data) => {
       data.forEach((usuario) => {
-        documento.value = usuario.Documento;
-        nombres.value = usuario.Nombres;
-        apellidos.value = usuario.Apellidos;
-        telefono.value = usuario.Telefono;
-        correo.value = usuario.Correo;
-        cargo.value = usuario.Cargo;
-        contrasena.value = usuario.contrasena.substring(0, 10);
+        /* idCodigoUsuario.value = usuario.IdCodigoUsuario || ""; */
+        documento.value = usuario.Documento || "";
+        nombres.value = usuario.Nombres || "";
+        apellidos.value = usuario.Apellidos || "";
+        telefono.value = usuario.Telefono || "";
+        correo.value = usuario.Correo || "";
+        cargo.value = usuario.Cargo || "";
+        contrasena.value = usuario.contrasena ? usuario.contrasena.substring(0, 10) : "";
+
       });
     })
     .catch((error) =>

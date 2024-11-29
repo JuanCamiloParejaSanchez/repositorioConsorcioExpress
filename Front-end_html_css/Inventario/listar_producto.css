@@ -32,58 +32,100 @@ h1 {
     color: black;
     background-color: white;
 }
+
+.encabezado-pdf {
+  display: none;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.encabezado-pdf img {
+  float: left;
+  max-height: 60px;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.encabezado-pdf .detalles {
+  display: inline-block;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.encabezado-pdf .detalles h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.encabezado-pdf .detalles p {
+  margin: 0;
+  font-size: 12px;
+}
+
+.no-imprimir {
+  display: block;
+}
+
   
-  /* Contenedores */
-  .page_limit, .tab_filter_container {
-    font-size: 16px;
+/* Contenedores */
+.page_limit, .tab_filter_container {
+  font-size: 16px;
+}
+
+.tab_filter_container {
+  display: flex;
+  align-items: center;
+}
+
+#tab_filter_text {
+  height: 35px;
+  width: 200px;
+  background-color: white;
+  color: black;
+  border: 1px solid #ccc;
+  padding-left: 10px;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+#tab_filter_btn {
+  font-size: 16px;
+  padding: 6px 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.index_buttons {
+  display: flex;
+  gap: 5px;
+}
+
+.index_buttons button {
+  padding: 5px 10px;
+  font-size: 14px;
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.index_buttons button.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.footer {
+  font-size: 14px;
+  margin-left: 10px;
+}
+
+/* Ocultar elementos con la clase .no-imprimir durante la generación del PDF */
+@media print {
+  .no-imprimir {
+    display: none !important;
   }
-  
-  .tab_filter_container {
-    display: flex;
-    align-items: center;
-  }
-  
-  #tab_filter_text {
-    height: 35px;
-    width: 200px;
-    background-color: white;
-    color: black;
-    border: 1px solid #ccc;
-    padding-left: 10px;
-    border-radius: 5px;
-    margin-right: 10px;
-  }
-  
-  #tab_filter_btn {
-    font-size: 16px;
-    padding: 6px 12px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .index_buttons {
-    display: flex;
-    gap: 5px;
-  }
-  
-  .index_buttons button {
-    padding: 5px 10px;
-    font-size: 14px;
-    background-color: #f1f1f1;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .index_buttons button.active {
-    background-color: #007bff;
-    color: white;
-  }
-  
-  .footer {
-    font-size: 14px;
-    margin-left: 10px;
-  }
+}

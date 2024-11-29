@@ -10,13 +10,13 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #f0f0f0;
+    background-color: white;
   }
   
   .container {
     display: flex;
     flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
-    width: 80%; /* Ajusta el ancho según sea necesario */
+    width: 50%; /* Ajusta el ancho según sea necesario */
     max-width: 1200px;
     background-color: #f0f0f0;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);

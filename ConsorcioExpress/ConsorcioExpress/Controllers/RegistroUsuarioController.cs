@@ -30,9 +30,9 @@ namespace ConsorcioExpress.Controllers
             return RegistroUsuarioData.RegistrarUsuario(id);
         }
         // PUT api/<controller>/5
-        public bool Put([FromBody] RegistroUsuario regUsuario)
+        public bool Put([FromBody] RegistroUsuario usuario)
         {
-            return RegistroUsuarioData.ActualizarUsuario(regUsuario);
+            return RegistroUsuarioData.ActualizarUsuario(usuario);
         }
         // DELETE api/<controller>/5
         public bool Delete(string id)

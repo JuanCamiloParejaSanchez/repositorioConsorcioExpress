@@ -24,7 +24,5 @@ namespace ConsorcioExpress.Models
         public string Cargo { get; set; }
         public string Contrasena { get; set; }
 
-        /*public string ConfirmarContrasena { get; set; }*/
-
     }
 }

@@ -1,4 +1,4 @@
-DROP PROCEDURE ACTUALIZAR_COMPRAS
+DROP PROCEDURE ACTUALIZAR_USUARIO
 DROP TABLE COMPRAS
 SELECT * FROM USUARIO_NUEVO
 DELETE FROM USUARIO_NUEVO WHERE IdCodigoUsuario = 105
@@ -369,24 +369,78 @@ execute REGISTRAR_USUARIO '120','32851762','JULIO ALFREDO','MUÑOZ PANIAGUA','314
 
 
 --ACTUALIZAR USUARIO
-create procedure ACTUALIZAR_USUARIO
-	@IdCodigoUsuario varchar(15),
-	@Documento varchar(20),
-	@Nombres varchar(80),
-	@Apellidos varchar(80),	
-	@Telefono varchar(30),
-	@Correo varchar(60),
-	@Cargo varchar(40),
-	@Contrasena varbinary(64)
-	--@ConfirmarContrasena varchar (500),
 
-as
-begin
-	update USUARIO_NUEVO set IdCodigoUsuario=@IdCodigoUsuario,Documento=@Documento,Nombres=@Nombres,Apellidos=@Apellidos
-	,Telefono=@Telefono,Correo=@Correo,Cargo=@Cargo,Contrasena=@Contrasena where IdCodigoUsuario=@IdCodigoUsuario
-end
+CREATE PROCEDURE ACTUALIZAR_USUARIO
+    @IdCodigoUsuario VARCHAR(15),
+    @Documento VARCHAR(20),
+    @Nombres VARCHAR(80),
+    @Apellidos VARCHAR(80),	
+    @Telefono VARCHAR(30),
+    @Correo VARCHAR(60),
+    @Cargo VARCHAR(40),
+    @Contrasena VARCHAR(MAX) -- Cambiar a VARCHAR para recibir texto en lugar de VARBINARY
+AS
+BEGIN
+    BEGIN TRANSACTION;
 
-execute ACTUALIZAR_USUARIO '101','71387351','JUAN CAMILO','PAREJA SANCHEZ','3006315482','JUAN@GMAIL.COM','ADMINISTRADOR',''
+    BEGIN TRY
+        -- Verificar si el usuario existe
+        IF EXISTS (SELECT 1 FROM USUARIO_NUEVO WHERE IdCodigoUsuario = @IdCodigoUsuario)
+        BEGIN
+            -- Actualizar los datos del usuario
+            UPDATE USUARIO_NUEVO
+            SET 
+                Documento = @Documento,
+                Nombres = @Nombres,
+                Apellidos = @Apellidos,
+                Telefono = @Telefono,
+                Correo = @Correo,
+                Cargo = @Cargo,
+                Contrasena = CONVERT(VARBINARY(64), @Contrasena) -- Conversión explícita
+            WHERE 
+                IdCodigoUsuario = @IdCodigoUsuario;
+
+            COMMIT TRANSACTION;
+        END
+        ELSE
+        BEGIN
+            THROW 50001, 'El usuario no existe en la base de datos.', 1;
+        END
+    END TRY
+    BEGIN CATCH
+        ROLLBACK TRANSACTION;
+
+        DECLARE @ErrorMessage NVARCHAR(4000);
+        DECLARE @ErrorSeverity INT;
+        DECLARE @ErrorState INT;
+
+        SELECT 
+            @ErrorMessage = ERROR_MESSAGE(),
+            @ErrorSeverity = ERROR_SEVERITY(),
+            @ErrorState = ERROR_STATE();
+
+        RAISERROR (@ErrorMessage, @ErrorSeverity, @ErrorState);
+    END CATCH
+END;
+
+
+--create procedure ACTUALIZAR_USUARIO
+--	@IdCodigoUsuario varchar(15),
+--	@Documento varchar(20),
+--	@Nombres varchar(80),
+--	@Apellidos varchar(80),	
+--	@Telefono varchar(30),
+--	@Correo varchar(60),
+--	@Cargo varchar(40),
+--	@Contrasena varbinary(64)
+
+--as
+--begin
+--	update USUARIO_NUEVO set IdCodigoUsuario=@IdCodigoUsuario,Documento=@Documento,Nombres=@Nombres,Apellidos=@Apellidos,
+--	Telefono=@Telefono,Correo=@Correo,Cargo=@Cargo,Contrasena=@Contrasena where IdCodigoUsuario=@IdCodigoUsuario
+--end
+
+execute ACTUALIZAR_USUARIO '100','71387351','JUAN CAMILO','PAREJA','3006315482','JUAN@GMAIL.COM','ADMINISTRADOR','1234'
 execute ACTUALIZAR_USUARIO '102','32354286','MARIA ANGELICA','ALVARADO TORRES','3014331294','MARIA@GMAIL.COM','GERENTE',''
 
 --CONSULTAR USUARIO
@@ -416,7 +470,7 @@ begin
 	delete from USUARIO_NUEVO where IdCodigoUsuario=@IdCodigoUsuario
 end
 
-execute ELIMINAR_USUARIO '101'
+execute ELIMINAR_USUARIO '100'
 execute ELIMINAR_USUARIO '102'
 execute ELIMINAR_USUARIO '103'
 execute ELIMINAR_USUARIO '104'
@@ -435,7 +489,7 @@ execute ELIMINAR_USUARIO '116'
 execute ELIMINAR_USUARIO '117'
 execute ELIMINAR_USUARIO '118'
 execute ELIMINAR_USUARIO '119'
-execute ELIMINAR_USUARIO ''
+execute ELIMINAR_USUARIO '121'
 
 
 
